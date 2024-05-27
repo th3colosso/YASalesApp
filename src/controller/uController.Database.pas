@@ -34,7 +34,7 @@ end;
 
 class function TControllerDB.GetDataBase: string;
 begin
-  {$IFNDEF Debug}
+  {$IFDEF Debug}
   Result := GetCurrentDir + '\..\..\assets\db\YASalesApp.db';
   {$ELSE}
   Result := GetCurrentDir + '\db\YASalesApp.db';

@@ -3,12 +3,14 @@ unit uController.Products;
 interface
 
 uses
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client,
+  uEntity.Product;
 
 type
   TControllerProducts = class
   public
     class function Load(var AMemTable: TFDMemTable): Boolean;
+    class function Save(var AProduct: TEntityProduct): Boolean;
     class procedure ShowRegistrationForm;
   end;
 
@@ -27,6 +29,16 @@ begin
   var ProductsModel := TModelProducts.Create(dmConnection.Conn);
   try
     Result := ProductsModel.Load(AMemTable);
+  finally
+    ProductsModel.Free;
+  end;
+end;
+
+class function TControllerProducts.Save(var AProduct: TEntityProduct): Boolean;
+begin
+  var ProductsModel := TModelProducts.Create(dmConnection.Conn);
+  try
+    Result := ProductsModel.Save(AProduct);
   finally
     ProductsModel.Free;
   end;

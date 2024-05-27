@@ -23,6 +23,8 @@ object frmBaseRegistration: TfrmBaseRegistration
     Width = 844
     Height = 65
     Align = alTop
+    Color = clWhite
+    ParentBackground = False
     TabOrder = 0
     DesignSize = (
       844
@@ -37,7 +39,10 @@ object frmBaseRegistration: TfrmBaseRegistration
       ImageAlignment = iaCenter
       ImageIndex = 0
       Images = dmImages.imgNav
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 0
+      OnClick = btInsertClick
     end
     object btEdit: TButton
       Left = 136
@@ -49,7 +54,10 @@ object frmBaseRegistration: TfrmBaseRegistration
       ImageAlignment = iaCenter
       ImageIndex = 3
       Images = dmImages.imgNav
-      TabOrder = 1
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 2
+      OnClick = btEditClick
     end
     object btCancel: TButton
       Left = 268
@@ -61,7 +69,8 @@ object frmBaseRegistration: TfrmBaseRegistration
       ImageAlignment = iaCenter
       ImageIndex = 1
       Images = dmImages.imgNav
-      TabOrder = 2
+      TabOrder = 4
+      OnClick = btCancelClick
     end
     object btSave: TButton
       Left = 202
@@ -73,7 +82,10 @@ object frmBaseRegistration: TfrmBaseRegistration
       ImageAlignment = iaCenter
       ImageIndex = 4
       Images = dmImages.imgNav
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 3
+      OnClick = btSaveClick
     end
     object btRefresh: TButton
       Left = 334
@@ -85,7 +97,9 @@ object frmBaseRegistration: TfrmBaseRegistration
       ImageAlignment = iaCenter
       ImageIndex = 5
       Images = dmImages.imgNav
-      TabOrder = 4
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 5
       OnClick = btRefreshClick
     end
     object btDelete: TButton
@@ -98,7 +112,10 @@ object frmBaseRegistration: TfrmBaseRegistration
       ImageAlignment = iaCenter
       ImageIndex = 2
       Images = dmImages.imgNav
-      TabOrder = 5
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
+      OnClick = btDeleteClick
     end
     object btLast: TButton
       Left = 780
@@ -106,12 +123,15 @@ object frmBaseRegistration: TfrmBaseRegistration
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Refresh'
+      Hint = 'Last'
       Anchors = [akTop, akRight]
       ImageAlignment = iaCenter
       ImageIndex = 7
       Images = dmImages.imgNav
-      TabOrder = 6
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 9
+      OnClick = btLastClick
     end
     object btSucc: TButton
       Left = 714
@@ -119,12 +139,15 @@ object frmBaseRegistration: TfrmBaseRegistration
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Refresh'
+      Hint = 'Next'
       Anchors = [akTop, akRight]
       ImageAlignment = iaCenter
       ImageIndex = 7
       Images = dmImages.imgNav
-      TabOrder = 7
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 8
+      OnClick = btSuccClick
     end
     object btPred: TButton
       Left = 648
@@ -132,12 +155,15 @@ object frmBaseRegistration: TfrmBaseRegistration
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Refresh'
+      Hint = 'Previous'
       Anchors = [akTop, akRight]
       ImageAlignment = iaCenter
       ImageIndex = 8
       Images = dmImages.imgNav
-      TabOrder = 8
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 7
+      OnClick = btPredClick
     end
     object btFirst: TButton
       Left = 582
@@ -145,12 +171,15 @@ object frmBaseRegistration: TfrmBaseRegistration
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Refresh'
+      Hint = 'First'
       Anchors = [akTop, akRight]
       ImageAlignment = iaCenter
       ImageIndex = 6
       Images = dmImages.imgNav
-      TabOrder = 9
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 6
+      OnClick = btFirstClick
     end
   end
   object pages: TPageControl
@@ -158,13 +187,12 @@ object frmBaseRegistration: TfrmBaseRegistration
     Top = 65
     Width = 844
     Height = 376
-    ActivePage = tsList
+    ActivePage = tsEdit
     Align = alClient
     MultiLine = True
     ParentShowHint = False
     ShowHint = False
     TabOrder = 1
-    ExplicitHeight = 375
     object tsList: TTabSheet
       Caption = 'List'
       object gdData: TDBGrid
@@ -188,6 +216,79 @@ object frmBaseRegistration: TfrmBaseRegistration
     object tsEdit: TTabSheet
       Caption = 'Edit'
       ImageIndex = 1
+      object pnlEdit: TPanel
+        Left = 0
+        Top = 0
+        Width = 836
+        Height = 346
+        Align = alClient
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 0
+        DesignSize = (
+          836
+          346)
+        object pnlTitle: TPanel
+          Left = 29
+          Top = 16
+          Width = 777
+          Height = 49
+          Anchors = [akLeft, akTop, akRight]
+          BevelOuter = bvNone
+          TabOrder = 0
+          object rectTitle: TShape
+            Left = 0
+            Top = 0
+            Width = 777
+            Height = 49
+            Align = alClient
+            Brush.Color = 5515522
+            Shape = stRoundRect
+            ExplicitLeft = 376
+            ExplicitTop = 8
+            ExplicitWidth = 65
+            ExplicitHeight = 65
+          end
+          object lblTitle: TLabel
+            Left = 0
+            Top = 0
+            Width = 777
+            Height = 49
+            Align = alClient
+            Alignment = taCenter
+            Caption = 'lblTitle - Hint'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -19
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Layout = tlCenter
+            ExplicitWidth = 117
+            ExplicitHeight = 25
+          end
+        end
+        object pnlData: TPanel
+          Left = 29
+          Top = 78
+          Width = 777
+          Height = 259
+          Anchors = [akLeft, akTop, akRight]
+          BevelOuter = bvNone
+          TabOrder = 1
+          object rectData: TShape
+            Left = 0
+            Top = 0
+            Width = 777
+            Height = 259
+            Align = alClient
+            Brush.Color = 8145973
+            ExplicitLeft = -1
+            ExplicitWidth = 713
+            ExplicitHeight = 251
+          end
+        end
+      end
     end
   end
   object FMemTable: TFDMemTable

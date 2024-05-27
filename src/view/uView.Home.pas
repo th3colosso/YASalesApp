@@ -66,7 +66,6 @@ end;
 procedure TfrmHome.OpenProductsForm;
 begin
   TControllerProducts.ShowRegistrationForm;
-  ResetFocus;
 end;
 
 procedure TfrmHome.ResetFocus;

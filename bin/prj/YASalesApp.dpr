@@ -10,7 +10,8 @@ uses
   uView.Base.Registration in '..\..\src\view\uView.Base.Registration.pas' {frmBaseRegistration},
   uController.Products in '..\..\src\controller\uController.Products.pas',
   uView.Products in '..\..\src\view\uView.Products.pas' {frmProducts},
-  uController.Database in '..\..\src\controller\uController.Database.pas';
+  uController.Database in '..\..\src\controller\uController.Database.pas',
+  uEntity.Product in '..\..\src\entity\uEntity.Product.pas';
 
 {$R *.res}
 

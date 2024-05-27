@@ -14,7 +14,9 @@ uses
   FireDAC.Stan.Error,
   FireDAC.Phys.Intf,
   FireDAC.Comp.Client,
-  System.SysUtils;
+  System.SysUtils,
+  uEntity.Product,
+  System.Classes;
 
 type
   TModelProducts = class(TModelBase)
@@ -23,9 +25,13 @@ type
   public
     function Load(var AMemTable: TFDMemTable): Boolean; overload;
     function Load(var AMemTable: TFDMemTable; AId: Integer): Boolean; overload;
+    function Save(var AProduct: TEntityProduct): Boolean;
   end;
 
 implementation
+
+uses
+  Vcl.ExtCtrls;
 
 { TModelProducts }
 
@@ -45,6 +51,25 @@ function TModelProducts.Load(var AMemTable: TFDMemTable; AId: Integer): Boolean;
 begin
   FSQL := Format('SELECT * FROM PRODUCTS WHERE ID = %d', [AId]);
   Result := ExecSelectAndCopy(FSQL, AMemTable);
+end;
+
+function TModelProducts.Save(var AProduct: TEntityProduct): Boolean;
+begin
+  try
+    if AProduct.ID > 0 then
+    begin
+      FQry.SQL.Text := 'UPDATE PRODUCTS SET NAME = :NAME, PRICE = :PRICE, IMAGE = :IMAGE, DESCRIPTION = :DESCRIPTION WHERE ID = :ID';
+      FQry.ParamByName('NAME').AsString := AProduct.Name;
+      FQry.ParamByName('PRICE').AsFloat := AProduct.Price;
+      FQry.ParamByName('IMAGE').LoadFromStream(AProduct.Image, ftBlob, 0);
+      FQry.ParamByName('DESCRIPTION').AsString := AProduct.Description;
+      FQry.ParamByName('ID').AsInteger := AProduct.ID;
+      FQry.ExecSQL;
+    end;
+    Result := True;
+  except
+    Result := False;
+  end;
 end;
 
 function TModelProducts.Load(var AMemTable: TFDMemTable): Boolean;
