@@ -11,7 +11,8 @@ uses
   uController.Products in '..\..\src\controller\uController.Products.pas',
   uView.Products in '..\..\src\view\uView.Products.pas' {frmProducts},
   uController.Database in '..\..\src\controller\uController.Database.pas',
-  uEntity.Product in '..\..\src\entity\uEntity.Product.pas';
+  uEntity.Product in '..\..\src\entity\uEntity.Product.pas',
+  uUtils.TEdit in '..\..\src\utillity\uUtils.TEdit.pas';
 
 {$R *.res}
 

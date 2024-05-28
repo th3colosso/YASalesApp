@@ -74,14 +74,14 @@ end;
 procedure TEntityProduct.SetName(const Value: string);
 begin
   if Value.Trim.IsEmpty then
-    raise Exception.Create('Product name cannot be null!');
+    raise Exception.Create('Product name cannot be null');
   FName := Value;
 end;
 
 procedure TEntityProduct.SetPrice(const Value: Double);
 begin
   if not (Value > 0) then
-    raise Exception.Create('Product name must be higher than 0!');
+    raise Exception.Create('Product price must be higher than 0');
   FPrice := Value;
 end;
 

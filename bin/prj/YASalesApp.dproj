@@ -153,6 +153,7 @@
         </DCCReference>
         <DCCReference Include="..\..\src\controller\uController.Database.pas"/>
         <DCCReference Include="..\..\src\entity\uEntity.Product.pas"/>
+        <DCCReference Include="..\..\src\utillity\uUtils.TEdit.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

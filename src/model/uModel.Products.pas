@@ -65,6 +65,15 @@ begin
       FQry.ParamByName('DESCRIPTION').AsString := AProduct.Description;
       FQry.ParamByName('ID').AsInteger := AProduct.ID;
       FQry.ExecSQL;
+    end
+    else
+    begin
+      FQry.SQL.Text := 'INSERT INTO PRODUCTS (NAME, PRICE, IMAGE, DESCRIPTION) VALUES (:NAME, :PRICE, :IMAGE, :DESCRIPTION)';
+      FQry.ParamByName('NAME').AsString := AProduct.Name;
+      FQry.ParamByName('PRICE').AsFloat := AProduct.Price;
+      FQry.ParamByName('IMAGE').LoadFromStream(AProduct.Image, ftBlob, 0);
+      FQry.ParamByName('DESCRIPTION').AsString := AProduct.Description;
+      FQry.ExecSQL;
     end;
     Result := True;
   except
