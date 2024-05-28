@@ -5,10 +5,12 @@ object frmHome: TfrmHome
   BorderStyle = bsSingle
   Caption = 'YASales'
   ClientHeight = 141
-  ClientWidth = 434
+  ClientWidth = 559
   Color = clBtnFace
   Constraints.MaxHeight = 180
-  Constraints.MaxWidth = 450
+  Constraints.MaxWidth = 575
+  Constraints.MinHeight = 180
+  Constraints.MinWidth = 575
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
@@ -20,7 +22,7 @@ object frmHome: TfrmHome
   object pnlMain: TPanel
     Left = 0
     Top = 0
-    Width = 434
+    Width = 559
     Height = 141
     Align = alClient
     BevelOuter = bvNone
@@ -28,7 +30,7 @@ object frmHome: TfrmHome
     ParentBackground = False
     TabOrder = 0
     object btnProducts: TButton
-      Left = 17
+      Left = 148
       Top = 6
       Width = 129
       Height = 129
@@ -36,14 +38,14 @@ object frmHome: TfrmHome
       Caption = 'Products'
       Constraints.MaxHeight = 180
       ImageAlignment = iaTop
-      ImageIndex = 0
+      ImageIndex = 1
       ImageMargins.Top = 20
-      Images = dmImages.imgList
+      Images = dmImages.imgHome
       TabOrder = 0
       OnClick = btnProductsClick
     end
     object btnCustomers: TButton
-      Left = 152
+      Left = 283
       Top = 6
       Width = 129
       Height = 129
@@ -51,14 +53,14 @@ object frmHome: TfrmHome
       Caption = 'Customers'
       Constraints.MaxHeight = 180
       ImageAlignment = iaTop
-      ImageIndex = 1
+      ImageIndex = 0
       ImageMargins.Top = 20
-      Images = dmImages.imgList
+      Images = dmImages.imgHome
       TabOrder = 1
       OnClick = btnCustomersClick
     end
     object btnSales: TButton
-      Left = 287
+      Left = 418
       Top = 6
       Width = 129
       Height = 129
@@ -69,8 +71,22 @@ object frmHome: TfrmHome
       ImageAlignment = iaTop
       ImageIndex = 2
       ImageMargins.Top = 20
-      Images = dmImages.imgList
+      Images = dmImages.imgHome
       TabOrder = 2
+    end
+    object btnUsers: TButton
+      Left = 13
+      Top = 6
+      Width = 129
+      Height = 129
+      Cursor = crHandPoint
+      Caption = 'Users'
+      Constraints.MaxHeight = 180
+      ImageAlignment = iaTop
+      ImageIndex = 3
+      ImageMargins.Top = 20
+      Images = dmImages.imgHome
+      TabOrder = 3
     end
   end
 end

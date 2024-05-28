@@ -11,7 +11,7 @@ uses
 
 type
   TdmImages = class(TDataModule)
-    imgList: TImageList;
+    imgHome: TImageList;
     imgNav: TImageList;
   private
     { Private declarations }

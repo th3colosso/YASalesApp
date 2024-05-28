@@ -21,6 +21,7 @@ type
     btnProducts: TButton;
     btnCustomers: TButton;
     btnSales: TButton;
+    btnUsers: TButton;
     procedure FormShow(Sender: TObject);
     procedure btnProductsClick(Sender: TObject);
     procedure btnCustomersClick(Sender: TObject);
