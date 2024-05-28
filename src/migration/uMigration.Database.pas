@@ -14,6 +14,10 @@ type
     function GetLastRunID: Integer;
     procedure InitStatsTable;
     procedure UpdateLastRunID(ARun: Integer);
+    procedure InitCostumersTable;
+    procedure InitUsersTable;
+    procedure CheckAdminUser;
+    procedure CheckStatsValues;
   public
     procedure RunDBInit;
   end;
@@ -25,6 +29,23 @@ uses
   System.SysUtils;
 
 { TMigrationDatabase }
+
+procedure TMigrationDatabase.CheckAdminUser;
+begin
+  FQry.Open('SELECT COUNT(1) FROM USERS WHERE LOGIN = :LOGIN', ['admin']);
+  if FQry.Fields[0].AsInteger = 0 then
+    FQry.ExecSQL('INSERT INTO USERS (NAME, LOGIN, PASSWORD, ISPASSTEMP) VALUES (:NAME, :LOGIN, :PASSWORD, :ISTEMP)',
+      ['Admin', 'admin', 'admin', False]);
+  FQry.Close;
+end;
+
+procedure TMigrationDatabase.CheckStatsValues;
+begin
+  FQry.Open('SELECT COUNT(*) FROM STATS');
+  if FQry.Fields[0].AsInteger = 0 then
+    FQry.ExecSQL('INSERT INTO STATS DEFAULT VALUES');
+  FQry.Close;
+end;
 
 procedure TMigrationDatabase.DropAllTables;
 begin
@@ -54,10 +75,11 @@ end;
 
 procedure TMigrationDatabase.InitStatsTable;
 begin
-  FSQL := ' CREATE TABLE IF NOT EXISTS STATS (       ' +
-          '   LASTDBUPDATE    INTEGER      DEFAULT 0 ' +
-          ' )                                        ';
+  FSQL := ' CREATE TABLE IF NOT EXISTS STATS (    ' +
+          '   LASTDBUPDATE  INTEGER  DEFAULT 0    ' +
+          ' )                                     ';
   FQry.ExecSQL(FSQL);
+  CheckStatsValues;
 end;
 
 procedure TMigrationDatabase.InitProductsTable;
@@ -76,6 +98,41 @@ begin
   FQry.ExecSQL(FSQL);
 end;
 
+procedure TMigrationDatabase.InitUsersTable;
+begin
+  FSQL := ' CREATE TABLE USERS ( ' +
+          '   ID           INTEGER   PRIMARY KEY AUTOINCREMENT ' +
+          '                          NOT NULL                  ' +
+          '                          UNIQUE,                   ' +
+          '   Name         TEXT (80) NOT NULL,                 ' +
+          '   Login        TEXT (40) NOT NULL                  ' +
+          '                          UNIQUE,                   ' +
+          '   Password     TEXT (80) NOT NULL,                 ' +
+          '   IsPassTemp   BOOLEAN   NOT NULL                  ' +
+          '                          DEFAULT (True),           ' +
+          '   CreationDate DATE      NOT NULL                  ' +
+          '                          DEFAULT (Date(''now'') )  ' +
+          ' )                                                  ';
+  FQry.ExecSQL(FSQL);
+  CheckAdminUser;
+end;
+
+procedure TMigrationDatabase.InitCostumersTable;
+begin
+  FSQL := ' CREATE TABLE CUSTOMERS (                                 ' +
+          '   ID               INTEGER    PRIMARY KEY AUTOINCREMENT  ' +
+          '                               UNIQUE                     ' +
+          '                               NOT NULL,                  ' +
+          '   FirstName        TEXT (50)  NOT NULL,                  ' +
+          '   LastName         TEXT (50)  NOT NULL,                  ' +
+          '   Email            TEXT (100),                           ' +
+          '   DateOfBirth      DATE       NOT NULL,                  ' +
+          '   RegistrationDate DATE       DEFAULT (DATE(''now'') )   ' +
+          '                               NOT NULL                   ' +
+          ' )                                                        ';
+  FQry.ExecSQL(FSQL);
+end;
+
 function TMigrationDatabase.IsDBEmpty: Boolean;
 begin
   FQry.Open('SELECT COUNT(*) FROM SQLITE_MASTER WHERE UPPER(TYPE) = :TYPE AND UPPER(NAME) NOT LIKE :NAME',
@@ -88,12 +145,12 @@ procedure TMigrationDatabase.RunDBInit;
 begin
   InitStatsTable;
   var LastRunId := GetLastRunID;
-  if (not IsDBEmpty) and (GetLastRunID = 0)  then
+  if (not IsDBEmpty) and (LastRunId = 0)  then
   begin
     DropAllTables;
     InitProductsTable;
-    //InitUsersTable;
-    //InitCostumersTable;
+    InitUsersTable;
+    InitCostumersTable;
     //InitOrdersTables;
     UpdateLastRunId(1);
   end;
@@ -102,10 +159,7 @@ end;
 
 procedure TMigrationDatabase.UpdateLastRunID(ARun: Integer);
 begin
-  if ARun = 1 then
-    FQRY.ExecSQL('INSERT INTO STATS (LASTDBUPDATE) VALUES (:LASTDBUPDATE)', [ARun])
-  else
-    FQRY.ExecSQL('UPDATE STATS SET LASTDBUPDATE = :LASTDBUPDATE', [ARun]);
+  FQry.ExecSQL('UPDATE STATS SET LASTDBUPDATE = :LASTDBUPDATE', [ARun]);
 end;
 
 end.
