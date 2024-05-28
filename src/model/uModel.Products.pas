@@ -26,6 +26,7 @@ type
     function Load(var AMemTable: TFDMemTable): Boolean; overload;
     function Load(var AMemTable: TFDMemTable; AId: Integer): Boolean; overload;
     function Save(var AProduct: TEntityProduct): Boolean;
+    function Delete(AId: Integer): Boolean;
   end;
 
 implementation
@@ -34,6 +35,15 @@ uses
   Vcl.ExtCtrls;
 
 { TModelProducts }
+
+function TModelProducts.Delete(AId: Integer): Boolean;
+begin
+  try
+    Result := FQry.ExecSQL('DELETE FROM PRODUCTS WHERE ID = :ID', [AId]) > 0;
+  except
+    Result := False;
+  end;
+end;
 
 function TModelProducts.ExecSelectAndCopy(ASQL: string; var ADest: TFDMemTable): Boolean;
 begin

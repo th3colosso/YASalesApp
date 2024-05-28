@@ -110,7 +110,10 @@ end;
 procedure TfrmProducts.Delete;
 begin
   inherited;
-  // deletion code here
+  var Msg := Format('Are you sure you want to delete the following item? %s%s [ %d - %s ]',
+    [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableName.AsString]);
+  if Application.MessageBox(PChar(Msg), 'WARNING', MB_YESNO + MB_ICONWARNING) = mrYes then
+    TControllerProducts.Delete(FMemTableID.AsInteger);
 end;
 
 procedure TfrmProducts.FormCreate(Sender: TObject);

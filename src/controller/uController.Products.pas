@@ -11,6 +11,7 @@ type
   public
     class function Load(var AMemTable: TFDMemTable): Boolean;
     class function Save(var AProduct: TEntityProduct): Boolean;
+    class function Delete(AId: Integer): Boolean;
     class procedure ShowRegistrationForm;
   end;
 
@@ -23,6 +24,16 @@ uses
   uView.Products;
 
 { TControllerProducts }
+
+class function TControllerProducts.Delete(AId: Integer): Boolean;
+begin
+  var ProductsModel := TModelProducts.Create(dmConnection.Conn);
+  try
+    Result := ProductsModel.Delete(AId);
+  finally
+    ProductsModel.Free;
+  end;
+end;
 
 class function TControllerProducts.Load(var AMemTable: TFDMemTable): Boolean;
 begin
