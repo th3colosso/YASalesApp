@@ -5,6 +5,12 @@ inherited frmProducts: TfrmProducts
   inherited pages: TPageControl
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
+        inherited pnlTitle: TPanel
+          inherited lblTitle: TLabel
+            Width = 777
+            Height = 49
+          end
+        end
         inherited pnlData: TPanel
           inherited rectData: TShape
             ExplicitLeft = 54
@@ -128,7 +134,7 @@ inherited frmProducts: TfrmProducts
             MaxLength = 500
             ParentBiDiMode = False
             ScrollBars = ssVertical
-            TabOrder = 2
+            TabOrder = 4
             OnChange = mmDescriptionChange
           end
           object edtCreationDate: TDateTimePicker
@@ -150,7 +156,7 @@ inherited frmProducts: TfrmProducts
             Alignment = taRightJustify
             BiDiMode = bdLeftToRight
             ParentBiDiMode = False
-            TabOrder = 4
+            TabOrder = 2
           end
           object btLoadImg: TButton
             Left = 81

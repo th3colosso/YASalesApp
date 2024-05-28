@@ -30,7 +30,7 @@ uses
   FireDAC.Comp.Client,
   Vcl.ExtDlgs,
   Vcl.Imaging.pngimage,
-  Vcl.Imaging.jpeg;
+  uUtils.Interceptor.TEdit;
 
 type
   TfrmProducts = class(TfrmBaseRegistration)
