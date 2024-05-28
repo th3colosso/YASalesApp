@@ -1,4 +1,4 @@
-#[YetAnother]Sales App
+# [YetAnother]Sales App
 
 I am developing this simple POS application solely for studying purposes. Feel free to give it a try and tell me what you think of it though!
 
