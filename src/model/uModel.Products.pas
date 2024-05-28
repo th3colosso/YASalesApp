@@ -52,6 +52,7 @@ begin
     ADest.EmptyDataSet;
     ADest.CopyDataSet(FQry);
     Result := True;
+    FQry.Close;
   except
     Result := False;
   end;

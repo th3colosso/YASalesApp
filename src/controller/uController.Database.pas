@@ -17,7 +17,9 @@ type
 implementation
 
 uses
-  System.SysUtils;
+  System.SysUtils,
+  uMigration.Database,
+  uModel.Connection;
 
 { TControllerDB }
 
@@ -29,7 +31,12 @@ end;
 
 class procedure TControllerDB.CheckMigration;
 begin
-  //Do DB Init;
+  var DatabaseMigration := TMigrationDatabase.Create(dmConnection.Conn);
+  try
+    DatabaseMigration.RunDBInit;
+  finally
+    DatabaseMigration.Free;
+  end;
 end;
 
 class function TControllerDB.GetDataBase: string;

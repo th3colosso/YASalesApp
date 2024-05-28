@@ -4,7 +4,7 @@
         <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -154,6 +154,8 @@
         <DCCReference Include="..\..\src\controller\uController.Database.pas"/>
         <DCCReference Include="..\..\src\entity\uEntity.Product.pas"/>
         <DCCReference Include="..\..\src\utillity\uUtils.TEdit.pas"/>
+        <DCCReference Include="..\..\src\utillity\uUtils.Interceptor.TEdit.pas"/>
+        <DCCReference Include="..\..\src\migration\uMigration.Database.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
