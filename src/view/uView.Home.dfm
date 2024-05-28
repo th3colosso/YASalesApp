@@ -3,7 +3,7 @@ object frmHome: TfrmHome
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'Home'
+  Caption = 'YASales'
   ClientHeight = 141
   ClientWidth = 434
   Color = clBtnFace

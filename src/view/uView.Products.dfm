@@ -129,6 +129,9 @@ inherited frmProducts: TfrmProducts
             Top = 80
             Width = 156
             Height = 23
+            Alignment = taRightJustify
+            BiDiMode = bdLeftToRight
+            ParentBiDiMode = False
             TabOrder = 4
           end
           object btLoadImg: TButton

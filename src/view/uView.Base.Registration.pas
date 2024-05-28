@@ -75,6 +75,7 @@ type
     procedure Delete; virtual; abstract;
     procedure Save; virtual; abstract;
     procedure ConfigGrid;
+    procedure ClearData(AParent: TWinControl);
   private
     procedure ConfigTabs;
     procedure ConfigVariables;
@@ -127,6 +128,23 @@ end;
 procedure TfrmBaseRegistration.MoveToListPage;
 begin
   pages.ActivePage := tsList;
+end;
+
+procedure TfrmBaseRegistration.ClearData(AParent: TWinControl);
+begin
+  for var i := 0 to Pred(AParent.ControlCount) do
+  begin
+    if AParent.Controls[i] is TCustomEdit then
+      (AParent.Controls[i] as TCustomEdit).Clear
+    else if AParent.Controls[i] is TCustomMemo then
+      (AParent.Controls[i] as TCustomMemo).Clear
+    else if AParent.Controls[i] is TDateTimePicker then
+      (AParent.Controls[i] as TDateTimePicker).Date := Now
+    else if AParent.Controls[i] is TImage then
+      (AParent.Controls[i] as TImage).Picture.Assign(nil)
+    else if AParent.Controls[i] is TPanel then
+      ClearData((AParent.Controls[i]) as TPanel);
+  end;
 end;
 
 procedure TfrmBaseRegistration.ConfigDBComponents;

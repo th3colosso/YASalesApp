@@ -17,7 +17,7 @@ uses
 
 begin
   Application.Initialize;
-  //Application.MainFormOnTaskbar := True;
+  ReportMemoryLeaksOnShutdown := True;
   Application.Title := 'YASales App';
   Application.CreateForm(TdmConnection, dmConnection);
   Application.CreateForm(TdmImages, dmImages);

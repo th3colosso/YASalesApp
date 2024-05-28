@@ -63,7 +63,6 @@ type
     procedure Delete; override;
   private
     procedure GetProductData;
-    procedure ClearData;
     procedure BrowseImages;
   public
     { Public declarations }
@@ -87,7 +86,7 @@ begin
   inherited;
   if FIsInserting then
   begin
-    ClearData;
+    ClearData(pnlData);
     edtID.Text := '-1';
   end
   else
@@ -121,28 +120,19 @@ begin
   BrowseImages;
 end;
 
-procedure TfrmProducts.ClearData;
-begin
-  for var i := 0 to Pred(pnlData.ControlCount) do
-  begin
-    if pnlData.Controls[i] is TEdit then
-      (pnlData.Controls[i] as TEdit).Clear
-    else if pnlData.Controls[i] is TMemo then
-      (pnlData.Controls[i] as TMemo).Clear
-    else if pnlData.Controls[i] is TDateTimePicker then
-      (pnlData.Controls[i] as TDateTimePicker).Date := Now;
-  end;
-  img.Picture.Assign(nil);
-end;
-
 procedure TfrmProducts.GetProductData;
 begin
-  edtID.Text := FMemTableID.AsString;
-  edtName.Text := FMemTableName.AsString;
-  edtPrice.Text := FMemTablePrice.AsString;
-  mmDescription.Lines.Text := FMemTableDescription.AsString;
-  edtCreationDate.Date := FMemTableCreationDate.AsDateTime;
-  img.Picture.LoadFromStream(TFDBlobStream.Create(FMemTableImage, bmRead));
+  var Stream := TFDBlobStream.Create(FMemTableImage, bmRead);
+  try
+    edtID.Text := FMemTableID.AsString;
+    edtName.Text := FMemTableName.AsString;
+    edtPrice.Text := FMemTablePrice.AsString;
+    mmDescription.Lines.Text := FMemTableDescription.AsString;
+    edtCreationDate.Date := FMemTableCreationDate.AsDateTime;
+    img.Picture.LoadFromStream(Stream);
+  finally
+    Stream.Free;
+  end;
 end;
 
 procedure TfrmProducts.ReloadData;

@@ -24,7 +24,7 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-  published
+  public
     property ID: Integer read FID write SetID;
     property Name: string read FName write SetName;
     property Description: string read FDescription write SetDescription;
