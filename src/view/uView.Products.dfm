@@ -26,7 +26,7 @@ inherited frmProducts: TfrmProducts
             ParentFont = False
           end
           object lblName: TLabel
-            Left = 108
+            Left = 81
             Top = 11
             Width = 32
             Height = 15
@@ -39,8 +39,8 @@ inherited frmProducts: TfrmProducts
             ParentFont = False
           end
           object lblPrice: TLabel
-            Left = 42
-            Top = 59
+            Left = 535
+            Top = 11
             Width = 26
             Height = 15
             Caption = 'Price'
@@ -52,8 +52,8 @@ inherited frmProducts: TfrmProducts
             ParentFont = False
           end
           object lblCreationDate: TLabel
-            Left = 204
-            Top = 59
+            Left = 632
+            Top = 11
             Width = 72
             Height = 15
             Caption = 'Creation Date'
@@ -65,8 +65,8 @@ inherited frmProducts: TfrmProducts
             ParentFont = False
           end
           object lblDescription: TLabel
-            Left = 324
-            Top = 59
+            Left = 312
+            Top = 61
             Width = 60
             Height = 15
             Caption = 'Description'
@@ -79,7 +79,7 @@ inherited frmProducts: TfrmProducts
           end
           object lblImage: TLabel
             Left = 42
-            Top = 109
+            Top = 61
             Width = 33
             Height = 15
             Caption = 'Image'
@@ -90,33 +90,51 @@ inherited frmProducts: TfrmProducts
             Font.Style = []
             ParentFont = False
           end
+          object lblCharCount: TLabel
+            Left = 664
+            Top = 63
+            Width = 69
+            Height = 13
+            Alignment = taRightJustify
+            Caption = 'lblCharCount'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
           object edtID: TEdit
             Left = 42
             Top = 32
-            Width = 60
+            Width = 33
             Height = 23
             ReadOnly = True
             TabOrder = 0
           end
           object edtName: TEdit
-            Left = 108
+            Left = 81
             Top = 32
-            Width = 626
+            Width = 448
             Height = 23
             TabOrder = 1
           end
           object mmDescription: TMemo
-            Left = 324
-            Top = 80
-            Width = 409
-            Height = 161
+            Left = 312
+            Top = 82
+            Width = 421
+            Height = 159
+            BiDiMode = bdLeftToRight
             MaxLength = 500
+            ParentBiDiMode = False
+            ScrollBars = ssVertical
             TabOrder = 2
+            OnChange = mmDescriptionChange
           end
           object edtCreationDate: TDateTimePicker
-            Left = 204
-            Top = 80
-            Width = 114
+            Left = 632
+            Top = 32
+            Width = 101
             Height = 23
             Date = 45438.000000000000000000
             Time = 0.658164826389111100
@@ -125,9 +143,9 @@ inherited frmProducts: TfrmProducts
             TabOrder = 3
           end
           object edtPrice: TEdit
-            Left = 42
-            Top = 80
-            Width = 156
+            Left = 535
+            Top = 32
+            Width = 91
             Height = 23
             Alignment = taRightJustify
             BiDiMode = bdLeftToRight
@@ -136,7 +154,7 @@ inherited frmProducts: TfrmProducts
           end
           object btLoadImg: TButton
             Left = 81
-            Top = 108
+            Top = 60
             Width = 40
             Height = 20
             Cursor = crHandPoint
@@ -152,19 +170,20 @@ inherited frmProducts: TfrmProducts
           end
           object pnlImage: TPanel
             Left = 42
-            Top = 134
-            Width = 276
-            Height = 107
+            Top = 82
+            Width = 264
+            Height = 159
             BevelOuter = bvNone
             TabOrder = 6
             object rectImg: TShape
               Left = 0
               Top = 0
-              Width = 276
-              Height = 107
+              Width = 264
+              Height = 159
               Align = alClient
               Brush.Style = bsClear
-              Pen.Style = psDash
+              Pen.Color = 5515522
+              Pen.Style = psDot
               ExplicitLeft = 56
               ExplicitTop = 24
               ExplicitWidth = 65
@@ -172,17 +191,18 @@ inherited frmProducts: TfrmProducts
             end
             object img: TImage
               AlignWithMargins = True
-              Left = 0
-              Top = -4
-              Width = 276
-              Height = 111
-              Margins.Left = 5
-              Margins.Top = 5
-              Margins.Right = 5
-              Margins.Bottom = 5
+              Left = 3
+              Top = 3
+              Width = 258
+              Height = 153
+              Align = alClient
               Center = True
               Proportional = True
               Stretch = True
+              ExplicitLeft = 0
+              ExplicitTop = -4
+              ExplicitWidth = 276
+              ExplicitHeight = 125
             end
           end
         end
@@ -191,6 +211,7 @@ inherited frmProducts: TfrmProducts
   end
   inherited FMemTable: TFDMemTable
     StoreDefs = True
+    Left = 700
     object FMemTableID: TIntegerField
       DisplayWidth = 5
       FieldName = 'ID'
@@ -202,6 +223,7 @@ inherited frmProducts: TfrmProducts
     end
     object FMemTablePrice: TFloatField
       FieldName = 'Price'
+      DisplayFormat = '##0.00'
     end
     object FMemTableDescription: TStringField
       DisplayWidth = 80

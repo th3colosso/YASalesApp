@@ -55,15 +55,20 @@ type
     pnlImage: TPanel;
     img: TImage;
     rectImg: TShape;
+    lblCharCount: TLabel;
     procedure btLoadImgClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure mmDescriptionChange(Sender: TObject);
   protected
     procedure ReloadData; override;
-    procedure ConfigEditComponents; override;
+    procedure ConfigEditTabComponents; override;
     procedure Save; override;
     procedure Delete; override;
   private
     procedure GetProductData;
     procedure BrowseImages;
+    procedure ConfigEdits;
+    procedure SetDescriptionCharCountInfo;
   public
     { Public declarations }
   end;
@@ -75,18 +80,27 @@ implementation
 
 uses
   uController.Products,
-  uUtils.DmImages, uEntity.Product;
+  uUtils.DmImages,
+  uEntity.Product,
+  uUtils.TEdit;
 
 {$R *.dfm}
 
 { TfrmProducts }
 
-procedure TfrmProducts.ConfigEditComponents;
+procedure TfrmProducts.ConfigEdits;
+begin
+  edtPrice.OnKeyPress := TUtilsTEdit.OnKeyPressCurrencyEdit;
+  edtPrice.OnExit := TUtilsTEdit.OnExitCurrencyEdit;
+end;
+
+procedure TfrmProducts.ConfigEditTabComponents;
 begin
   inherited;
   if FIsInserting then
   begin
     ClearData(pnlData);
+    SetDescriptionCharCountInfo;
     edtID.Text := '-1';
   end
   else
@@ -97,6 +111,12 @@ procedure TfrmProducts.Delete;
 begin
   inherited;
   // deletion code here
+end;
+
+procedure TfrmProducts.FormCreate(Sender: TObject);
+begin
+  inherited;
+  ConfigEdits;
 end;
 
 procedure TfrmProducts.BrowseImages;
@@ -127,12 +147,24 @@ begin
     edtID.Text := FMemTableID.AsString;
     edtName.Text := FMemTableName.AsString;
     edtPrice.Text := FMemTablePrice.AsString;
+    edtPrice.OnExit(edtPrice); //Format Currency
     mmDescription.Lines.Text := FMemTableDescription.AsString;
     edtCreationDate.Date := FMemTableCreationDate.AsDateTime;
     img.Picture.LoadFromStream(Stream);
   finally
     Stream.Free;
   end;
+end;
+
+procedure TfrmProducts.mmDescriptionChange(Sender: TObject);
+begin
+  inherited;
+  SetDescriptionCharCountInfo;
+end;
+
+procedure TfrmProducts.SetDescriptionCharCountInfo;
+begin
+  lblCharCount.Caption := Format('%d/500', [mmDescription.GetTextLen]);
 end;
 
 procedure TfrmProducts.ReloadData;
@@ -145,10 +177,10 @@ begin
   inherited;
   var Product := TEntityProduct.Create;
   try
-    Product.ID := StrToInt(edtID.Text);
+    Product.ID := StrToIntDef(edtID.Text, -1);
     Product.Name := edtName.Text;
     Product.Description := mmDescription.Text;
-    Product.Price := StrToFloat(edtPrice.Text);
+    Product.Price := StrToFloatDef(edtPrice.Text, 0);
     img.Picture.SaveToStream(Product.Image);
     TControllerProducts.Save(Product);
   finally

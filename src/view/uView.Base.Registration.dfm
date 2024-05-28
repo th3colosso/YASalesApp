@@ -299,12 +299,12 @@ object frmBaseRegistration: TfrmBaseRegistration
     UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
     UpdateOptions.CheckRequired = False
     UpdateOptions.AutoCommitUpdates = True
-    Left = 780
+    Left = 692
     Top = 99
   end
   object FDataSource: TDataSource
     DataSet = FMemTable
     Left = 780
-    Top = 155
+    Top = 99
   end
 end

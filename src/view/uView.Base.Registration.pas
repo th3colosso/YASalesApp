@@ -71,7 +71,7 @@ type
     FIsInserting: Boolean;
     procedure ConfigMemTable; virtual;
     procedure ReloadData; virtual; abstract;
-    procedure ConfigEditComponents; virtual; abstract;
+    procedure ConfigEditTabComponents; virtual; abstract;
     procedure Delete; virtual; abstract;
     procedure Save; virtual; abstract;
     procedure ConfigGrid;
@@ -171,7 +171,7 @@ begin
   ControlNavigation(False);
   ControlActions(True);
   FIsInserting := False;
-  ConfigEditComponents;
+  ConfigEditTabComponents;
   MoveToEditPage;
 end;
 
@@ -185,7 +185,7 @@ begin
   ControlNavigation(False);
   ControlActions(True);
   FIsInserting := True;
-  ConfigEditComponents;
+  ConfigEditTabComponents;
   MoveToEditPage;
 end;
 
