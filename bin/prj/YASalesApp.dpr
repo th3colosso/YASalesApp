@@ -14,7 +14,9 @@ uses
   uEntity.Product in '..\..\src\entity\uEntity.Product.pas',
   uUtils.TEdit in '..\..\src\utillity\uUtils.TEdit.pas',
   uUtils.Interceptor.TEdit in '..\..\src\utillity\uUtils.Interceptor.TEdit.pas',
-  uMigration.Database in '..\..\src\migration\uMigration.Database.pas';
+  uMigration.Database in '..\..\src\migration\uMigration.Database.pas',
+  Bcrypt in '..\..\src\modules\Bcrypt\Bcrypt.pas',
+  uController.Encryption in '..\..\src\controller\uController.Encryption.pas';
 
 {$R *.res}
 

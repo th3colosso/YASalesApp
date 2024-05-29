@@ -156,6 +156,8 @@
         <DCCReference Include="..\..\src\utillity\uUtils.TEdit.pas"/>
         <DCCReference Include="..\..\src\utillity\uUtils.Interceptor.TEdit.pas"/>
         <DCCReference Include="..\..\src\migration\uMigration.Database.pas"/>
+        <DCCReference Include="..\..\src\modules\Bcrypt\Bcrypt.pas"/>
+        <DCCReference Include="..\..\src\controller\uController.Encryption.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -183,6 +185,12 @@
             </Delphi.Personality>
             <Deployment Version="4">
                 <DeployFile LocalName="..\exe\YASalesApp.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>YASalesApp.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\exe\YASalesApp.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>YASalesApp.exe</RemoteName>
                         <Overwrite>true</Overwrite>

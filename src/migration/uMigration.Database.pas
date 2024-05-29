@@ -26,7 +26,8 @@ implementation
 
 uses
   FireDAC.Comp.Client,
-  System.SysUtils;
+  System.SysUtils,
+  uController.Encryption;
 
 { TMigrationDatabase }
 
@@ -35,7 +36,7 @@ begin
   FQry.Open('SELECT COUNT(1) FROM USERS WHERE LOGIN = :LOGIN', ['admin']);
   if FQry.Fields[0].AsInteger = 0 then
     FQry.ExecSQL('INSERT INTO USERS (NAME, LOGIN, PASSWORD, ISPASSTEMP) VALUES (:NAME, :LOGIN, :PASSWORD, :ISTEMP)',
-      ['Admin', 'admin', 'admin', False]);
+      ['Admin', 'admin', TControllerEncryption.HashPassword('admin'), False]);
   FQry.Close;
 end;
 
