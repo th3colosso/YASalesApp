@@ -25,6 +25,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnProductsClick(Sender: TObject);
     procedure btnCustomersClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     procedure ResetFocus;
     procedure OpenProductsForm;
@@ -40,7 +41,8 @@ implementation
 
 uses
   uUtils.DmImages,
-  uController.Products;
+  uController.Products,
+  uController.Users;
 
 {$R *.dfm}
 
@@ -52,6 +54,11 @@ end;
 procedure TfrmHome.btnProductsClick(Sender: TObject);
 begin
   OpenProductsForm;
+end;
+
+procedure TfrmHome.FormCreate(Sender: TObject);
+begin
+  TControllerUsers.ShowLoginForm;
 end;
 
 procedure TfrmHome.FormShow(Sender: TObject);

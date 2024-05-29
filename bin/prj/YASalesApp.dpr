@@ -16,7 +16,10 @@ uses
   uUtils.Interceptor.TEdit in '..\..\src\utillity\uUtils.Interceptor.TEdit.pas',
   uMigration.Database in '..\..\src\migration\uMigration.Database.pas',
   Bcrypt in '..\..\src\modules\Bcrypt\Bcrypt.pas',
-  uController.Encryption in '..\..\src\controller\uController.Encryption.pas';
+  uController.Encryption in '..\..\src\controller\uController.Encryption.pas',
+  uView.Login in '..\..\src\view\uView.Login.pas' {frmLogin},
+  uController.Users in '..\..\src\controller\uController.Users.pas',
+  uModel.Users in '..\..\src\model\uModel.Users.pas';
 
 {$R *.res}
 

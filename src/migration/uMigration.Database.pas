@@ -152,7 +152,7 @@ begin
     InitProductsTable;
     InitUsersTable;
     InitCostumersTable;
-    //InitOrdersTables;
+    {InitOrdersTables;} {TODO -cDev: Add Orders and Itens DDL}
     UpdateLastRunId(1);
   end;
 
