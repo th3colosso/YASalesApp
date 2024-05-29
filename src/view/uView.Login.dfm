@@ -22,8 +22,6 @@ object frmLogin: TfrmLogin
     Color = clHighlight
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 540
-    ExplicitHeight = 308
     object pnlMain: TPanel
       AlignWithMargins = True
       Left = 6
@@ -39,8 +37,6 @@ object frmLogin: TfrmLogin
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 528
-      ExplicitHeight = 296
       object rectLine: TShape
         Left = 185
         Top = 0
@@ -58,8 +54,6 @@ object frmLogin: TfrmLogin
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitWidth = 356
-        ExplicitHeight = 317
         object lblWelcome: TLabel
           Left = 113
           Top = 11
@@ -160,9 +154,6 @@ object frmLogin: TfrmLogin
         Padding.Right = 10
         Padding.Bottom = 10
         TabOrder = 1
-        ExplicitLeft = 40
-        ExplicitTop = 105
-        ExplicitHeight = 41
         object imgAppLogo: TImage
           Left = 10
           Top = 10
