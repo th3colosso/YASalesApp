@@ -1,6 +1,6 @@
 inherited frmProducts: TfrmProducts
   Hint = 'Product'#39's Details - Inserting / Updating'
-  Caption = 'Products Registration'
+  Caption = 'Products - %s'
   TextHeight = 15
   inherited pages: TPageControl
     inherited tsEdit: TTabSheet
@@ -25,7 +25,7 @@ inherited frmProducts: TfrmProducts
             Height = 15
             Caption = 'ID'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWhite
+            Font.Color = 15424594
             Font.Height = -12
             Font.Name = 'Segoe UI'
             Font.Style = []
@@ -38,7 +38,7 @@ inherited frmProducts: TfrmProducts
             Height = 15
             Caption = 'Name'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWhite
+            Font.Color = 15424594
             Font.Height = -12
             Font.Name = 'Segoe UI'
             Font.Style = []
@@ -51,7 +51,7 @@ inherited frmProducts: TfrmProducts
             Height = 15
             Caption = 'Price'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWhite
+            Font.Color = 15424594
             Font.Height = -12
             Font.Name = 'Segoe UI'
             Font.Style = []
@@ -64,7 +64,7 @@ inherited frmProducts: TfrmProducts
             Height = 15
             Caption = 'Creation Date'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWhite
+            Font.Color = 15424594
             Font.Height = -12
             Font.Name = 'Segoe UI'
             Font.Style = []
@@ -77,7 +77,7 @@ inherited frmProducts: TfrmProducts
             Height = 15
             Caption = 'Description'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWhite
+            Font.Color = 15424594
             Font.Height = -12
             Font.Name = 'Segoe UI'
             Font.Style = []
@@ -90,7 +90,7 @@ inherited frmProducts: TfrmProducts
             Height = 15
             Caption = 'Image'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWhite
+            Font.Color = 15424594
             Font.Height = -12
             Font.Name = 'Segoe UI'
             Font.Style = []
@@ -104,7 +104,7 @@ inherited frmProducts: TfrmProducts
             Alignment = taRightJustify
             Caption = 'lblCharCount'
             Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWhite
+            Font.Color = 15424594
             Font.Height = -11
             Font.Name = 'Segoe UI'
             Font.Style = []
@@ -241,6 +241,7 @@ inherited frmProducts: TfrmProducts
       Visible = False
     end
     object FMemTableCreationDate: TDateField
+      DisplayLabel = 'Creation Date'
       FieldName = 'CreationDate'
     end
   end

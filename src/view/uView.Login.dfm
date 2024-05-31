@@ -43,6 +43,7 @@ object frmLogin: TfrmLogin
         Width = 1
         Height = 281
         Align = alLeft
+        Pen.Color = 15787740
         ExplicitLeft = 217
         ExplicitHeight = 296
       end

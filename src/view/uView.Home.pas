@@ -26,10 +26,12 @@ type
     procedure btnProductsClick(Sender: TObject);
     procedure btnCustomersClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnUsersClick(Sender: TObject);
   private
     procedure ResetFocus;
     procedure OpenProductsForm;
     procedure OpenCustomersForm;
+    procedure OpenUsersForm;
   public
     { Public declarations }
   end;
@@ -54,6 +56,16 @@ end;
 procedure TfrmHome.btnProductsClick(Sender: TObject);
 begin
   OpenProductsForm;
+end;
+
+procedure TfrmHome.btnUsersClick(Sender: TObject);
+begin
+  OpenUsersForm;
+end;
+
+procedure TfrmHome.OpenUsersForm;
+begin
+  TControllerUsers.ShowUsersForm;
 end;
 
 procedure TfrmHome.FormCreate(Sender: TObject);

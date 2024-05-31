@@ -33,7 +33,7 @@ uses
   uUtils.Interceptor.TEdit;
 
 type
-  TfrmProducts = class(TfrmBaseRegistration)
+  TfrmProducts = class(TfrmBase)
     FMemTableID: TIntegerField;
     FMemTableName: TStringField;
     FMemTableDescription: TStringField;
@@ -113,7 +113,8 @@ begin
   var Msg := Format('Are you sure you want to delete the following item? %s%s [ %d - %s ]',
     [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableName.AsString]);
   if Application.MessageBox(PChar(Msg), 'WARNING', MB_YESNO + MB_ICONWARNING) = mrYes then
-    TControllerProducts.Delete(FMemTableID.AsInteger);
+    if not TControllerProducts.Delete(FMemTableID.AsInteger) then
+      Application.MessageBox(Pchar('Problem found while deleting deleteing item'), 'ERROR', MB_OK + MB_ICONERROR);
 end;
 
 procedure TfrmProducts.FormCreate(Sender: TObject);
@@ -172,7 +173,8 @@ end;
 
 procedure TfrmProducts.ReloadData;
 begin
-  TControllerProducts.Load(FMemTable);
+  if not TControllerProducts.Load(FMemTable) then
+    Application.MessageBox(PChar('Problem found while loading data'), 'Error', MB_OK + MB_ICONWARNING);
 end;
 
 procedure TfrmProducts.Save;

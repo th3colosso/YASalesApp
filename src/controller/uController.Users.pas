@@ -2,13 +2,18 @@ unit uController.Users;
 
 interface
 
+uses
+  FireDAC.Comp.Client;
+
 type
   TControllerUsers = class
   private
     class procedure UpdatePassword;
   public
     class procedure ShowLoginForm;
+    class procedure ShowUsersForm;
     class function CheckLogin(AUsername: string; ATypedPassword: string): Boolean;
+    class function Load(var AMemTable: TFDMemTable): Boolean;
   end;
 
 implementation
@@ -17,7 +22,8 @@ uses
   Vcl.Forms,
   uModel.Connection,
   uView.Login,
-  uModel.Users;
+  uModel.Users,
+  uView.Users;
 
 { TControllerLogin }
 
@@ -34,6 +40,16 @@ begin
   end;
 end;
 
+class function TControllerUsers.Load(var AMemTable: TFDMemTable): Boolean;
+begin
+  var UserModel := TModelUsers.Create(dmConnection.Conn);
+  try
+    Result := UserModel.Load(AMemTable);
+  finally
+    UserModel.Free;
+  end;
+end;
+
 class procedure TControllerUsers.ShowLoginForm;
 begin
   var frmLogin := TfrmLogin.Create(Application);
@@ -41,6 +57,16 @@ begin
     frmLogin.ShowModal;
   finally
     frmLogin.Free;
+  end;
+end;
+
+class procedure TControllerUsers.ShowUsersForm;
+begin
+  var frmUsers := TfrmUsers.Create(Application);
+  try
+    frmUsers.ShowModal;
+  finally
+    frmUsers.Free;
   end;
 end;
 

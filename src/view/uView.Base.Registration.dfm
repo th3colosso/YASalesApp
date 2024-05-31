@@ -1,7 +1,7 @@
-object frmBaseRegistration: TfrmBaseRegistration
+object frmBase: TfrmBase
   Left = 0
   Top = 0
-  Caption = 'frmBaseRegistration'
+  Caption = 'Base'
   ClientHeight = 441
   ClientWidth = 844
   Color = clBtnFace
@@ -242,7 +242,7 @@ object frmBaseRegistration: TfrmBaseRegistration
             Width = 777
             Height = 49
             Align = alClient
-            Brush.Color = 5515522
+            Brush.Color = 15424594
             Shape = stRoundRect
             ExplicitLeft = 376
             ExplicitTop = 8
@@ -282,7 +282,7 @@ object frmBaseRegistration: TfrmBaseRegistration
             Width = 777
             Height = 259
             Align = alClient
-            Brush.Color = 8145973
+            Brush.Color = 15191999
             ExplicitLeft = -1
             ExplicitWidth = 713
             ExplicitHeight = 251

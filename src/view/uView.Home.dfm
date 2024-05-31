@@ -3,7 +3,7 @@ object frmHome: TfrmHome
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'YASales'
+  Caption = 'YASales App'
   ClientHeight = 141
   ClientWidth = 559
   Color = clBtnFace
@@ -88,6 +88,7 @@ object frmHome: TfrmHome
       ImageMargins.Top = 20
       Images = dmImages.imgHome
       TabOrder = 3
+      OnClick = btnUsersClick
     end
   end
 end
