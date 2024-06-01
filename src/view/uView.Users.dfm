@@ -2,6 +2,7 @@ inherited frmUsers: TfrmUsers
   Hint = 'User'#39's Details - Inserting / Updating'
   TextHeight = 15
   inherited pages: TPageControl
+    ActivePage = tsList
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
         inherited pnlTitle: TPanel

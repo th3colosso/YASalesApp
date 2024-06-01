@@ -112,13 +112,13 @@ end;
 
 procedure TfrmBase.FormDestroy(Sender: TObject);
 begin
-  Application.MainForm.Show;
+  Application.MainForm.AlphaBlend := False;
 end;
 
 procedure TfrmBase.FormShow(Sender: TObject);
 begin
   ReloadData;
-  Application.MainForm.Hide;
+  Application.MainForm.AlphaBlend := True;
 end;
 
 procedure TfrmBase.MoveToEditPage;

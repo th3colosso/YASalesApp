@@ -1,6 +1,7 @@
 object frmHome: TfrmHome
   Left = 0
   Top = 0
+  AlphaBlendValue = 0
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'YASales App'
