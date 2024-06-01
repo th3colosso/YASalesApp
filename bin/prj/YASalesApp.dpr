@@ -20,7 +20,8 @@ uses
   uView.Login in '..\..\src\view\uView.Login.pas' {frmLogin},
   uController.Users in '..\..\src\controller\uController.Users.pas',
   uModel.Users in '..\..\src\model\uModel.Users.pas',
-  uView.Users in '..\..\src\view\uView.Users.pas' {frmUsers};
+  uView.Users in '..\..\src\view\uView.Users.pas' {frmUsers},
+  uEntity.User in '..\..\src\entity\uEntity.User.pas';
 
 {$R *.res}
 

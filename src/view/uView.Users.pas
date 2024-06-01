@@ -29,6 +29,10 @@ type
     cbProducts: TCheckBox;
     cbOrders: TCheckBox;
     FMemTableIsPassTemp: TBooleanField;
+    FMemTableHasUserScr: TBooleanField;
+    FMemTableHasProductScr: TBooleanField;
+    FMemTableHasCustomerScr: TBooleanField;
+    FMemTableHasOrderScr: TBooleanField;
   protected
     procedure ReloadData; override;
     procedure Save; override;
@@ -47,7 +51,8 @@ var
 implementation
 
 uses
-  uController.Users;
+  uController.Users,
+  uEntity.User;
 
 {$R *.dfm}
 
@@ -71,22 +76,45 @@ begin
   edtName.Text := FMemTableName.AsString;
   edtLogin.Text := FMemTableLogin.AsString;
   edtCreationDate.Date := FMemTableCreationDate.AsDateTime;
+  //Options
   cbNewPassword.Checked := FMemTableIsPassTemp.AsBoolean;
+  cbUsers.Checked := FMemTableHasUserScr.AsBoolean;
+  cbProducts.Checked := FMemTableHasProductScr.AsBoolean;
+  cbCustomers.Checked := FMemTableHasCustomerScr.AsBoolean;
+  //cbOrders.Checked := FMemTableHasOrderScr.AsBoolean;
 end;
 
 procedure TfrmUsers.Delete;
 begin
-
+  var Msg := Format('Are you sure you want to delete the following user? %s%s [ %d - %s ]',
+    [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableName.AsString]);
+  if Application.MessageBox(PChar(Msg), 'WARNING', MB_YESNO + MB_ICONWARNING) = mrYes then
+    if not TControllerUsers.Delete(FMemTableID.AsInteger) then
+      Application.MessageBox(Pchar('Problem found while deleting deleting user'), 'Error', MB_OK + MB_ICONERROR);
 end;
 
 procedure TfrmUsers.ReloadData;
 begin
-  TControllerUsers.Load(FMemTable);
+  if not TControllerUsers.Load(FMemTable) then
+    Application.MessageBox(PChar('Problem found while loading data'), 'Error', MB_OK + MB_ICONERROR);
 end;
 
 procedure TfrmUsers.Save;
 begin
-
+  var User := TEntityUser.Create;
+  try
+    User.ID := StrToInt(edtID.Text);
+    User.Name := edtName.Text;
+    User.Login := edtLogin.Text;
+    User.IsPassTemp := cbNewPassword.Checked;
+    User.HasUserSrc := cbUsers.Checked;
+    User.HasProducScr := cbProducts.Checked;
+    User.HasCustomerScr := cbCustomers.Checked;
+    User.HasOrderScr := cbOrders.Checked;
+    TControllerUsers.Save(User);
+  finally
+    User.Free;
+  end;
 end;
 
 end.

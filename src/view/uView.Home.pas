@@ -13,7 +13,8 @@ uses
   Vcl.Forms,
   Vcl.Dialogs,
   Vcl.StdCtrls,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls,
+  uEntity.User;
 
 type
   TfrmHome = class(TForm)
@@ -25,15 +26,17 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnProductsClick(Sender: TObject);
     procedure btnCustomersClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure btnUsersClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
+    FLoggedUser: TLoggedUser;
     procedure ResetFocus;
     procedure OpenProductsForm;
     procedure OpenCustomersForm;
     procedure OpenUsersForm;
+    procedure DoLogin;
   public
-    { Public declarations }
+    property LoggedUser: TLoggedUser read FLoggedUser;
   end;
 
 var
@@ -65,12 +68,22 @@ end;
 
 procedure TfrmHome.OpenUsersForm;
 begin
+  if not LoggedUser.HasUserScr then
+    raise Exception.Create('Unauthorized');
   TControllerUsers.ShowUsersForm;
+end;
+
+procedure TfrmHome.DoLogin;
+begin
+  var LoggedUserName: string;
+  TControllerUsers.ShowLoginForm(LoggedUserName);
+
+  FLoggedUser := TControllerUsers.CheckLoggedUser(LoggedUserName);
 end;
 
 procedure TfrmHome.FormCreate(Sender: TObject);
 begin
-  TControllerUsers.ShowLoginForm;
+  DoLogin;
 end;
 
 procedure TfrmHome.FormShow(Sender: TObject);
@@ -80,11 +93,15 @@ end;
 
 procedure TfrmHome.OpenCustomersForm;
 begin
+  if not LoggedUser.HasProductScr then
+    raise Exception.Create('Unauthorized');
   ResetFocus;
 end;
 
 procedure TfrmHome.OpenProductsForm;
 begin
+  if not LoggedUser.HasProductScr then
+    raise Exception.Create('Unauthorized');
   TControllerProducts.ShowRegistrationForm;
 end;
 

@@ -36,13 +36,13 @@ begin
   FQry.Open('SELECT COUNT(1) FROM USERS WHERE LOGIN = :LOGIN', ['admin']);
   if FQry.Fields[0].AsInteger = 0 then
     FQry.ExecSQL('INSERT INTO USERS (NAME, LOGIN, PASSWORD, ISPASSTEMP) VALUES (:NAME, :LOGIN, :PASSWORD, :ISTEMP)',
-      ['Admin', 'admin', TControllerEncryption.HashPassword('admin'), False]);
+      ['Administrator', 'admin', TControllerEncryption.HashPassword('admin'), False]);
   FQry.Close;
 end;
 
 procedure TMigrationDatabase.CheckStatsValues;
 begin
-  FQry.Open('SELECT COUNT(*) FROM STATS');
+  FQry.Open('SELECT COUNT(1) FROM STATS');
   if FQry.Fields[0].AsInteger = 0 then
     FQry.ExecSQL('INSERT INTO STATS DEFAULT VALUES');
   FQry.Close;
@@ -101,21 +101,29 @@ end;
 
 procedure TMigrationDatabase.InitUsersTable;
 begin
-  FSQL := ' CREATE TABLE USERS ( ' +
-          '   ID           INTEGER   PRIMARY KEY AUTOINCREMENT ' +
-          '                          NOT NULL                  ' +
-          '                          UNIQUE,                   ' +
-          '   Name         TEXT (80) NOT NULL,                 ' +
-          '   Login        TEXT (40) NOT NULL                  ' +
-          '                          UNIQUE,                   ' +
-          '   Password     TEXT (80) NOT NULL,                 ' +
-          '   IsPassTemp   BOOLEAN   NOT NULL                  ' +
-          '                          DEFAULT (True),           ' +
-          '   CreationDate DATE      NOT NULL                  ' +
-          '                          DEFAULT (Date(''now'') )  ' +
-          ' )                                                  ';
+  FSQL := ' CREATE TABLE USERS (                                       ' +
+          '   ID             INTEGER   PRIMARY KEY AUTOINCREMENT       ' +
+          '                            NOT NULL                        ' +
+          '                            UNIQUE,                         ' +
+          '   Name           TEXT (80) NOT NULL,                       ' +
+          '   Login          TEXT (40) NOT NULL                        ' +
+          '                            UNIQUE,                         ' +
+          '   Password       TEXT (80) NOT NULL,                       ' +
+          '   IsPassTemp     BOOLEAN   NOT NULL                        ' +
+          '                            DEFAULT (True),                 ' +
+          '   CreationDate   DATE      NOT NULL                        ' +
+          '                            DEFAULT (Date(''now'') ),       ' +
+          '   HasUserScr     BOOLEAN   NOT NULL                        ' +
+          '                            DEFAULT (True),                 ' +
+          '   HasProductScr  BOOLEAN   NOT NULL                        ' +
+          '                            DEFAULT (True),                 ' +
+          '   HasCustomerScr BOOLEAN   NOT NULL                        ' +
+          '                            DEFAULT (True),                 ' +
+          '   HasOrderScr    BOOLEAN   NOT NULL                        ' +
+          '                            DEFAULT (True)                  ' +
+          ' );                                                         ' ;
+
   FQry.ExecSQL(FSQL);
-  CheckAdminUser;
 end;
 
 procedure TMigrationDatabase.InitCostumersTable;
@@ -155,6 +163,7 @@ begin
     {InitOrdersTables;} {TODO -cDev: Add Orders and Itens DDL}
     UpdateLastRunId(1);
   end;
+  CheckAdminUser;
 
 end;
 

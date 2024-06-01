@@ -4,6 +4,12 @@ inherited frmUsers: TfrmUsers
   inherited pages: TPageControl
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
+        inherited pnlTitle: TPanel
+          inherited lblTitle: TLabel
+            Width = 777
+            Height = 49
+          end
+        end
         inherited pnlData: TPanel
           inherited rectData: TShape
             ExplicitLeft = 0
@@ -180,6 +186,22 @@ inherited frmUsers: TfrmUsers
     end
     object FMemTableIsPassTemp: TBooleanField
       FieldName = 'IsPassTemp'
+      Visible = False
+    end
+    object FMemTableHasUserScr: TBooleanField
+      FieldName = 'HasUserScr'
+      Visible = False
+    end
+    object FMemTableHasProductScr: TBooleanField
+      FieldName = 'HasProductScr'
+      Visible = False
+    end
+    object FMemTableHasCustomerScr: TBooleanField
+      FieldName = 'HasCustomerScr'
+      Visible = False
+    end
+    object FMemTableHasOrderScr: TBooleanField
+      FieldName = 'HasOrderScr'
       Visible = False
     end
   end

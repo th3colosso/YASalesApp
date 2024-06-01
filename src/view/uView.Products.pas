@@ -114,7 +114,7 @@ begin
     [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableName.AsString]);
   if Application.MessageBox(PChar(Msg), 'WARNING', MB_YESNO + MB_ICONWARNING) = mrYes then
     if not TControllerProducts.Delete(FMemTableID.AsInteger) then
-      Application.MessageBox(Pchar('Problem found while deleting deleteing item'), 'ERROR', MB_OK + MB_ICONERROR);
+      Application.MessageBox(Pchar('Problem found while deleting deleting item'), 'Error', MB_OK + MB_ICONERROR);
 end;
 
 procedure TfrmProducts.FormCreate(Sender: TObject);
@@ -174,7 +174,7 @@ end;
 procedure TfrmProducts.ReloadData;
 begin
   if not TControllerProducts.Load(FMemTable) then
-    Application.MessageBox(PChar('Problem found while loading data'), 'Error', MB_OK + MB_ICONWARNING);
+    Application.MessageBox(PChar('Problem found while loading data'), 'Error', MB_OK + MB_ICONERROR);
 end;
 
 procedure TfrmProducts.Save;
