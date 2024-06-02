@@ -114,6 +114,8 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_UnitSearchPath>C:\Users\matth\Documents\Embarcadero\Studio\Projects\LearningSandbox\YASalesApp\src\modules\Bcrypt\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <Icon_MainIcon>$(ProjectName).Artwork\Windows\AppIcon.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -153,7 +155,7 @@
         </DCCReference>
         <DCCReference Include="..\..\src\model\uModel.Products.pas"/>
         <DCCReference Include="..\..\src\view\uView.Base.Registration.pas">
-            <Form>frmBase</Form>
+            <Form>frmBaseReg</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\..\src\controller\uController.Products.pas"/>
@@ -166,7 +168,6 @@
         <DCCReference Include="..\..\src\utillity\uUtils.TEdit.pas"/>
         <DCCReference Include="..\..\src\utillity\uUtils.Interceptor.TEdit.pas"/>
         <DCCReference Include="..\..\src\migration\uMigration.Database.pas"/>
-        <DCCReference Include="..\..\src\modules\Bcrypt\Bcrypt.pas"/>
         <DCCReference Include="..\..\src\controller\uController.Encryption.pas"/>
         <DCCReference Include="..\..\src\view\uView.Login.pas">
             <Form>frmLogin</Form>
@@ -181,6 +182,11 @@
         <DCCReference Include="..\..\src\entity\uEntity.User.pas"/>
         <DCCReference Include="..\..\src\view\uView.NewPassword.pas">
             <Form>frmNewPassword</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\..\src\controller\uController.Customers.pas"/>
+        <DCCReference Include="..\..\src\view\uView.Customers.pas">
+            <Form>frmCustomers</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

@@ -33,7 +33,7 @@ uses
   uUtils.Interceptor.TEdit;
 
 type
-  TfrmProducts = class(TfrmBase)
+  TfrmProducts = class(TfrmBaseReg)
     FMemTableID: TIntegerField;
     FMemTableName: TStringField;
     FMemTableDescription: TStringField;

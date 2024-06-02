@@ -30,7 +30,7 @@ uses
   FireDAC.DApt;
 
 type
-  TfrmBase = class(TForm)
+  TfrmBaseReg = class(TForm)
     pnlButtons: TPanel;
     pages: TPageControl;
     tsList: TTabSheet;
@@ -90,7 +90,7 @@ type
   end;
 
 var
-  frmBase: TfrmBase;
+  frmBaseReg: TfrmBaseReg;
 
 implementation
 
@@ -99,7 +99,7 @@ uses
 
 {$R *.dfm}
 
-procedure TfrmBase.FormCreate(Sender: TObject);
+procedure TfrmBaseReg.FormCreate(Sender: TObject);
 begin
   ConfigVariables;
   ConfigTabs;
@@ -110,28 +110,28 @@ begin
   ControlNavigation(True);
 end;
 
-procedure TfrmBase.FormDestroy(Sender: TObject);
+procedure TfrmBaseReg.FormDestroy(Sender: TObject);
 begin
   Application.MainForm.AlphaBlend := False;
 end;
 
-procedure TfrmBase.FormShow(Sender: TObject);
+procedure TfrmBaseReg.FormShow(Sender: TObject);
 begin
   ReloadData;
   Application.MainForm.AlphaBlend := True;
 end;
 
-procedure TfrmBase.MoveToEditPage;
+procedure TfrmBaseReg.MoveToEditPage;
 begin
   pages.ActivePage := tsEdit;
 end;
 
-procedure TfrmBase.MoveToListPage;
+procedure TfrmBaseReg.MoveToListPage;
 begin
   pages.ActivePage := tsList;
 end;
 
-procedure TfrmBase.ClearData(AParent: TWinControl);
+procedure TfrmBaseReg.ClearData(AParent: TWinControl);
 begin
   for var i := 0 to Pred(AParent.ControlCount) do
   begin
@@ -150,26 +150,26 @@ begin
   end;
 end;
 
-procedure TfrmBase.ConfigDBComponents;
+procedure TfrmBaseReg.ConfigDBComponents;
 begin
   FDataSource.DataSet := FMemTable;
 end;
 
-procedure TfrmBase.btCancelClick(Sender: TObject);
+procedure TfrmBaseReg.btCancelClick(Sender: TObject);
 begin
   ControlNavigation(True);
   ControlActions(False);
   MoveToListPage;
 end;
 
-procedure TfrmBase.btDeleteClick(Sender: TObject);
+procedure TfrmBaseReg.btDeleteClick(Sender: TObject);
 begin
   Delete;
   ReloadData;
   MoveToListPage;
 end;
 
-procedure TfrmBase.btEditClick(Sender: TObject);
+procedure TfrmBaseReg.btEditClick(Sender: TObject);
 begin
   CheckForNullItem;
   ControlNavigation(False);
@@ -179,12 +179,12 @@ begin
   MoveToEditPage;
 end;
 
-procedure TfrmBase.btFirstClick(Sender: TObject);
+procedure TfrmBaseReg.btFirstClick(Sender: TObject);
 begin
   FMemTable.First;
 end;
 
-procedure TfrmBase.btInsertClick(Sender: TObject);
+procedure TfrmBaseReg.btInsertClick(Sender: TObject);
 begin
   ControlNavigation(False);
   ControlActions(True);
@@ -193,22 +193,22 @@ begin
   MoveToEditPage;
 end;
 
-procedure TfrmBase.btLastClick(Sender: TObject);
+procedure TfrmBaseReg.btLastClick(Sender: TObject);
 begin
   FMemTable.Last;
 end;
 
-procedure TfrmBase.btPredClick(Sender: TObject);
+procedure TfrmBaseReg.btPredClick(Sender: TObject);
 begin
   FMemTable.Prior;
 end;
 
-procedure TfrmBase.btRefreshClick(Sender: TObject);
+procedure TfrmBaseReg.btRefreshClick(Sender: TObject);
 begin
   ReloadData;
 end;
 
-procedure TfrmBase.btSaveClick(Sender: TObject);
+procedure TfrmBaseReg.btSaveClick(Sender: TObject);
 begin
   Save;
   ControlNavigation(True);
@@ -217,12 +217,12 @@ begin
   MoveToListPage;
 end;
 
-procedure TfrmBase.btSuccClick(Sender: TObject);
+procedure TfrmBaseReg.btSuccClick(Sender: TObject);
 begin
   FMemTable.Next;
 end;
 
-procedure TfrmBase.ConfigGrid;
+procedure TfrmBaseReg.ConfigGrid;
 begin
   gdData.BorderStyle := bsNone;
   gdData.Options := [dgTitles, dgColumnResize, dgColLines, dgRowlines, dgTabs, dgRowSelect,
@@ -231,13 +231,13 @@ begin
   gdData.DataSource := FDataSource;
 end;
 
-procedure TfrmBase.ConfigMemTable;
+procedure TfrmBaseReg.ConfigMemTable;
 begin
   if not FMemTable.Active then
     FMemTable.CreateDataSet;
 end;
 
-procedure TfrmBase.ConfigTabs;
+procedure TfrmBaseReg.ConfigTabs;
 begin
   for var i := 0 to Pred(pages.PageCount) do
     pages.Pages[i].TabVisible := False;
@@ -245,14 +245,14 @@ begin
   pages.ActivePageIndex := 0;
 end;
 
-procedure TfrmBase.ConfigVariables;
+procedure TfrmBaseReg.ConfigVariables;
 begin
   FIsInserting := False;
   lblTitle.Caption := Self.Hint;
   Self.Caption := Format(Self.Caption, [Application.Title]);
 end;
 
-procedure TfrmBase.ControlActions(AInEdit: Boolean);
+procedure TfrmBaseReg.ControlActions(AInEdit: Boolean);
 begin
   btSave.Enabled := AInEdit;
   btCancel.Enabled := AInEdit;
@@ -263,7 +263,7 @@ begin
   btDelete.Enabled := not AInEdit;
 end;
 
-procedure TfrmBase.ControlNavigation(AEnabled: Boolean);
+procedure TfrmBaseReg.ControlNavigation(AEnabled: Boolean);
 begin
   btFirst.Enabled := AEnabled;
   btPred.Enabled := AEnabled;
@@ -271,12 +271,12 @@ begin
   btLast.Enabled := AEnabled;
 end;
 
-procedure TfrmBase.Delete;
+procedure TfrmBaseReg.Delete;
 begin
   CheckForNullItem;
 end;
 
-procedure TfrmBase.CheckForNullItem;
+procedure TfrmBaseReg.CheckForNullItem;
 begin
   if not (FMemTable.RecNo > 0) then
     Abort;

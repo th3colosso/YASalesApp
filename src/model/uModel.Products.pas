@@ -23,16 +23,13 @@ type
   private
     function ExecSelectAndCopy(ASQL: string; var ADest: TFDMemTable): Boolean;
   public
-    function Load(var AMemTable: TFDMemTable): Boolean; overload;
-    function Load(var AMemTable: TFDMemTable; AId: Integer): Boolean; overload;
+    function Load(var AMemTable: TFDMemTable): Boolean;
+    function LoadById(AId: Integer): TEntityProduct;
     function Save(var AProduct: TEntityProduct): Boolean;
     function Delete(AId: Integer): Boolean;
   end;
 
 implementation
-
-uses
-  Vcl.ExtCtrls;
 
 { TModelProducts }
 
@@ -58,10 +55,14 @@ begin
   end;
 end;
 
-function TModelProducts.Load(var AMemTable: TFDMemTable; AId: Integer): Boolean;
+function TModelProducts.LoadById(AId: Integer): TEntityProduct;
 begin
-  FSQL := Format('SELECT * FROM PRODUCTS WHERE ID = %d', [AId]);
-  Result := ExecSelectAndCopy(FSQL, AMemTable);
+  try
+    FQry.Open('SELECT * FROM PRODUCTS WHERE ID = %d', [AId]);
+    Result := TEntityProduct.Create;
+  except
+    Result := nil;
+  end;
 end;
 
 function TModelProducts.Save(var AProduct: TEntityProduct): Boolean;

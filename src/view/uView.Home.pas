@@ -47,7 +47,8 @@ implementation
 uses
   uUtils.DmImages,
   uController.Products,
-  uController.Users;
+  uController.Users,
+  uController.Customers;
 
 {$R *.dfm}
 
@@ -93,16 +94,16 @@ end;
 
 procedure TfrmHome.OpenCustomersForm;
 begin
-  if not LoggedUser.HasProductScr then
+  if not LoggedUser.HasCustomerScr then
     raise Exception.Create('Unauthorized');
-  ResetFocus;
+  TControllerCustomers.ShowCustomersForm;
 end;
 
 procedure TfrmHome.OpenProductsForm;
 begin
   if not LoggedUser.HasProductScr then
     raise Exception.Create('Unauthorized');
-  TControllerProducts.ShowRegistrationForm;
+  TControllerProducts.ShowProductsForm;
 end;
 
 procedure TfrmHome.ResetFocus;

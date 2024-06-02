@@ -9,7 +9,7 @@ uses
   Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls;
 
 type
-  TfrmUsers = class(TfrmBase)
+  TfrmUsers = class(TfrmBaseReg)
     FMemTableID: TIntegerField;
     FMemTableName: TStringField;
     FMemTableLogin: TStringField;

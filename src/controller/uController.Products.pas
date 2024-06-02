@@ -12,7 +12,7 @@ type
     class function Load(var AMemTable: TFDMemTable): Boolean;
     class function Save(var AProduct: TEntityProduct): Boolean;
     class function Delete(AId: Integer): Boolean;
-    class procedure ShowRegistrationForm;
+    class procedure ShowProductsForm;
   end;
 
 implementation
@@ -55,7 +55,7 @@ begin
   end;
 end;
 
-class procedure TControllerProducts.ShowRegistrationForm;
+class procedure TControllerProducts.ShowProductsForm;
 begin
   var Form := TfrmProducts.Create(Application);
   try
