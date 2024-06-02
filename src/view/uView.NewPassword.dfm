@@ -23,10 +23,6 @@ object frmNewPassword: TfrmNewPassword
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 120
-    ExplicitTop = 80
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object pnlTitle: TPanel
       Left = 1
       Top = 1
@@ -43,7 +39,6 @@ object frmNewPassword: TfrmNewPassword
       ParentBackground = False
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 547
     end
     object pnlData: TPanel
       Left = 1
@@ -52,10 +47,6 @@ object frmNewPassword: TfrmNewPassword
       Height = 182
       Align = alClient
       TabOrder = 1
-      ExplicitLeft = 136
-      ExplicitTop = 160
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object lblNewPassword: TLabel
         Left = 32
         Top = 11

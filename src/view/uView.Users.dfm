@@ -2,7 +2,6 @@ inherited frmUsers: TfrmUsers
   Hint = 'User'#39's Details - Inserting / Updating'
   TextHeight = 15
   inherited pages: TPageControl
-    ActivePage = tsList
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
         inherited pnlTitle: TPanel
@@ -74,6 +73,7 @@ inherited frmUsers: TfrmUsers
             Top = 33
             Width = 32
             Height = 23
+            TabStop = False
             ReadOnly = True
             TabOrder = 0
           end
@@ -100,6 +100,7 @@ inherited frmUsers: TfrmUsers
             Time = 0.630064456017862500
             Enabled = False
             TabOrder = 3
+            TabStop = False
           end
           object GroupBox1: TGroupBox
             Left = 104
@@ -142,7 +143,7 @@ inherited frmUsers: TfrmUsers
               Width = 209
               Height = 17
               Caption = 'Acess to Customers'
-              TabOrder = 2
+              TabOrder = 3
             end
             object cbProducts: TCheckBox
               Left = 280
@@ -150,7 +151,7 @@ inherited frmUsers: TfrmUsers
               Width = 209
               Height = 17
               Caption = 'Acess to Products'
-              TabOrder = 3
+              TabOrder = 2
             end
             object cbOrders: TCheckBox
               Left = 280

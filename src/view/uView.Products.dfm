@@ -115,6 +115,7 @@ inherited frmProducts: TfrmProducts
             Top = 32
             Width = 33
             Height = 23
+            TabStop = False
             ReadOnly = True
             TabOrder = 0
           end
@@ -147,6 +148,7 @@ inherited frmProducts: TfrmProducts
             Enabled = False
             ParseInput = True
             TabOrder = 3
+            TabStop = False
           end
           object edtPrice: TEdit
             Left = 535
