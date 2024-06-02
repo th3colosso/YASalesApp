@@ -21,7 +21,8 @@ uses
   uController.Users in '..\..\src\controller\uController.Users.pas',
   uModel.Users in '..\..\src\model\uModel.Users.pas',
   uView.Users in '..\..\src\view\uView.Users.pas' {frmUsers},
-  uEntity.User in '..\..\src\entity\uEntity.User.pas';
+  uEntity.User in '..\..\src\entity\uEntity.User.pas',
+  uView.NewPassword in '..\..\src\view\uView.NewPassword.pas' {frmNewPassword};
 
 {$R *.res}
 
@@ -32,6 +33,5 @@ begin
   Application.CreateForm(TdmConnection, dmConnection);
   Application.CreateForm(TdmImages, dmImages);
   Application.CreateForm(TfrmHome, frmHome);
-  Application.CreateForm(TfrmUsers, frmUsers);
   Application.Run;
 end.

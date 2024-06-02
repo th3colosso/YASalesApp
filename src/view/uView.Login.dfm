@@ -2,7 +2,7 @@ object frmLogin: TfrmLogin
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  ClientHeight = 293
+  ClientHeight = 290
   ClientWidth = 555
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,18 +16,19 @@ object frmLogin: TfrmLogin
     Left = 0
     Top = 0
     Width = 555
-    Height = 293
+    Height = 290
     Align = alClient
     BevelOuter = bvNone
     Color = clHighlight
     ParentBackground = False
     TabOrder = 0
+    ExplicitHeight = 293
     object pnlMain: TPanel
       AlignWithMargins = True
       Left = 6
       Top = 6
       Width = 543
-      Height = 281
+      Height = 278
       Margins.Left = 6
       Margins.Top = 6
       Margins.Right = 6
@@ -37,11 +38,12 @@ object frmLogin: TfrmLogin
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
+      ExplicitHeight = 281
       object rectLine: TShape
         Left = 185
         Top = 0
         Width = 1
-        Height = 281
+        Height = 278
         Align = alLeft
         Pen.Color = 15787740
         ExplicitLeft = 217
@@ -51,10 +53,11 @@ object frmLogin: TfrmLogin
         Left = 186
         Top = 0
         Width = 357
-        Height = 281
+        Height = 278
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitHeight = 281
         object lblWelcome: TLabel
           Left = 113
           Top = 11
@@ -147,7 +150,7 @@ object frmLogin: TfrmLogin
         Left = 0
         Top = 0
         Width = 185
-        Height = 281
+        Height = 278
         Align = alLeft
         BevelOuter = bvNone
         Padding.Left = 10
@@ -155,11 +158,12 @@ object frmLogin: TfrmLogin
         Padding.Right = 10
         Padding.Bottom = 10
         TabOrder = 1
+        ExplicitHeight = 281
         object imgAppLogo: TImage
           Left = 10
           Top = 10
           Width = 165
-          Height = 261
+          Height = 258
           Align = alClient
           Center = True
           Picture.Data = {

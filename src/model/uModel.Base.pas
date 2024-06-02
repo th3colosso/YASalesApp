@@ -10,7 +10,7 @@ uses
   FireDAC.Comp.DataSet;
 
 type
-  TModelBase = class
+  TModelBase = class(TInterfacedObject)
   private
     procedure CheckConnect(DataSet: TDataSet); overload;
     procedure CheckDisconnect(DataSet: TDataSet); overload;

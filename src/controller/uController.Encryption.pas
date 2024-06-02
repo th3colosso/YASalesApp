@@ -17,12 +17,13 @@ uses
 
 class function TControllerEncryption.CheckPassword(const ATypedPassword, APassword: string; var APasswordNeedsReHash: Boolean): Boolean;
 begin
-  Result := TBCrypt.CheckPassword(ATypedPassword, APassword, APasswordNeedsReHash);
+  Result := TBCrypt.CompareHash(ATypedPassword, APassword);
+  APasswordNeedsReHash := TBCrypt.NeedsRehash(APassword);
 end;
 
 class function TControllerEncryption.HashPassword(const APassword: string): string;
 begin
-  Result := TBCrypt.HashPassword(APassword);
+  Result := TBCrypt.GenerateHash(APassword);
 end;
 
 end.

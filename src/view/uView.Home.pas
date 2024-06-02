@@ -78,7 +78,7 @@ begin
   var LoggedUserName: string;
   TControllerUsers.ShowLoginForm(LoggedUserName);
 
-  FLoggedUser := TControllerUsers.CheckLoggedUser(LoggedUserName);
+  FLoggedUser := TControllerUsers.GetLoggedUser(LoggedUserName);
 end;
 
 procedure TfrmHome.FormCreate(Sender: TObject);

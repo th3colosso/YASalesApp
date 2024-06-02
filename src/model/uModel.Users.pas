@@ -8,13 +8,15 @@ uses
   uEntity.User;
 
 type
+
   TModelUsers = class(TModelBase)
   public
     function CheckLogin(AUsername: string; ATypedPassword: string; var ANeedNewPassword: Boolean): Boolean;
     function Load(var AMemTable: TFDMemtable): Boolean;
     function Delete(AId: Integer): Boolean;
-    function CheckLoggedUser(ALogin: string): TLoggedUser;
+    function GetLoggedUser(ALogin: string): TLoggedUser;
     function Save(AUser: TEntityUser): Boolean;
+    function SaveNewPassword(AUsername: string; APassword: string): Boolean;
   end;
 
 implementation
@@ -25,7 +27,7 @@ uses
 
 { TModelUsers }
 
-function TModelUsers.CheckLoggedUser(ALogin: string): TLoggedUser;
+function TModelUsers.GetLoggedUser(ALogin: string): TLoggedUser;
 begin
   FQry.Open('SELECT * FROM USERS WHERE LOGIN = :LOGIN', [ALogin]);
   Result.Id := FQry.FieldByName('ID').AsInteger;
@@ -83,6 +85,16 @@ begin
         ' :PASSWORD, :HASUSERSCR, :HASPRODUCTSCR, :HASCUSTOMERSCR, :HASORDERSCR)', [AUser.Name, AUser.Login, TControllerEncryption.HashPassword(DEF_PASSWORD),
         AUser.HasUserSrc, AUser.HasProducScr, AUser.HasCustomerScr, AUser.HasOrderScr]);
     Result := True;
+  except
+    Result := False;
+  end;
+end;
+
+function TModelUsers.SaveNewPassword(AUsername: string; APassword: string): Boolean;
+begin
+  try
+    Result := FQry.ExecSQL('UPDATE USERS SET PASSWORD = :PASSWORD, ISPASSTEMP = :ISPASSTEMP ' +
+      ' WHERE LOGIN = :LOGIN', [TControllerEncryption.HashPassword(APassword), False, AUsername]) > 0;
   except
     Result := False;
   end;
