@@ -189,6 +189,7 @@
             <Form>frmCustomers</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\..\src\entity\uEntity.Customer.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

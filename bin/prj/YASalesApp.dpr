@@ -23,7 +23,8 @@ uses
   uEntity.User in '..\..\src\entity\uEntity.User.pas',
   uView.NewPassword in '..\..\src\view\uView.NewPassword.pas' {frmNewPassword},
   uController.Customers in '..\..\src\controller\uController.Customers.pas',
-  uView.Customers in '..\..\src\view\uView.Customers.pas' {frmCustomers};
+  uView.Customers in '..\..\src\view\uView.Customers.pas' {frmCustomers},
+  uEntity.Customer in '..\..\src\entity\uEntity.Customer.pas';
 
 {$R *.res}
 

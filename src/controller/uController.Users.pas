@@ -47,6 +47,7 @@ end;
 
 class function TControllerUsers.CheckLogin(AUsername: string; ATypedPassword: string): Boolean;
 begin
+  Result := False;
   var NeedNewPassword := False;
   var UserModel := TModelUsers.Create(dmConnection.Conn);
   try
@@ -55,7 +56,8 @@ begin
       UpdatePassword(AUsername);
   finally
     UserModel.Free;
-    ShowMainForm;
+    if Result then
+      ShowMainForm;
   end;
 end;
 

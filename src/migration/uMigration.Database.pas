@@ -128,17 +128,23 @@ end;
 
 procedure TMigrationDatabase.InitCostumersTable;
 begin
-  FSQL := ' CREATE TABLE CUSTOMERS (                                 ' +
-          '   ID               INTEGER    PRIMARY KEY AUTOINCREMENT  ' +
-          '                               UNIQUE                     ' +
-          '                               NOT NULL,                  ' +
-          '   FirstName        TEXT (50)  NOT NULL,                  ' +
-          '   LastName         TEXT (50)  NOT NULL,                  ' +
-          '   Email            TEXT (100),                           ' +
-          '   DateOfBirth      DATE       NOT NULL,                  ' +
-          '   RegistrationDate DATE       DEFAULT (DATE(''now'') )   ' +
-          '                               NOT NULL                   ' +
-          ' )                                                        ';
+  FSQL := ' CREATE TABLE CUSTOMERS (                                  ' +
+          '   ID               INTEGER    PRIMARY KEY AUTOINCREMENT   ' +
+          '                               UNIQUE                      ' +
+          '                               NOT NULL,                   ' +
+          '   FirstName        TEXT (50)  NOT NULL,                   ' +
+          '   LastName         TEXT (50)  NOT NULL,                   ' +
+          '   Email            TEXT (100) NOT NULL,                   ' +
+          '   DateOfBirth      DATE       NOT NULL,                   ' +
+          '   ZIPCode          INTEGER,                               ' +
+          '   Street           TEXT (50),                             ' +
+          '   Neighbourhood    TEXT (30),                             ' +
+          '   HouseNo          INTEGER,                               ' +
+          '   State            TEXT (2),                              ' +
+          '   City             TEXT (30),                             ' +
+          '   RegistrationDate DATE       DEFAULT (DATE(''now'') )    ' +
+          '                               NOT NULL                    ' +
+          ' );                                                        ' ;
   FQry.ExecSQL(FSQL);
 end;
 
