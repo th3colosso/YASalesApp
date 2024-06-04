@@ -138,7 +138,7 @@ inherited frmProducts: TfrmProducts
             TabOrder = 4
             OnChange = mmDescriptionChange
           end
-          object edtCreationDate: TDateTimePicker
+          object dtpCreationDate: TDateTimePicker
             Left = 632
             Top = 32
             Width = 101

@@ -85,66 +85,66 @@ end;
 
 procedure TMigrationDatabase.InitProductsTable;
 begin
-  FSQL := ' CREATE TABLE IF NOT EXISTS PRODUCTS (                    ' +
-          '   ID           INTEGER         PRIMARY KEY AUTOINCREMENT ' +
-          '                                UNIQUE                    ' +
-          '                                NOT NULL,                 ' +
-          '   Name         TEXT (100)      NOT NULL,                 ' +
-          '   Description  TEXT (500),                               ' +
-          '   Price        NUMERIC (10, 2) NOT NULL,                 ' +
-          '   Image        BLOB,                                     ' +
-          '   CreationDate DATE            NOT NULL                  ' +
-          '                                DEFAULT (Date(''now'') )  ' +
-          ' )                                                        ';
+  FSQL := ' CREATE TABLE IF NOT EXISTS PRODUCTS (                                  ' +
+          '   ID           INTEGER         PRIMARY KEY AUTOINCREMENT               ' +
+          '                                UNIQUE                                  ' +
+          '                                NOT NULL,                               ' +
+          '   Name         TEXT (100)      NOT NULL,                               ' +
+          '   Description  TEXT (500),                                             ' +
+          '   Price        NUMERIC (10, 2) NOT NULL,                               ' +
+          '   Image        BLOB,                                                   ' +
+          '   CreationDate DATE            NOT NULL                                ' +
+          '                                DEFAULT (Date(''now'', ''localtime'') ) ' +
+          ' )                                                                      ';
   FQry.ExecSQL(FSQL);
 end;
 
 procedure TMigrationDatabase.InitUsersTable;
 begin
-  FSQL := ' CREATE TABLE USERS (                                       ' +
-          '   ID             INTEGER   PRIMARY KEY AUTOINCREMENT       ' +
-          '                            NOT NULL                        ' +
-          '                            UNIQUE,                         ' +
-          '   Name           TEXT (80) NOT NULL,                       ' +
-          '   Login          TEXT (40) NOT NULL                        ' +
-          '                            UNIQUE,                         ' +
-          '   Password       TEXT (80) NOT NULL,                       ' +
-          '   IsPassTemp     BOOLEAN   NOT NULL                        ' +
-          '                            DEFAULT (True),                 ' +
-          '   CreationDate   DATE      NOT NULL                        ' +
-          '                            DEFAULT (Date(''now'') ),       ' +
-          '   HasUserScr     BOOLEAN   NOT NULL                        ' +
-          '                            DEFAULT (True),                 ' +
-          '   HasProductScr  BOOLEAN   NOT NULL                        ' +
-          '                            DEFAULT (True),                 ' +
-          '   HasCustomerScr BOOLEAN   NOT NULL                        ' +
-          '                            DEFAULT (True),                 ' +
-          '   HasOrderScr    BOOLEAN   NOT NULL                        ' +
-          '                            DEFAULT (True)                  ' +
-          ' );                                                         ' ;
+  FSQL := ' CREATE TABLE USERS (                                                 ' +
+          '   ID             INTEGER   PRIMARY KEY AUTOINCREMENT                 ' +
+          '                            NOT NULL                                  ' +
+          '                            UNIQUE,                                   ' +
+          '   Name           TEXT (80) NOT NULL,                                 ' +
+          '   Login          TEXT (40) NOT NULL                                  ' +
+          '                            UNIQUE,                                   ' +
+          '   Password       TEXT (80) NOT NULL,                                 ' +
+          '   IsPassTemp     BOOLEAN   NOT NULL                                  ' +
+          '                            DEFAULT (True),                           ' +
+          '   CreationDate   DATE      NOT NULL                                  ' +
+          '                            DEFAULT (Date(''now'', ''localtime'') ),  ' +
+          '   HasUserScr     BOOLEAN   NOT NULL                                  ' +
+          '                            DEFAULT (True),                           ' +
+          '   HasProductScr  BOOLEAN   NOT NULL                                  ' +
+          '                            DEFAULT (True),                           ' +
+          '   HasCustomerScr BOOLEAN   NOT NULL                                  ' +
+          '                            DEFAULT (True),                           ' +
+          '   HasOrderScr    BOOLEAN   NOT NULL                                  ' +
+          '                            DEFAULT (True)                            ' +
+          ' );                                                                   ' ;
 
   FQry.ExecSQL(FSQL);
 end;
 
 procedure TMigrationDatabase.InitCostumersTable;
 begin
-  FSQL := ' CREATE TABLE CUSTOMERS (                                  ' +
-          '   ID               INTEGER    PRIMARY KEY AUTOINCREMENT   ' +
-          '                               UNIQUE                      ' +
-          '                               NOT NULL,                   ' +
-          '   FirstName        TEXT (50)  NOT NULL,                   ' +
-          '   LastName         TEXT (50)  NOT NULL,                   ' +
-          '   Email            TEXT (100) NOT NULL,                   ' +
-          '   DateOfBirth      DATE       NOT NULL,                   ' +
-          '   ZIPCode          INTEGER,                               ' +
-          '   Street           TEXT (50),                             ' +
-          '   Neighbourhood    TEXT (30),                             ' +
-          '   HouseNo          INTEGER,                               ' +
-          '   State            TEXT (2),                              ' +
-          '   City             TEXT (30),                             ' +
-          '   RegistrationDate DATE       DEFAULT (DATE(''now'') )    ' +
-          '                               NOT NULL                    ' +
-          ' );                                                        ' ;
+  FSQL := ' CREATE TABLE CUSTOMERS (                                                ' +
+          '   ID               INTEGER    PRIMARY KEY AUTOINCREMENT                 ' +
+          '                               UNIQUE                                    ' +
+          '                               NOT NULL,                                 ' +
+          '   FirstName        TEXT (50)  NOT NULL,                                 ' +
+          '   LastName         TEXT (50)  NOT NULL,                                 ' +
+          '   Email            TEXT (100) NOT NULL,                                 ' +
+          '   DateOfBirth      DATE       NOT NULL,                                 ' +
+          '   ZIPCode          INTEGER,                                             ' +
+          '   Street           TEXT (50),                                           ' +
+          '   Neighbourhood    TEXT (30),                                           ' +
+          '   HouseNo          INTEGER,                                             ' +
+          '   State            TEXT (2),                                            ' +
+          '   City             TEXT (30),                                           ' +
+          '   RegistrationDate DATE       DEFAULT (DATE(''now'', ''localtime'') )   ' +
+          '                               NOT NULL                                  ' +
+          ' );                                                                      ' ;
   FQry.ExecSQL(FSQL);
 end;
 

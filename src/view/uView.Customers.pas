@@ -73,7 +73,11 @@ procedure TfrmCustomers.ConfigEditTabComponents;
 begin
   inherited;
   if FIsInserting then
-    edtID.Text := '-1'
+  begin
+    ClearData(pnlData);
+    edtID.Text := '-1';
+    dtpCreationDate.Date := Now;
+  end
   else
     GetCustomerData;
 end;

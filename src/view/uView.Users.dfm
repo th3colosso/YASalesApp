@@ -91,7 +91,7 @@ inherited frmUsers: TfrmUsers
             Height = 23
             TabOrder = 2
           end
-          object edtCreationDate: TDateTimePicker
+          object dtpCreationDate: TDateTimePicker
             Left = 564
             Top = 84
             Width = 108

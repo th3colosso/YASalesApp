@@ -17,7 +17,7 @@ type
     edtID: TEdit;
     edtName: TEdit;
     edtLogin: TEdit;
-    edtCreationDate: TDateTimePicker;
+    dtpCreationDate: TDateTimePicker;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -63,8 +63,10 @@ begin
   cbNewPassword.Enabled := not FIsInserting;
   if FIsInserting then
   begin
+    ClearData(pnlData);
     edtID.Text := '-1';
     cbNewPassword.Checked := True;
+    dtpCreationDate.Date := Now;
   end
   else
     GetUsersData;
@@ -75,7 +77,8 @@ begin
   edtID.Text := FMemTableID.AsString;
   edtName.Text := FMemTableName.AsString;
   edtLogin.Text := FMemTableLogin.AsString;
-  edtCreationDate.Date := FMemTableCreationDate.AsDateTime;
+  dtpCreationDate.Date := FMemTableCreationDate.AsDateTime;
+
   //Options
   cbNewPassword.Checked := FMemTableIsPassTemp.AsBoolean;
   cbUsers.Checked := FMemTableHasUserScr.AsBoolean;

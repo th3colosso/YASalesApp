@@ -42,7 +42,7 @@ type
     edtID: TEdit;
     edtName: TEdit;
     mmDescription: TMemo;
-    edtCreationDate: TDateTimePicker;
+    dtpCreationDate: TDateTimePicker;
     edtPrice: TEdit;
     lblID: TLabel;
     lblName: TLabel;
@@ -102,6 +102,7 @@ begin
     ClearData(pnlData);
     SetDescriptionCharCountInfo;
     edtID.Text := '-1';
+    dtpCreationDate.Date := Now;
   end
   else
     GetProductData;
@@ -153,7 +154,7 @@ begin
     edtPrice.Text := FMemTablePrice.AsString;
     edtPrice.OnExit(edtPrice); //Format Currency
     mmDescription.Lines.Text := FMemTableDescription.AsString;
-    edtCreationDate.Date := FMemTableCreationDate.AsDateTime;
+    dtpCreationDate.Date := FMemTableCreationDate.AsDateTime;
     img.Picture.LoadFromStream(Stream);
   finally
     Stream.Free;
