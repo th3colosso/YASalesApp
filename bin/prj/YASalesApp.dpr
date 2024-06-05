@@ -24,7 +24,8 @@ uses
   uView.NewPassword in '..\..\src\view\uView.NewPassword.pas' {frmNewPassword},
   uController.Customers in '..\..\src\controller\uController.Customers.pas',
   uView.Customers in '..\..\src\view\uView.Customers.pas' {frmCustomers},
-  uEntity.Customer in '..\..\src\entity\uEntity.Customer.pas';
+  uEntity.Customer in '..\..\src\entity\uEntity.Customer.pas',
+  uModel.Customers in '..\..\src\model\uModel.Customers.pas';
 
 {$R *.res}
 
