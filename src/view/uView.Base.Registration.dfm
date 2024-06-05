@@ -1,6 +1,8 @@
 object frmBaseReg: TfrmBaseReg
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
   Caption = 'Base'
   ClientHeight = 441
   ClientWidth = 844
