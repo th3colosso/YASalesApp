@@ -93,7 +93,7 @@ begin
     [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableName.AsString]);
   if Application.MessageBox(PChar(Msg), 'WARNING', MB_YESNO + MB_ICONWARNING) = mrYes then
     if not TControllerUsers.Delete(FMemTableID.AsInteger) then
-      Application.MessageBox(Pchar('Problem found while deleting deleting user'), 'Error', MB_OK + MB_ICONERROR);
+      Application.MessageBox(Pchar('Problem found while deleting user'), 'Error', MB_OK + MB_ICONERROR);
 end;
 
 procedure TfrmUsers.ReloadData;
@@ -114,7 +114,8 @@ begin
     User.HasProducScr := cbProducts.Checked;
     User.HasCustomerScr := cbCustomers.Checked;
     User.HasOrderScr := cbOrders.Checked;
-    TControllerUsers.Save(User);
+    if not TControllerUsers.Save(User) then
+      Application.MessageBox(PChar('Problem found while saving user'), 'Error', MB_OK + MB_ICONERROR);
   finally
     User.Free;
   end;

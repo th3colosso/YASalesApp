@@ -111,11 +111,11 @@ end;
 procedure TfrmProducts.Delete;
 begin
   inherited;
-  var Msg := Format('Are you sure you want to delete the following item? %s%s [ %d - %s ]',
+  var Msg := Format('Are you sure you want to delete the following product? %s%s [ %d - %s ]',
     [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableName.AsString]);
   if Application.MessageBox(PChar(Msg), 'WARNING', MB_YESNO + MB_ICONWARNING) = mrYes then
     if not TControllerProducts.Delete(FMemTableID.AsInteger) then
-      Application.MessageBox(Pchar('Problem found while deleting deleting item'), 'Error', MB_OK + MB_ICONERROR);
+      Application.MessageBox(Pchar('Problem found while deleting product'), 'Error', MB_OK + MB_ICONERROR);
 end;
 
 procedure TfrmProducts.FormCreate(Sender: TObject);
@@ -188,7 +188,8 @@ begin
     Product.Description := mmDescription.Text;
     Product.Price := StrToFloatDef(edtPrice.Text, 0);
     img.Picture.SaveToStream(Product.Image);
-    TControllerProducts.Save(Product);
+    if not TControllerProducts.Save(Product) then
+      Application.MessageBox(PChar('Problem found while saving product'), 'Error', MB_OK + MB_ICONERROR);
   finally
     Product.Free;
   end;

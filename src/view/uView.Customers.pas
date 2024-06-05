@@ -14,7 +14,7 @@ type
     edtFirstName: TEdit;
     edtLastName: TEdit;
     dtpCreationDate: TDateTimePicker;
-    dtpBirthday: TDateTimePicker;
+    dtpDateOfBirth: TDateTimePicker;
     edtEmail: TEdit;
     edtZipCode: TEdit;
     edtStreet: TEdit;
@@ -46,6 +46,7 @@ type
     FMemTableHouseNo: TIntegerField;
     FMemTableState: TStringField;
     FMemTableCity: TStringField;
+    FMemTableCreationDate: TDateField;
   protected
     procedure ReloadData; override;
     procedure ConfigEditTabComponents; override;
@@ -63,7 +64,8 @@ var
 implementation
 
 uses
-  uEntity.Customer;
+  uEntity.Customer,
+  uController.Customers;
 
 {$R *.dfm}
 
@@ -85,22 +87,36 @@ end;
 procedure TfrmCustomers.Delete;
 begin
   inherited;
-  var Msg := Format('Are you sure you want to delete the following customer? %s%s [ %d - %s ]',
-    [SLineBreak, sLineBreak, '', '']);
+  var Msg := Format('Are you sure you want to delete the following customer? %s%s [ %d - %s %s ]',
+    [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableFirstName.AsString, FMemTableLastName.AsString]);
   if Application.MessageBox(PChar(Msg), 'WARNING', MB_YESNO + MB_ICONWARNING) = mrYes then
-    if not True then
-      Application.MessageBox(Pchar('Problem found while deleting deleting item'), 'Error', MB_OK + MB_ICONERROR);
+    if not TControllerCustomers.Delete(FMemTableID.AsInteger) then
+      Application.MessageBox(Pchar('Problem found while deleting customer'), 'Error', MB_OK + MB_ICONERROR);
 end;
 
 procedure TfrmCustomers.GetCustomerData;
 begin
-  //Getting data from Fmemtable
+  edtId.Text := FMemTableID.AsString;
+  edtFirstName.Text := FMemTableFirstName.AsString;
+  edtLastName.Text := FMemTableLastName.AsString;
+  edtEmail.Text := FMemTableEmail.AsString;
+  dtpDateOfBirth.Date := FMemTableDateOfBirth.AsDateTime;
+  dtpCreationDate.Date := FMemTableCreationDate.AsDateTime;
+
+  //Address
+  edtZipCode.Text := FMemTableZipCode.AsString;
+  edtStreet.Text := FMemTableStreet.AsString;
+  edtHouseNo.Text := FMemTableHouseNo.AsString;
+  edtNeighbourhood.Text := FMemTableNeighbourhood.AsString;
+  edtCity.Text := FMemTableCity.AsString;
+  edtState.Text := FMemTableState.AsString;
 end;
 
 procedure TfrmCustomers.ReloadData;
 begin
   inherited;
-  Sleep(10);
+  if not TControllerCustomers.Load(FMemTable) then
+    Application.MessageBox(Pchar('Problem found while loading data'), 'Error', MB_OK + MB_ICONERROR);
 end;
 
 procedure TfrmCustomers.Save;
@@ -108,7 +124,22 @@ begin
   inherited;
   var Customer := TEntityCustomer.Create;
   try
-    //saving to database;
+    Customer.Id := StrToInt(edtID.Text);
+    Customer.FirstName := edtFirstName.Text;
+    Customer.LastName := edtLastName.Text;
+    Customer.Email := edtEmail.Text;
+    Customer.DateOfBirth := dtpDateOfBirth.Date;
+
+    //Address
+    Customer.ZipCode := StrToInt(edtZipCode.Text);
+    Customer.Street := edtStreet.Text;
+    Customer.HouseNo := StrToInt(edtHouseNo.Text);
+    Customer.Neighbourhood := edtNeighbourhood.Text;
+    Customer.City := edtCity.Text;
+    Customer.State := edtState.Text;
+
+    if not TControllerCustomers.Save(Customer) then
+      Application.MessageBox(Pchar('Problem found while saving customer'), 'Error', MB_OK + MB_ICONERROR);
   finally
     Customer.Free;
   end;

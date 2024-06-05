@@ -3,14 +3,9 @@ inherited frmProducts: TfrmProducts
   Caption = 'Products - %s'
   TextHeight = 15
   inherited pages: TPageControl
+    ActivePage = tsList
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
-        inherited pnlTitle: TPanel
-          inherited lblTitle: TLabel
-            Width = 777
-            Height = 49
-          end
-        end
         inherited pnlData: TPanel
           inherited rectData: TShape
             ExplicitLeft = 54
@@ -218,6 +213,34 @@ inherited frmProducts: TfrmProducts
     end
   end
   inherited FMemTable: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Name'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'Price'
+        DataType = ftFloat
+      end
+      item
+        Name = 'Description'
+        DataType = ftString
+        Size = 500
+      end
+      item
+        Name = 'Image'
+        DataType = ftBlob
+      end
+      item
+        Name = 'CreationDate'
+        DataType = ftDate
+      end>
     StoreDefs = True
     Left = 700
     object FMemTableID: TIntegerField
@@ -225,16 +248,17 @@ inherited frmProducts: TfrmProducts
       FieldName = 'ID'
     end
     object FMemTableName: TStringField
-      DisplayWidth = 50
+      DisplayWidth = 40
       FieldName = 'Name'
       Size = 100
     end
     object FMemTablePrice: TFloatField
+      DisplayWidth = 10
       FieldName = 'Price'
       DisplayFormat = '##0.00'
     end
     object FMemTableDescription: TStringField
-      DisplayWidth = 80
+      DisplayWidth = 60
       FieldName = 'Description'
       Size = 500
     end
@@ -244,6 +268,7 @@ inherited frmProducts: TfrmProducts
     end
     object FMemTableCreationDate: TDateField
       DisplayLabel = 'Creation Date'
+      DisplayWidth = 15
       FieldName = 'CreationDate'
     end
   end

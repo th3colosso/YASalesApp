@@ -2,14 +2,9 @@ inherited frmUsers: TfrmUsers
   Hint = 'User'#39's Details - Inserting / Updating'
   TextHeight = 15
   inherited pages: TPageControl
+    ActivePage = tsList
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
-        inherited pnlTitle: TPanel
-          inherited lblTitle: TLabel
-            Width = 777
-            Height = 49
-          end
-        end
         inherited pnlData: TPanel
           inherited rectData: TShape
             ExplicitLeft = 0
@@ -169,6 +164,46 @@ inherited frmUsers: TfrmUsers
     end
   end
   inherited FMemTable: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Name'
+        DataType = ftString
+        Size = 80
+      end
+      item
+        Name = 'Login'
+        DataType = ftString
+        Size = 40
+      end
+      item
+        Name = 'CreationDate'
+        DataType = ftDate
+      end
+      item
+        Name = 'IsPassTemp'
+        DataType = ftBoolean
+      end
+      item
+        Name = 'HasUserScr'
+        DataType = ftBoolean
+      end
+      item
+        Name = 'HasProductScr'
+        DataType = ftBoolean
+      end
+      item
+        Name = 'HasCustomerScr'
+        DataType = ftBoolean
+      end
+      item
+        Name = 'HasOrderScr'
+        DataType = ftBoolean
+      end>
     StoreDefs = True
     object FMemTableID: TIntegerField
       FieldName = 'ID'
@@ -184,6 +219,7 @@ inherited frmUsers: TfrmUsers
     end
     object FMemTableCreationDate: TDateField
       DisplayLabel = 'Creation Date'
+      DisplayWidth = 15
       FieldName = 'CreationDate'
     end
     object FMemTableIsPassTemp: TBooleanField

@@ -13,7 +13,7 @@ type
     procedure InitProductsTable;
     function GetLastRunID: Integer;
     procedure InitStatsTable;
-    procedure UpdateLastRunID(ARun: Integer);
+    procedure UpdateLastRunID(var ALastRun: Integer);
     procedure InitCostumersTable;
     procedure InitUsersTable;
     procedure CheckAdminUser;
@@ -142,7 +142,7 @@ begin
           '   HouseNo          INTEGER,                                             ' +
           '   State            TEXT (2),                                            ' +
           '   City             TEXT (30),                                           ' +
-          '   RegistrationDate DATE       DEFAULT (DATE(''now'', ''localtime'') )   ' +
+          '   CreationDate     DATE       DEFAULT (DATE(''now'', ''localtime'') )   ' +
           '                               NOT NULL                                  ' +
           ' );                                                                      ' ;
   FQry.ExecSQL(FSQL);
@@ -160,22 +160,23 @@ procedure TMigrationDatabase.RunDBInit;
 begin
   InitStatsTable;
   var LastRunId := GetLastRunID;
-  if (not IsDBEmpty) and (LastRunId = 0)  then
+  if (IsDBEmpty) or (LastRunId = 0)  then
   begin
     DropAllTables;
     InitProductsTable;
     InitUsersTable;
     InitCostumersTable;
     {InitOrdersTables;} {TODO -cDev: Add Orders and Itens DDL}
-    UpdateLastRunId(1);
+    UpdateLastRunId(LastRunId);
   end;
   CheckAdminUser;
 
 end;
 
-procedure TMigrationDatabase.UpdateLastRunID(ARun: Integer);
+procedure TMigrationDatabase.UpdateLastRunID(var ALastRun: Integer);
 begin
-  FQry.ExecSQL('UPDATE STATS SET LASTDBUPDATE = :LASTDBUPDATE', [ARun]);
+  Inc(ALastRun);
+  FQry.ExecSQL('UPDATE STATS SET LASTDBUPDATE = :LASTDBUPDATE', [ALastRun]);
 end;
 
 end.

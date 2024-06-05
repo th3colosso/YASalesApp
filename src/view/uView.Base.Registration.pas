@@ -146,7 +146,9 @@ begin
     else if AParent.Controls[i] is TCheckbox then
       (AParent.Controls[i] as TCheckbox).Checked := False
     else if AParent.Controls[i] is TPanel then
-      ClearData((AParent.Controls[i]) as TPanel);
+      ClearData((AParent.Controls[i]) as TPanel)
+    else if AParent.Controls[i] is TGroupBox then
+      ClearData((AParent.Controls[i]) as TGroupBox);
   end;
 end;
 

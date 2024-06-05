@@ -63,7 +63,7 @@ begin
   try
     AMemTable.EmptyDataSet;
     FQry.Open('SELECT * FROM USERS');
-    AMemTable.CopyDataSet(FQRy);
+    AMemTable.CopyDataSet(FQry);
     Result := True;
     FQry.Close;
   except

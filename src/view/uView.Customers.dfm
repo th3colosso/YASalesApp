@@ -3,14 +3,9 @@ inherited frmCustomers: TfrmCustomers
   Caption = 'Customers - %s'
   TextHeight = 15
   inherited pages: TPageControl
+    ActivePage = tsList
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
-        inherited pnlTitle: TPanel
-          inherited lblTitle: TLabel
-            Width = 777
-            Height = 49
-          end
-        end
         inherited pnlData: TPanel
           inherited rectData: TShape
             ExplicitLeft = 0
@@ -206,7 +201,7 @@ inherited frmCustomers: TfrmCustomers
             Enabled = False
             TabOrder = 3
           end
-          object dtpBirthday: TDateTimePicker
+          object dtpDateOfBirth: TDateTimePicker
             Left = 621
             Top = 53
             Width = 106
@@ -227,6 +222,7 @@ inherited frmCustomers: TfrmCustomers
             Top = 154
             Width = 81
             Height = 23
+            NumbersOnly = True
             TabOrder = 6
           end
           object edtStreet: TEdit
@@ -278,44 +274,119 @@ inherited frmCustomers: TfrmCustomers
     end
   end
   inherited FMemTable: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'FirstName'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'LastName'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'Email'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'DateOfBirth'
+        DataType = ftDate
+      end
+      item
+        Name = 'ZipCode'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Street'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'Neighbourhood'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'HouseNo'
+        DataType = ftInteger
+      end
+      item
+        Name = 'State'
+        DataType = ftString
+        Size = 2
+      end
+      item
+        Name = 'City'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'CreationDate'
+        DataType = ftDate
+      end>
+    StoreDefs = True
     object FMemTableID: TIntegerField
       FieldName = 'ID'
     end
     object FMemTableFirstName: TStringField
+      DisplayLabel = 'First Name'
       FieldName = 'FirstName'
       Size = 50
     end
     object FMemTableLastName: TStringField
+      DisplayLabel = 'Last Name'
+      DisplayWidth = 50
       FieldName = 'LastName'
+      Size = 50
     end
     object FMemTableEmail: TStringField
       FieldName = 'Email'
+      Visible = False
       Size = 100
     end
     object FMemTableDateOfBirth: TDateField
       FieldName = 'DateOfBirth'
+      Visible = False
     end
     object FMemTableZipCode: TIntegerField
       FieldName = 'ZipCode'
+      Visible = False
     end
     object FMemTableStreet: TStringField
       FieldName = 'Street'
+      Visible = False
       Size = 50
     end
     object FMemTableNeighbourhood: TStringField
       FieldName = 'Neighbourhood'
+      Visible = False
       Size = 30
     end
     object FMemTableHouseNo: TIntegerField
       FieldName = 'HouseNo'
+      Visible = False
     end
     object FMemTableState: TStringField
       FieldName = 'State'
+      Visible = False
       Size = 2
     end
     object FMemTableCity: TStringField
       FieldName = 'City'
+      Visible = False
       Size = 30
+    end
+    object FMemTableCreationDate: TDateField
+      DisplayLabel = 'Creation Date'
+      DisplayWidth = 15
+      FieldName = 'CreationDate'
     end
   end
 end
