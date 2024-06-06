@@ -3,7 +3,6 @@ unit uView.Base.Registration;
 interface
 
 uses
-  Winapi.Windows,
   Winapi.Messages,
   System.SysUtils,
   System.Variants,
@@ -67,6 +66,7 @@ type
     procedure btPredClick(Sender: TObject);
     procedure btSuccClick(Sender: TObject);
     procedure btLastClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   protected
     FIsInserting: Boolean;
     procedure ConfigMemTable; virtual;
@@ -85,8 +85,7 @@ type
     procedure MoveToListPage;
     procedure MoveToEditPage;
     procedure CheckForNullItem;
-  public
-    { Public declarations }
+    procedure CheckForESC(AKey: Char);
   end;
 
 var
@@ -113,6 +112,17 @@ end;
 procedure TfrmBaseReg.FormDestroy(Sender: TObject);
 begin
   Application.MainForm.AlphaBlend := False;
+end;
+
+procedure TfrmBaseReg.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  CheckForESC(Key);
+end;
+
+procedure TfrmBaseReg.CheckForESC(AKey: Char);
+begin
+  if AKey = #27 then
+    Self.Close;
 end;
 
 procedure TfrmBaseReg.FormShow(Sender: TObject);

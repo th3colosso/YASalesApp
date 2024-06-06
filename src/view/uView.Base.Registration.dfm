@@ -17,6 +17,7 @@ object frmBaseReg: TfrmBaseReg
   Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnKeyPress = FormKeyPress
   OnShow = FormShow
   TextHeight = 15
   object pnlButtons: TPanel

@@ -5,12 +5,6 @@ inherited frmCustomers: TfrmCustomers
   inherited pages: TPageControl
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
-        inherited pnlTitle: TPanel
-          inherited lblTitle: TLabel
-            Width = 777
-            Height = 49
-          end
-        end
         inherited pnlData: TPanel
           inherited rectData: TShape
             ExplicitLeft = 0
@@ -18,7 +12,7 @@ inherited frmCustomers: TfrmCustomers
             ExplicitWidth = 777
             ExplicitHeight = 259
           end
-          object Label1: TLabel
+          object lblId: TLabel
             Left = 50
             Top = 32
             Width = 11
@@ -31,7 +25,7 @@ inherited frmCustomers: TfrmCustomers
             Font.Style = []
             ParentFont = False
           end
-          object Label2: TLabel
+          object lblFirstName: TLabel
             Left = 97
             Top = 32
             Width = 57
@@ -44,7 +38,7 @@ inherited frmCustomers: TfrmCustomers
             Font.Style = []
             ParentFont = False
           end
-          object Label3: TLabel
+          object lblLastName: TLabel
             Left = 345
             Top = 32
             Width = 56
@@ -57,7 +51,7 @@ inherited frmCustomers: TfrmCustomers
             Font.Style = []
             ParentFont = False
           end
-          object Label4: TLabel
+          object lblDateOfBirth: TLabel
             Left = 621
             Top = 32
             Width = 66
@@ -70,7 +64,7 @@ inherited frmCustomers: TfrmCustomers
             Font.Style = []
             ParentFont = False
           end
-          object Label5: TLabel
+          object lblEmail: TLabel
             Left = 50
             Top = 82
             Width = 29
@@ -83,7 +77,7 @@ inherited frmCustomers: TfrmCustomers
             Font.Style = []
             ParentFont = False
           end
-          object Label6: TLabel
+          object lblCreationDate: TLabel
             Left = 621
             Top = 82
             Width = 72
@@ -96,7 +90,7 @@ inherited frmCustomers: TfrmCustomers
             Font.Style = []
             ParentFont = False
           end
-          object Label7: TLabel
+          object lblZipCode: TLabel
             Left = 50
             Top = 133
             Width = 48
@@ -109,7 +103,7 @@ inherited frmCustomers: TfrmCustomers
             Font.Style = []
             ParentFont = False
           end
-          object Label8: TLabel
+          object lblStreet: TLabel
             Left = 199
             Top = 133
             Width = 30
@@ -122,7 +116,7 @@ inherited frmCustomers: TfrmCustomers
             Font.Style = []
             ParentFont = False
           end
-          object Label9: TLabel
+          object lblHouseNo: TLabel
             Left = 621
             Top = 133
             Width = 53
@@ -135,7 +129,7 @@ inherited frmCustomers: TfrmCustomers
             Font.Style = []
             ParentFont = False
           end
-          object Label10: TLabel
+          object lblNeighbourhood: TLabel
             Left = 50
             Top = 183
             Width = 85
@@ -148,7 +142,7 @@ inherited frmCustomers: TfrmCustomers
             Font.Style = []
             ParentFont = False
           end
-          object Label11: TLabel
+          object lblCity: TLabel
             Left = 278
             Top = 183
             Width = 21
@@ -161,7 +155,7 @@ inherited frmCustomers: TfrmCustomers
             Font.Style = []
             ParentFont = False
           end
-          object Label12: TLabel
+          object lblState: TLabel
             Left = 507
             Top = 183
             Width = 26
