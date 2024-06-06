@@ -40,9 +40,6 @@ type
     Procedure ConfigEditTabComponents; override;
   private
     procedure GetUsersdata;
-    { Private declarations }
-  public
-    { Public declarations }
   end;
 
 var

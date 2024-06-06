@@ -193,6 +193,9 @@
         </DCCReference>
         <DCCReference Include="..\..\src\entity\uEntity.Customer.pas"/>
         <DCCReference Include="..\..\src\model\uModel.Customers.pas"/>
+        <DCCReference Include="..\..\src\controller\uController.Address.pas"/>
+        <DCCReference Include="..\..\src\entity\uEntity.AddressInfo.pas"/>
+        <DCCReference Include="..\..\src\model\uModel.AddressInfo.ViaCEP.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

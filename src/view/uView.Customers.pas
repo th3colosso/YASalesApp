@@ -80,8 +80,6 @@ type
     procedure GetCustomerData;
     procedure SearchAddressInfo;
     procedure FillAddressInfoEdits(AAddressInfo: TEntityAddressInfo);
-  public
-    { Public declarations }
   end;
 
 var

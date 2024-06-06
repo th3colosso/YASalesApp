@@ -25,7 +25,10 @@ uses
   uController.Customers in '..\..\src\controller\uController.Customers.pas',
   uView.Customers in '..\..\src\view\uView.Customers.pas' {frmCustomers},
   uEntity.Customer in '..\..\src\entity\uEntity.Customer.pas',
-  uModel.Customers in '..\..\src\model\uModel.Customers.pas';
+  uModel.Customers in '..\..\src\model\uModel.Customers.pas',
+  uController.Address in '..\..\src\controller\uController.Address.pas',
+  uEntity.AddressInfo in '..\..\src\entity\uEntity.AddressInfo.pas',
+  uModel.AddressInfo.ViaCEP in '..\..\src\model\uModel.AddressInfo.ViaCEP.pas';
 
 {$R *.res}
 

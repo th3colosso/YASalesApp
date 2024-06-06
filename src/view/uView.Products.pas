@@ -69,8 +69,6 @@ type
     procedure BrowseImages;
     procedure ConfigEdits;
     procedure SetDescriptionCharCountInfo;
-  public
-    { Public declarations }
   end;
 
 var

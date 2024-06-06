@@ -24,7 +24,6 @@ type
     function ExecSelectAndCopy(ASQL: string; var ADest: TFDMemTable): Boolean;
   public
     function Load(var AMemTable: TFDMemTable): Boolean;
-    function LoadById(AId: Integer): TEntityProduct;
     function Save(var AProduct: TEntityProduct): Boolean;
     function Delete(AId: Integer): Boolean;
   end;
@@ -52,16 +51,6 @@ begin
     FQry.Close;
   except
     Result := False;
-  end;
-end;
-
-function TModelProducts.LoadById(AId: Integer): TEntityProduct;
-begin
-  try
-    FQry.Open('SELECT * FROM PRODUCTS WHERE ID = %d', [AId]);
-    Result := TEntityProduct.Create;
-  except
-    Result := nil;
   end;
 end;
 

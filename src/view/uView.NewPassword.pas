@@ -3,8 +3,18 @@ unit uView.NewPassword;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, uUtils.Interceptor.TEdit;
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.StdCtrls,
+  uUtils.Interceptor.TEdit;
 
 type
   TfrmNewPassword = class(TForm)
@@ -82,7 +92,7 @@ procedure TfrmNewPassword.SaveNewPassword;
 begin
   CheckPasswords;
   if not TControllerUsers.SaveNewPassword(FUsername, edtPassword.Text) then
-    raise Exception.Create('Problem found while update password');
+    raise Exception.Create('Problem found while updating password');
   Close;
 end;
 

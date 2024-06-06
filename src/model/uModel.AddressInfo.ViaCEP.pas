@@ -16,7 +16,6 @@ type
     function GetBrazilianAddressInfo(AZipCode: string): TEntityAddressInfo;
   end;
 
-
 implementation
 
 uses

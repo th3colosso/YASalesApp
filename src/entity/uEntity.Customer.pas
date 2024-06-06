@@ -40,7 +40,8 @@ type
 implementation
 
 uses
-  System.SysUtils, System.DateUtils;
+  System.SysUtils,
+  System.DateUtils;
 
 { TEntityCustomer }
 
