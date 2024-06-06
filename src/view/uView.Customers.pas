@@ -3,10 +3,32 @@ unit uView.Customers;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uView.Base.Registration, Data.DB, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
-  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls;
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  uView.Base.Registration,
+  Data.DB,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Param,
+  FireDAC.Stan.Error,
+  FireDAC.DatS,
+  FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+  Vcl.StdCtrls,
+  Vcl.ExtCtrls,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ComCtrls,
+  uEntity.AddressInfo;
 
 type
   TfrmCustomers = class(TfrmBaseReg)
@@ -47,6 +69,7 @@ type
     FMemTableState: TStringField;
     FMemTableCity: TStringField;
     FMemTableCreationDate: TDateField;
+    procedure btnSearchClick(Sender: TObject);
   protected
     procedure ReloadData; override;
     procedure ConfigEditTabComponents; override;
@@ -54,6 +77,8 @@ type
     procedure Delete; override;
   private
     procedure GetCustomerData;
+    procedure SearchAddressInfo;
+    procedure FillAddressInfoEdits(AAddressInfo: TEntityAddressInfo);
   public
     { Public declarations }
   end;
@@ -65,11 +90,46 @@ implementation
 
 uses
   uEntity.Customer,
-  uController.Customers;
+  uController.Customers,
+  uController.Address;
 
 {$R *.dfm}
 
 { TfrmCustomers }
+
+procedure TfrmCustomers.btnSearchClick(Sender: TObject);
+begin
+  inherited;
+  SearchAddressInfo;
+end;
+
+procedure TfrmCustomers.SearchAddressInfo;
+begin
+  if Trim(edtZipCode.Text).Length <> 8 then
+  begin
+    Application.MessageBox(Pchar('Not a valid brazilian zip code'), 'Error', MB_OK + MB_ICONERROR);
+    Exit;
+  end;
+  var AddressInfo: TEntityAddressInfo;
+
+  AddressInfo := TControllerAddress.GetBrazilianAddressInfo(Trim(edtZipCode.Text));
+
+  if AddressInfo.ZipCode.Trim.IsEmpty then
+  begin
+    Application.MessageBox(Pchar('Problem found while searching for address info'), 'Error', MB_OK + MB_ICONERROR);
+    Exit;
+  end;
+
+  FillAddressInfoEdits(AddressInfo);
+end;
+
+procedure TfrmCustomers.FillAddressInfoEdits(AAddressInfo: TEntityAddressInfo);
+begin
+  edtStreet.Text := AAddressInfo.Street;
+  edtNeighbourhood.Text := AAddressInfo.Neighbourhood;
+  edtCity.Text := AAddressInfo.City;
+  edtState.Text := AAddressInfo.State;
+end;
 
 procedure TfrmCustomers.ConfigEditTabComponents;
 begin

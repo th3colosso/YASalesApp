@@ -136,7 +136,7 @@ begin
           '   LastName         TEXT (50)  NOT NULL,                                 ' +
           '   Email            TEXT (100) NOT NULL,                                 ' +
           '   DateOfBirth      DATE       NOT NULL,                                 ' +
-          '   ZIPCode          INTEGER,                                             ' +
+          '   ZIPCode          TEXT (15),                                           ' +
           '   Street           TEXT (50),                                           ' +
           '   Neighbourhood    TEXT (30),                                           ' +
           '   HouseNo          INTEGER,                                             ' +

@@ -3,9 +3,14 @@ inherited frmCustomers: TfrmCustomers
   Caption = 'Customers - %s'
   TextHeight = 15
   inherited pages: TPageControl
-    ActivePage = tsList
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
+        inherited pnlTitle: TPanel
+          inherited lblTitle: TLabel
+            Width = 777
+            Height = 49
+          end
+        end
         inherited pnlData: TPanel
           inherited rectData: TShape
             ExplicitLeft = 0
@@ -230,35 +235,35 @@ inherited frmCustomers: TfrmCustomers
             Top = 154
             Width = 416
             Height = 23
-            TabOrder = 7
+            TabOrder = 8
           end
           object edtHouseNo: TEdit
             Left = 621
             Top = 154
             Width = 106
             Height = 23
-            TabOrder = 8
+            TabOrder = 9
           end
           object edtNeighbourhood: TEdit
             Left = 50
             Top = 204
             Width = 222
             Height = 23
-            TabOrder = 9
+            TabOrder = 10
           end
           object edtCity: TEdit
             Left = 278
             Top = 204
             Width = 222
             Height = 23
-            TabOrder = 10
+            TabOrder = 11
           end
           object edtState: TEdit
             Left = 507
             Top = 204
             Width = 222
             Height = 23
-            TabOrder = 11
+            TabOrder = 12
           end
           object btnSearch: TButton
             Left = 137
@@ -267,7 +272,8 @@ inherited frmCustomers: TfrmCustomers
             Height = 23
             Cursor = crHandPoint
             Caption = 'Search'
-            TabOrder = 12
+            TabOrder = 7
+            OnClick = btnSearchClick
           end
         end
       end
