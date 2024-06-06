@@ -61,11 +61,9 @@ begin
   end;
 
   var Cli := TNetHTTPClient.Create(nil);
-  var Req := TNetHTTPRequest.Create(Cli);
   try
-    Req.Client := Cli;
     var URL := Format('https://viacep.com.br/ws/%s/json/', [AZipCode]);
-    var Res := Req.Get(URL);
+    var Res := Cli.Get(URL);
     if not Res.StatusCode = 200 then
     begin
       Result.ZipCode := EmptyStr;

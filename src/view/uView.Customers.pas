@@ -28,7 +28,8 @@ uses
   Vcl.Grids,
   Vcl.DBGrids,
   Vcl.ComCtrls,
-  uEntity.AddressInfo;
+  uEntity.AddressInfo,
+  uUtils.Interceptor.TEdit;
 
 type
   TfrmCustomers = class(TfrmBaseReg)
@@ -105,6 +106,9 @@ end;
 
 procedure TfrmCustomers.SearchAddressInfo;
 begin
+  Screen.Cursor := crHourGlass;
+  Application.ProcessMessages;
+
   if Trim(edtZipCode.Text).Length <> 8 then
   begin
     Application.MessageBox(Pchar('Not a valid brazilian zip code'), 'Error', MB_OK + MB_ICONERROR);
@@ -121,6 +125,7 @@ begin
   end;
 
   FillAddressInfoEdits(AddressInfo);
+  Screen.Cursor := crDefault;
 end;
 
 procedure TfrmCustomers.FillAddressInfoEdits(AAddressInfo: TEntityAddressInfo);
