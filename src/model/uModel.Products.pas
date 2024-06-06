@@ -35,7 +35,7 @@ implementation
 function TModelProducts.Delete(AId: Integer): Boolean;
 begin
   try
-    Result := FQry.ExecSQL('DELETE FROM PRODUCTS WHERE ID = :ID', [AId]) > 0;
+    Result := DeleteByID('PRODUCTS', AId);
   except
     Result := False;
   end;

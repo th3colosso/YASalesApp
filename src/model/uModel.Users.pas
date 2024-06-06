@@ -52,7 +52,7 @@ end;
 function TModelUsers.Delete(AId: Integer): Boolean;
 begin
   try
-    Result := FQry.ExecSQL('DELETE FROM USERS WHERE ID = :ID', [AId]) > 0;
+    Result := DeleteByID('USERS', AId);
   except
     Result := False;
   end;

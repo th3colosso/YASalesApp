@@ -22,6 +22,7 @@ type
     FConn: TFDConnection;
     FQry: TFDQuery;
     FSQL: string;
+    function DeleteByID(ATable: string; AId: Integer): Boolean;
   public
     constructor Create(AOwner: TComponent); virtual;
     destructor Destroy; override;
@@ -76,6 +77,12 @@ begin
 
   FQry.BeforeExecute := CheckConnect;
   FQry.AfterExecute := CheckDisconnect;
+end;
+
+function TModelBase.DeleteByID(ATable: string; AId: Integer): Boolean;
+begin
+  FSQL := Format('DELETE FROM %s WHERE ID = %d', [ATable.ToUpper, AId]);
+  Result := FQry.ExecSQL(FSQL) > 0;
 end;
 
 destructor TModelBase.Destroy;

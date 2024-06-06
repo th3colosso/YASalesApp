@@ -26,7 +26,7 @@ uses
 function TModelCustomers.Delete(AId: Integer): Boolean;
 begin
   try
-    Result := FQry.ExecSQL('DELETE FROM CUSTOMERS WHERE ID = :ID', [AId]) > 0;
+    Result := DeleteByID('CUSTOMERS', Aid);
   except
     Result := False;
   end;
