@@ -140,7 +140,7 @@ begin
           '   Street           TEXT (50),                                           ' +
           '   Neighbourhood    TEXT (30),                                           ' +
           '   HouseNo          INTEGER,                                             ' +
-          '   State            TEXT (2),                                            ' +
+          '   State            TEXT (30),                                           ' +
           '   City             TEXT (30),                                           ' +
           '   CreationDate     DATE       DEFAULT (DATE(''now'', ''localtime'') )   ' +
           '                               NOT NULL                                  ' +

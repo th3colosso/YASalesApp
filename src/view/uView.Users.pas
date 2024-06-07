@@ -57,10 +57,10 @@ uses
 
 procedure TfrmUsers.ConfigEditTabComponents;
 begin
+  inherited;
   cbNewPassword.Enabled := not FIsInserting;
   if FIsInserting then
   begin
-    ClearData(pnlData);
     edtID.Text := '-1';
     cbNewPassword.Checked := True;
     dtpCreationDate.Date := Now;

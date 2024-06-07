@@ -71,7 +71,7 @@ type
     FIsInserting: Boolean;
     procedure ConfigMemTable; virtual;
     procedure ReloadData; virtual; abstract;
-    procedure ConfigEditTabComponents; virtual; abstract;
+    procedure ConfigEditTabComponents; virtual;
     procedure Delete; virtual;
     procedure Save; virtual; abstract;
     procedure ConfigGrid;
@@ -165,6 +165,11 @@ end;
 procedure TfrmBaseReg.ConfigDBComponents;
 begin
   FDataSource.DataSet := FMemTable;
+end;
+
+procedure TfrmBaseReg.ConfigEditTabComponents;
+begin
+  ClearData(pnlData);
 end;
 
 procedure TfrmBaseReg.btCancelClick(Sender: TObject);

@@ -97,7 +97,6 @@ begin
   inherited;
   if FIsInserting then
   begin
-    ClearData(pnlData);
     SetDescriptionCharCountInfo;
     edtID.Text := '-1';
     dtpCreationDate.Date := Now;

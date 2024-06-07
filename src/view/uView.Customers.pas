@@ -139,7 +139,6 @@ begin
   inherited;
   if FIsInserting then
   begin
-    ClearData(pnlData);
     edtID.Text := '-1';
     dtpCreationDate.Date := Now;
   end
