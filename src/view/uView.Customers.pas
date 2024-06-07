@@ -193,9 +193,12 @@ begin
     Customer.DateOfBirth := dtpDateOfBirth.Date;
 
     //Address
-    Customer.ZipCode := StrToInt(edtZipCode.Text);
+    var Int: Integer;
+    TryStrToInt(edtZipCode.Text, Int);
+    Customer.ZipCode := Int;
     Customer.Street := edtStreet.Text;
-    Customer.HouseNo := StrToInt(edtHouseNo.Text);
+    TryStrToInt(edtHouseNo.Text, Int);
+    Customer.HouseNo := Int;
     Customer.Neighbourhood := edtNeighbourhood.Text;
     Customer.City := edtCity.Text;
     Customer.State := edtState.Text;
