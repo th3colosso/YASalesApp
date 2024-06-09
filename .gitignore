@@ -71,3 +71,4 @@ db/
 
 #Other
 Debug/
+*.log
