@@ -29,7 +29,8 @@ uses
   uController.Address in '..\..\src\controller\uController.Address.pas',
   uEntity.AddressInfo in '..\..\src\entity\uEntity.AddressInfo.pas',
   uModel.AddressInfo.ViaCEP in '..\..\src\model\uModel.AddressInfo.ViaCEP.pas',
-  uUtils.Dialogs in '..\..\src\utillity\uUtils.Dialogs.pas';
+  uUtils.Dialogs in '..\..\src\utillity\uUtils.Dialogs.pas',
+  uUtils.Handler.Exceptions in '..\..\src\utillity\uUtils.Handler.Exceptions.pas';
 
 {$R *.res}
 
