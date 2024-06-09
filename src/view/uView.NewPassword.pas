@@ -46,7 +46,8 @@ var
 implementation
 
 uses
-  uController.Users;
+  uController.Users,
+  uUtils.Dialogs;
 
 {$R *.dfm}
 
@@ -65,7 +66,8 @@ begin
   if not string.Equals(edtPassword.Text, edtPasswordCopy.Text) then
   begin
     ResetFocus;
-    raise Exception.Create('Passwords do not match');
+    TUtilsDialogs.Error('Passwords do not match');
+    Abort;
   end;
 end;
 
@@ -92,7 +94,10 @@ procedure TfrmNewPassword.SaveNewPassword;
 begin
   CheckPasswords;
   if not TControllerUsers.SaveNewPassword(FUsername, edtPassword.Text) then
-    raise Exception.Create('Problem found while updating password');
+  begin
+    TUtilsDialogs.Error('Problem found while updating password');
+    Abort;
+  end;
   Close;
 end;
 

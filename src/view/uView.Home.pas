@@ -48,7 +48,8 @@ uses
   uUtils.DmImages,
   uController.Products,
   uController.Users,
-  uController.Customers;
+  uController.Customers,
+  uUtils.Dialogs;
 
 {$R *.dfm}
 
@@ -70,7 +71,10 @@ end;
 procedure TfrmHome.OpenUsersForm;
 begin
   if not LoggedUser.HasUserScr then
-    raise Exception.Create('Unauthorized');
+  begin
+    TUtilsDialogs.Error('Unauthorized');
+    Abort;
+  end;
   TControllerUsers.ShowUsersForm;
 end;
 
@@ -95,14 +99,20 @@ end;
 procedure TfrmHome.OpenCustomersForm;
 begin
   if not LoggedUser.HasCustomerScr then
-    raise Exception.Create('Unauthorized');
+  begin
+    TUtilsDialogs.Error('Unauthorized');
+    Abort;
+  end;
   TControllerCustomers.ShowCustomersForm;
 end;
 
 procedure TfrmHome.OpenProductsForm;
 begin
   if not LoggedUser.HasProductScr then
-    raise Exception.Create('Unauthorized');
+  begin
+    TUtilsDialogs.Error('Unauthorized');
+    Abort;
+  end;
   TControllerProducts.ShowProductsForm;
 end;
 

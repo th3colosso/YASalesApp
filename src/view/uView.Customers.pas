@@ -90,7 +90,8 @@ implementation
 uses
   uEntity.Customer,
   uController.Customers,
-  uController.Address;
+  uController.Address,
+  uUtils.Dialogs;
 
 {$R *.dfm}
 
@@ -109,7 +110,7 @@ begin
 
   if Trim(edtZipCode.Text).Length <> 8 then
   begin
-    Application.MessageBox(Pchar('Not a valid brazilian zip code'), 'Error', MB_OK + MB_ICONERROR);
+    TUtilsDialogs.Error('Not a valid brazilian zip code');
     Exit;
   end;
   var AddressInfo: TEntityAddressInfo;
@@ -118,7 +119,7 @@ begin
 
   if AddressInfo.ZipCode.Trim.IsEmpty then
   begin
-    Application.MessageBox(Pchar('Problem found while searching for address info'), 'Error', MB_OK + MB_ICONERROR);
+    TUtilsDialogs.Error('Problem found while searching for address info');
     Exit;
   end;
 
@@ -150,10 +151,11 @@ procedure TfrmCustomers.Delete;
 begin
   inherited;
   var Msg := Format('Are you sure you want to delete the following customer? %s%s [ %d - %s %s ]',
-    [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableFirstName.AsString, FMemTableLastName.AsString]);
-  if Application.MessageBox(PChar(Msg), 'WARNING', MB_YESNO + MB_ICONWARNING) = mrYes then
+    [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableFirstName.AsString.Trim, FMemTableLastName.AsString.Trim]);
+
+  if TUtilsDialogs.Warning(Msg, MB_YESNO) = mrYes then
     if not TControllerCustomers.Delete(FMemTableID.AsInteger) then
-      Application.MessageBox(Pchar('Problem found while deleting customer'), 'Error', MB_OK + MB_ICONERROR);
+      TUtilsDialogs.Error('Problem found while deleting customer');
 end;
 
 procedure TfrmCustomers.GetCustomerData;
@@ -178,7 +180,7 @@ procedure TfrmCustomers.ReloadData;
 begin
   inherited;
   if not TControllerCustomers.Load(FMemTable) then
-    Application.MessageBox(Pchar('Problem found while loading data'), 'Error', MB_OK + MB_ICONERROR);
+    TUtilsDialogs.Error('Problem found while loading data');
 end;
 
 procedure TfrmCustomers.Save;
@@ -204,7 +206,7 @@ begin
     Customer.State := edtState.Text;
 
     if not TControllerCustomers.Save(Customer) then
-      Application.MessageBox(Pchar('Problem found while saving customer'), 'Error', MB_OK + MB_ICONERROR);
+      TUtilsDialogs.Error('Problem found while saving customer');
   finally
     Customer.Free;
   end;

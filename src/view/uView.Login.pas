@@ -46,7 +46,8 @@ var
 implementation
 
 uses
-  uController.Users;
+  uController.Users,
+  uUtils.Dialogs;
 
 {$R *.dfm}
 
@@ -70,7 +71,7 @@ begin
   if TControllerUsers.CheckLogin(edtUsername.Text, edtPassword.Text) then
     Close
   else
-    Application.MessageBox('Invalid credentials', 'Error', MB_ICONERROR + MB_OK);
+    TUtilsDialogs.Error('Invalid credentials');
 end;
 
 end.

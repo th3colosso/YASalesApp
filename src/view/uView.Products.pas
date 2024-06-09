@@ -80,7 +80,8 @@ uses
   uController.Products,
   uUtils.DmImages,
   uEntity.Product,
-  uUtils.TEdit;
+  uUtils.TEdit,
+  uUtils.Dialogs;
 
 {$R *.dfm}
 
@@ -110,9 +111,10 @@ begin
   inherited;
   var Msg := Format('Are you sure you want to delete the following product? %s%s [ %d - %s ]',
     [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableName.AsString]);
-  if Application.MessageBox(PChar(Msg), 'WARNING', MB_YESNO + MB_ICONWARNING) = mrYes then
+
+  if TUtilsDialogs.Warning(Msg, MB_YESNO) = mrYes then
     if not TControllerProducts.Delete(FMemTableID.AsInteger) then
-      Application.MessageBox(Pchar('Problem found while deleting product'), 'Error', MB_OK + MB_ICONERROR);
+      TUtilsDialogs.Error('Problem found while deleting product');
 end;
 
 procedure TfrmProducts.FormCreate(Sender: TObject);
@@ -172,7 +174,7 @@ end;
 procedure TfrmProducts.ReloadData;
 begin
   if not TControllerProducts.Load(FMemTable) then
-    Application.MessageBox(PChar('Problem found while loading data'), 'Error', MB_OK + MB_ICONERROR);
+   TUtilsDialogs.Error('Problem found while loading data');
 end;
 
 procedure TfrmProducts.Save;
@@ -186,7 +188,7 @@ begin
     Product.Price := StrToFloatDef(edtPrice.Text, 0);
     img.Picture.SaveToStream(Product.Image);
     if not TControllerProducts.Save(Product) then
-      Application.MessageBox(PChar('Problem found while saving product'), 'Error', MB_OK + MB_ICONERROR);
+      TUtilsDialogs.Error('Problem found while saving product');
   finally
     Product.Free;
   end;

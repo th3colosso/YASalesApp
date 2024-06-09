@@ -49,7 +49,8 @@ implementation
 
 uses
   uController.Users,
-  uEntity.User;
+  uEntity.User,
+  uUtils.Dialogs;
 
 {$R *.dfm}
 
@@ -88,15 +89,16 @@ procedure TfrmUsers.Delete;
 begin
   var Msg := Format('Are you sure you want to delete the following user? %s%s [ %d - %s ]',
     [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableName.AsString]);
-  if Application.MessageBox(PChar(Msg), 'WARNING', MB_YESNO + MB_ICONWARNING) = mrYes then
+
+  if TUtilsDialogs.Warning(Msg, MB_YESNO) = mrYes then
     if not TControllerUsers.Delete(FMemTableID.AsInteger) then
-      Application.MessageBox(Pchar('Problem found while deleting user'), 'Error', MB_OK + MB_ICONERROR);
+      TUtilsDialogs.Error('Problem found while deleting user');
 end;
 
 procedure TfrmUsers.ReloadData;
 begin
   if not TControllerUsers.Load(FMemTable) then
-    Application.MessageBox(PChar('Problem found while loading data'), 'Error', MB_OK + MB_ICONERROR);
+    TUtilsDialogs.Error('Problem found while loading data');
 end;
 
 procedure TfrmUsers.Save;
@@ -112,7 +114,7 @@ begin
     User.HasCustomerScr := cbCustomers.Checked;
     User.HasOrderScr := cbOrders.Checked;
     if not TControllerUsers.Save(User) then
-      Application.MessageBox(PChar('Problem found while saving user'), 'Error', MB_OK + MB_ICONERROR);
+      TUtilsDialogs.Error('Problem found while saving user');
   finally
     User.Free;
   end;

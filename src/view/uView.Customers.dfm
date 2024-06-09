@@ -280,63 +280,6 @@ inherited frmCustomers: TfrmCustomers
     end
   end
   inherited FMemTable: TFDMemTable
-    Active = True
-    FieldDefs = <
-      item
-        Name = 'ID'
-        DataType = ftInteger
-      end
-      item
-        Name = 'FirstName'
-        DataType = ftString
-        Size = 50
-      end
-      item
-        Name = 'LastName'
-        DataType = ftString
-        Size = 50
-      end
-      item
-        Name = 'Email'
-        DataType = ftString
-        Size = 100
-      end
-      item
-        Name = 'DateOfBirth'
-        DataType = ftDate
-      end
-      item
-        Name = 'ZipCode'
-        DataType = ftInteger
-      end
-      item
-        Name = 'Street'
-        DataType = ftString
-        Size = 50
-      end
-      item
-        Name = 'Neighbourhood'
-        DataType = ftString
-        Size = 30
-      end
-      item
-        Name = 'HouseNo'
-        DataType = ftInteger
-      end
-      item
-        Name = 'State'
-        DataType = ftString
-        Size = 2
-      end
-      item
-        Name = 'City'
-        DataType = ftString
-        Size = 30
-      end
-      item
-        Name = 'CreationDate'
-        DataType = ftDate
-      end>
     StoreDefs = True
     object FMemTableID: TIntegerField
       FieldName = 'ID'
@@ -382,7 +325,7 @@ inherited frmCustomers: TfrmCustomers
     object FMemTableState: TStringField
       FieldName = 'State'
       Visible = False
-      Size = 2
+      Size = 30
     end
     object FMemTableCity: TStringField
       FieldName = 'City'
