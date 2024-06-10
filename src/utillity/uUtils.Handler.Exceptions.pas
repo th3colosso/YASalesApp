@@ -30,9 +30,6 @@ uses
   System.DateUtils;
 
 { TExceptionHandler }
-  
-var 
-  ExceptionHandler: TExceptionHandler;
 
 procedure TExceptionHandler.CheckLogFile;
 const
@@ -86,7 +83,7 @@ begin
   FLog.Append('DateTime: ' + Now.ToString);
 end;
 
-initialization
-  Application.OnException := TExceptionHandler.New.OnException;
+{initialization
+  Application.OnException := TExceptionHandler.New.OnException;}
 
 end.
