@@ -11,9 +11,9 @@ type
 
   TModelCustomers = class(TModelBase)
   public
-    function Save(ACustomer: TEntityCustomer): Boolean;
+    function Save(const ACustomer: TEntityCustomer): Boolean;
     function Load(var AMemTable: TFDMemTable): Boolean;
-    function Delete(AId: Integer): Boolean;
+    function Delete(const AId: Integer): Boolean;
   end;
 
 implementation
@@ -23,7 +23,7 @@ uses
 
 { TModelCustomers }
 
-function TModelCustomers.Delete(AId: Integer): Boolean;
+function TModelCustomers.Delete(const AId: Integer): Boolean;
 begin
   try
     Result := DeleteByID('CUSTOMERS', Aid);
@@ -45,7 +45,7 @@ begin
   end;
 end;
 
-function TModelCustomers.Save(ACustomer: TEntityCustomer): Boolean;
+function TModelCustomers.Save(const ACustomer: TEntityCustomer): Boolean;
 begin
   try
     if ACustomer.ID > 0 then

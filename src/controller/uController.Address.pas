@@ -8,7 +8,7 @@ uses
 type
   TControllerAddress = class
   public
-    class function GetBrazilianAddressInfo(AZipCode: string): TEntityAddressInfo;
+    class function GetBrazilianAddressInfo(const AZipCode: string): TEntityAddressInfo;
   end;
 
 implementation
@@ -18,7 +18,7 @@ uses
 
 { TControllerAddress }
 
-class function TControllerAddress.GetBrazilianAddressInfo(AZipCode: string): TEntityAddressInfo;
+class function TControllerAddress.GetBrazilianAddressInfo(const AZipCode: string): TEntityAddressInfo;
 begin
   var BrazilAddressInfo := TModelAdressInfoViaCEP.Create;
   try

@@ -21,18 +21,18 @@ uses
 type
   TModelProducts = class(TModelBase)
   private
-    function ExecSelectAndCopy(ASQL: string; var ADest: TFDMemTable): Boolean;
+    function ExecSelectAndCopy(const ASQL: string; var ADest: TFDMemTable): Boolean;
   public
     function Load(var AMemTable: TFDMemTable): Boolean;
-    function Save(var AProduct: TEntityProduct): Boolean;
-    function Delete(AId: Integer): Boolean;
+    function Save(const AProduct: TEntityProduct): Boolean;
+    function Delete(const AId: Integer): Boolean;
   end;
 
 implementation
 
 { TModelProducts }
 
-function TModelProducts.Delete(AId: Integer): Boolean;
+function TModelProducts.Delete(const AId: Integer): Boolean;
 begin
   try
     Result := DeleteByID('PRODUCTS', AId);
@@ -41,7 +41,7 @@ begin
   end;
 end;
 
-function TModelProducts.ExecSelectAndCopy(ASQL: string; var ADest: TFDMemTable): Boolean;
+function TModelProducts.ExecSelectAndCopy(const ASQL: string; var ADest: TFDMemTable): Boolean;
 begin
   try
     FQry.Open(ASQL);
@@ -54,7 +54,7 @@ begin
   end;
 end;
 
-function TModelProducts.Save(var AProduct: TEntityProduct): Boolean;
+function TModelProducts.Save(const AProduct: TEntityProduct): Boolean;
 begin
   try
     if AProduct.ID > 0 then

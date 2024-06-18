@@ -1,5 +1,6 @@
 inherited frmUsers: TfrmUsers
   Hint = 'User'#39's Details - Inserting / Updating'
+  Caption = 'Users - %s'
   TextHeight = 15
   inherited pages: TPageControl
     ActivePage = tsList

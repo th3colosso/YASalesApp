@@ -9,17 +9,17 @@ uses
 type
   TControllerUsers = class
   private
-    class procedure UpdatePassword(AUsername: string);
+    class procedure UpdatePassword(const AUsername: string);
     class procedure ShowMainForm;
   public
     class procedure ShowLoginForm(var ALoggedUserName: string);
     class procedure ShowUsersForm;
-    class function CheckLogin(AUsername: string; ATypedPassword: string): Boolean;
+    class function CheckLogin(const AUsername: string; const ATypedPassword: string): Boolean;
     class function Load(var AMemTable: TFDMemTable): Boolean;
-    class function Delete(AId: Integer): Boolean;
-    class function GetLoggedUser(ALogin: string): TLoggedUser;
-    class function Save(AUser: TEntityUser): Boolean;
-    class function SaveNewPassword(AUsername: string; APassword: string): Boolean;
+    class function Delete(const AId: Integer): Boolean;
+    class function GetLoggedUser(const ALogin: string): TLoggedUser;
+    class function Save(const AUser: TEntityUser): Boolean;
+    class function SaveNewPassword(const AUsername: string; const APassword: string): Boolean;
   end;
 
 implementation
@@ -35,7 +35,7 @@ uses
 
 { TControllerLogin }
 
-class function TControllerUsers.GetLoggedUser(ALogin: string): TLoggedUser;
+class function TControllerUsers.GetLoggedUser(const ALogin: string): TLoggedUser;
 begin
   var UserModel := TModelUsers.Create(dmConnection.Conn);
   try
@@ -45,7 +45,7 @@ begin
   end;
 end;
 
-class function TControllerUsers.CheckLogin(AUsername: string; ATypedPassword: string): Boolean;
+class function TControllerUsers.CheckLogin(const AUsername: string; const ATypedPassword: string): Boolean;
 begin
   Result := False;
   var NeedNewPassword := False;
@@ -61,7 +61,7 @@ begin
   end;
 end;
 
-class function TControllerUsers.Delete(AId: Integer): Boolean;
+class function TControllerUsers.Delete(const AId: Integer): Boolean;
 begin
   var UserModel := TModelUsers.Create(dmConnection.Conn);
   try
@@ -81,7 +81,7 @@ begin
   end;
 end;
 
-class function TControllerUsers.Save(AUser: TEntityUser): Boolean;
+class function TControllerUsers.Save(const AUser: TEntityUser): Boolean;
 begin
   var UserModel := TModelUsers.Create(dmConnection.Conn);
   try
@@ -91,7 +91,7 @@ begin
   end;
 end;
 
-class function TControllerUsers.SaveNewPassword(AUsername, APassword: string): Boolean;
+class function TControllerUsers.SaveNewPassword(const AUsername, APassword: string): Boolean;
 begin
   var UserModel := TModelUsers.Create(dmConnection.Conn);
   try
@@ -133,7 +133,7 @@ begin
   end;
 end;
 
-class procedure TControllerUsers.UpdatePassword(AUsername: string);
+class procedure TControllerUsers.UpdatePassword(const AUsername: string);
 begin
   var frmNewPassword := TfrmNewPassword.Create(Application);
   try

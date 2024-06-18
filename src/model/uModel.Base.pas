@@ -16,13 +16,13 @@ type
     procedure CheckDisconnect(DataSet: TDataSet); overload;
     procedure CheckConnect(DataSet: TFDDataSet); overload;
     procedure CheckDisconnect(DataSet: TFDDataSet); overload;
-    procedure Connect(AComponent: TComponent);
-    procedure Disconnect(AComponent: TComponent);
+    procedure Connect(const AComponent: TComponent);
+    procedure Disconnect(const AComponent: TComponent);
   protected
     FConn: TFDConnection;
     FQry: TFDQuery;
     FSQL: string;
-    function DeleteByID(ATable: string; AId: Integer): Boolean;
+    function DeleteByID(const ATable: string; const AId: Integer): Boolean;
   public
     constructor Create(AOwner: TComponent); virtual;
     destructor Destroy; override;
@@ -52,13 +52,13 @@ begin
   Disconnect(DataSet);
 end;
 
-procedure TModelBase.Connect(AComponent: TComponent);
+procedure TModelBase.Connect(const AComponent: TComponent);
 begin
   if not TFDQuery(AComponent).Connection.Connected then
     TFDQuery(AComponent).Connection.Connected := True;
 end;
 
-procedure TModelBase.Disconnect(AComponent: TComponent);
+procedure TModelBase.Disconnect(const AComponent: TComponent);
 begin
   TFDQuery(AComponent).Connection.Connected := False;
 end;
@@ -79,7 +79,7 @@ begin
   FQry.AfterExecute := CheckDisconnect;
 end;
 
-function TModelBase.DeleteByID(ATable: string; AId: Integer): Boolean;
+function TModelBase.DeleteByID(const ATable: string; const AId: Integer): Boolean;
 begin
   FSQL := Format('DELETE FROM %s WHERE ID = %d', [ATable.ToUpper, AId]);
   Result := FQry.ExecSQL(FSQL) > 0;

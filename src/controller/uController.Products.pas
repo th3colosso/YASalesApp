@@ -10,8 +10,8 @@ type
   TControllerProducts = class
   public
     class function Load(var AMemTable: TFDMemTable): Boolean;
-    class function Save(var AProduct: TEntityProduct): Boolean;
-    class function Delete(AId: Integer): Boolean;
+    class function Save(const AProduct: TEntityProduct): Boolean;
+    class function Delete(const AId: Integer): Boolean;
     class procedure ShowProductsForm;
   end;
 
@@ -25,7 +25,7 @@ uses
 
 { TControllerProducts }
 
-class function TControllerProducts.Delete(AId: Integer): Boolean;
+class function TControllerProducts.Delete(const AId: Integer): Boolean;
 begin
   var ProductsModel := TModelProducts.Create(dmConnection.Conn);
   try
@@ -45,7 +45,7 @@ begin
   end;
 end;
 
-class function TControllerProducts.Save(var AProduct: TEntityProduct): Boolean;
+class function TControllerProducts.Save(const AProduct: TEntityProduct): Boolean;
 begin
   var ProductsModel := TModelProducts.Create(dmConnection.Conn);
   try

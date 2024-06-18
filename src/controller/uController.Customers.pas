@@ -11,8 +11,8 @@ type
   public
     class procedure ShowCustomersForm;
     class function Load(var AMemTable: TFDMemTable): Boolean;
-    class function Save(ACustomer: TEntityCustomer): Boolean;
-    class function Delete(AId: Integer): Boolean;
+    class function Save(const ACustomer: TEntityCustomer): Boolean;
+    class function Delete(const AId: Integer): Boolean;
   end;
 
 implementation
@@ -25,7 +25,7 @@ uses
 
 { TControllerCustomers }
 
-class function TControllerCustomers.Delete(AId: Integer): Boolean;
+class function TControllerCustomers.Delete(const AId: Integer): Boolean;
 begin
   var CustomersModel := TModelCustomers.Create(dmConnection.Conn);
   try
@@ -45,7 +45,7 @@ begin
   end;
 end;
 
-class function TControllerCustomers.Save(ACustomer: TEntityCustomer): Boolean;
+class function TControllerCustomers.Save(const ACustomer: TEntityCustomer): Boolean;
 begin
   var CustomersModel := TModelCustomers.Create(dmConnection.Conn);
   try

@@ -10,10 +10,10 @@ uses
 type
   TModelAdressInfoViaCEP = class
   private
-    function IsValidZipCode(AZipCode: string): Boolean;
-    function ParseJsonResponse(ARes: IHTTPResponse): TEntityAddressInfo;
+    function IsValidZipCode(const AZipCode: string): Boolean;
+    function ParseJsonResponse(const ARes: IHTTPResponse): TEntityAddressInfo;
   public
-    function GetBrazilianAddressInfo(AZipCode: string): TEntityAddressInfo;
+    function GetBrazilianAddressInfo(const AZipCode: string): TEntityAddressInfo;
   end;
 
 implementation
@@ -24,12 +24,12 @@ uses
 
 { TModelAdressInfoViaCEP }
 
-function TModelAdressInfoViaCEP.IsValidZipCode(AZipCode: string): Boolean;
+function TModelAdressInfoViaCEP.IsValidZipCode(const AZipCode: string): Boolean;
 begin
   Result := AZipCode.Length = 8;
 end;
 
-function TModelAdressInfoViaCEP.ParseJsonResponse(ARes: IHTTPResponse): TEntityAddressInfo;
+function TModelAdressInfoViaCEP.ParseJsonResponse(const ARes: IHTTPResponse): TEntityAddressInfo;
 begin
   var Obj := TJSONObject.ParseJSONValue(ARes.ContentAsString());
   var value: string;
@@ -51,7 +51,7 @@ begin
   end;
 end;
 
-function TModelAdressInfoViaCEP.GetBrazilianAddressInfo(AZipCode: string): TEntityAddressInfo;
+function TModelAdressInfoViaCEP.GetBrazilianAddressInfo(const AZipCode: string): TEntityAddressInfo;
 begin
   if not IsValidZipCode(AZipCode) then
   begin

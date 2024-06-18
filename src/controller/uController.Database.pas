@@ -8,7 +8,7 @@ uses
 type
   TControllerDB = class
   private
-    class procedure CheckExistence(APath: string);
+    class procedure CheckExistence(const APath: string);
   public
     class function GetDataBase: string;
     class procedure CheckMigration;
@@ -23,7 +23,7 @@ uses
 
 { TControllerDB }
 
-class procedure TControllerDB.CheckExistence(APath: string);
+class procedure TControllerDB.CheckExistence(const APath: string);
 begin
   if not FileExists(APath) then
     ForceDirectories(ExtractFilePath(APath));

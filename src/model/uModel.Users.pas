@@ -11,12 +11,12 @@ type
 
   TModelUsers = class(TModelBase)
   public
-    function CheckLogin(AUsername: string; ATypedPassword: string; var ANeedNewPassword: Boolean): Boolean;
+    function CheckLogin(const AUsername: string; const ATypedPassword: string; var ANeedNewPassword: Boolean): Boolean;
     function Load(var AMemTable: TFDMemtable): Boolean;
-    function Delete(AId: Integer): Boolean;
-    function GetLoggedUser(ALogin: string): TLoggedUser;
-    function Save(AUser: TEntityUser): Boolean;
-    function SaveNewPassword(AUsername: string; APassword: string): Boolean;
+    function Delete(const AId: Integer): Boolean;
+    function GetLoggedUser(const ALogin: string): TLoggedUser;
+    function Save(const AUser: TEntityUser): Boolean;
+    function SaveNewPassword(const AUsername: string; const APassword: string): Boolean;
   end;
 
 implementation
@@ -27,7 +27,7 @@ uses
 
 { TModelUsers }
 
-function TModelUsers.GetLoggedUser(ALogin: string): TLoggedUser;
+function TModelUsers.GetLoggedUser(const ALogin: string): TLoggedUser;
 begin
   FQry.Open('SELECT * FROM USERS WHERE LOGIN = :LOGIN', [ALogin]);
   Result.Id := FQry.FieldByName('ID').AsInteger;
@@ -38,7 +38,7 @@ begin
   Result.HasOrderScr := FQry.FieldByName('HASORDERSCR').AsBoolean;
 end;
 
-function TModelUsers.CheckLogin(AUsername, ATypedPassword: string; var ANeedNewPassword: Boolean): Boolean;
+function TModelUsers.CheckLogin(const AUsername, ATypedPassword: string; var ANeedNewPassword: Boolean): Boolean;
 begin
   FQry.Open('SELECT LOGIN, PASSWORD, ISPASSTEMP FROM USERS WHERE LOGIN = :LOGIN', [AUsername]);
   if FQry.IsEmpty then
@@ -49,7 +49,7 @@ begin
   FQry.Close;
 end;
 
-function TModelUsers.Delete(AId: Integer): Boolean;
+function TModelUsers.Delete(const AId: Integer): Boolean;
 begin
   try
     Result := DeleteByID('USERS', AId);
@@ -71,7 +71,7 @@ begin
   end;
 end;
 
-function TModelUsers.Save(AUser: TEntityUser): Boolean;
+function TModelUsers.Save(const AUser: TEntityUser): Boolean;
 const
   DEF_PASSWORD = '123456';
 begin
@@ -90,7 +90,7 @@ begin
   end;
 end;
 
-function TModelUsers.SaveNewPassword(AUsername: string; APassword: string): Boolean;
+function TModelUsers.SaveNewPassword(const AUsername: string; const APassword: string): Boolean;
 begin
   try
     Result := FQry.ExecSQL('UPDATE USERS SET PASSWORD = :PASSWORD, ISPASSTEMP = :ISPASSTEMP ' +
