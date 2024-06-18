@@ -92,6 +92,7 @@ object frmNewPassword: TfrmNewPassword
         Top = 127
         Width = 100
         Height = 40
+        Cursor = crHandPoint
         Caption = 'Save'
         TabOrder = 2
         OnClick = btnSaveClick
@@ -101,6 +102,7 @@ object frmNewPassword: TfrmNewPassword
         Top = 127
         Width = 100
         Height = 40
+        Cursor = crHandPoint
         Caption = 'Cancel'
         TabOrder = 3
         OnClick = btnCancelClick
