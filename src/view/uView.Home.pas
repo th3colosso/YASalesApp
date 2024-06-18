@@ -73,7 +73,7 @@ begin
   if not LoggedUser.HasUserScr then
   begin
     TUtilsDialogs.Error('Unauthorized');
-    Abort;
+    Exit;
   end;
   TControllerUsers.ShowUsersForm;
 end;
@@ -101,7 +101,7 @@ begin
   if not LoggedUser.HasCustomerScr then
   begin
     TUtilsDialogs.Error('Unauthorized');
-    Abort;
+    Exit;
   end;
   TControllerCustomers.ShowCustomersForm;
 end;
@@ -111,7 +111,7 @@ begin
   if not LoggedUser.HasProductScr then
   begin
     TUtilsDialogs.Error('Unauthorized');
-    Abort;
+    Exit;
   end;
   TControllerProducts.ShowProductsForm;
 end;
