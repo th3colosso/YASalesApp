@@ -28,7 +28,11 @@ begin
   try
     Result := DeleteByID('CUSTOMERS', Aid);
   except
-    Result := False;
+    on E: Exception do
+    begin
+      Result := False;
+      Log(Self, E);
+    end;
   end;
 end;
 
@@ -41,7 +45,11 @@ begin
     Result := True;
     FQry.Close;
   except
-    Result := False;
+    on E: Exception do
+    begin
+      Result := False;
+      Log(Self, E);
+    end;
   end;
 end;
 
@@ -57,7 +65,11 @@ begin
         '(:1, :2, :3, :4, :5, :6, :7, :8, :9, :10)', [ACustomer.FirstName, ACustomer.LastName, ACustomer.Email, FormatDateTime('yyyy-mm-dd', ACustomer.DateOfBirth),
         ACustomer.ZipCode, ACustomer.Street, ACustomer.Neighbourhood, ACustomer.HouseNo, ACustomer.City, ACustomer.State]) = 1
   except
-    Result := False;
+    on E: Exception do
+    begin
+      Result := False;
+      Log(Self, E);
+    end;
   end;
 end;
 

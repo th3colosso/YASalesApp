@@ -23,12 +23,16 @@ type
     FQry: TFDQuery;
     FSQL: string;
     function DeleteByID(const ATable: string; const AId: Integer): Boolean;
+    procedure Log(const Sender: TObject; const E: Exception);
   public
     constructor Create(AOwner: TComponent); virtual;
     destructor Destroy; override;
   end;
 
 implementation
+
+uses
+  uUtils.Logger.Exceptions;
 
 { TModelBase }
 
@@ -61,6 +65,11 @@ end;
 procedure TModelBase.Disconnect(const AComponent: TComponent);
 begin
   TFDQuery(AComponent).Connection.Connected := False;
+end;
+
+procedure TModelBase.Log(const Sender: TObject; const E: Exception);
+begin
+  TExceptionLogger.Log(Sender, E);
 end;
 
 constructor TModelBase.Create(AOwner: TComponent);

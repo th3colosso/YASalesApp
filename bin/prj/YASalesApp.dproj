@@ -197,7 +197,7 @@
         <DCCReference Include="..\..\src\entity\uEntity.AddressInfo.pas"/>
         <DCCReference Include="..\..\src\model\uModel.AddressInfo.ViaCEP.pas"/>
         <DCCReference Include="..\..\src\utillity\uUtils.Dialogs.pas"/>
-        <DCCReference Include="..\..\src\utillity\uUtils.Handler.Exceptions.pas"/>
+        <DCCReference Include="..\..\src\utillity\uUtils.Logger.Exceptions.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

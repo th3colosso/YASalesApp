@@ -37,7 +37,11 @@ begin
   try
     Result := DeleteByID('PRODUCTS', AId);
   except
-    Result := False;
+    on E: Exception do
+    begin
+      Result := False;
+      Log(Self, E);
+    end;
   end;
 end;
 
@@ -50,7 +54,11 @@ begin
     Result := True;
     FQry.Close;
   except
-    Result := False;
+    on E: Exception do
+    begin
+      Result := False;
+      Log(Self, E);
+    end;
   end;
 end;
 
@@ -78,7 +86,11 @@ begin
     end;
     Result := True;
   except
-    Result := False;
+    on E: Exception do
+    begin
+      Result := False;
+      Log(Self, E);
+    end;
   end;
 end;
 

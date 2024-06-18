@@ -37,7 +37,7 @@ begin
     if Obj.TryGetValue<string>('erro', value) then
     begin
       Result.ZipCode := EmptyStr;
-      Abort;
+      Exit;
     end;
 
     Obj.TryGetValue<string>('cep', Result.ZipCode);
@@ -56,7 +56,7 @@ begin
   if not IsValidZipCode(AZipCode) then
   begin
     Result.ZipCode := EmptyStr;
-    Abort;
+    Exit;
   end;
 
   var Cli := TNetHTTPClient.Create(nil);
@@ -66,7 +66,7 @@ begin
     if not Res.StatusCode = 200 then
     begin
       Result.ZipCode := EmptyStr;
-      Abort;
+      Exit;
     end;
 
     Result := ParseJsonResponse(Res);

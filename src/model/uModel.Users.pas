@@ -3,6 +3,7 @@ unit uModel.Users;
 interface
 
 uses
+  System.Classes,
   uModel.Base,
   FireDAC.Comp.Client,
   uEntity.User;
@@ -23,7 +24,8 @@ implementation
 
 uses
   Data.DB,
-  uController.Encryption;
+  uController.Encryption,
+  System.SysUtils;
 
 { TModelUsers }
 
@@ -40,13 +42,22 @@ end;
 
 function TModelUsers.CheckLogin(const AUsername, ATypedPassword: string; var ANeedNewPassword: Boolean): Boolean;
 begin
-  FQry.Open('SELECT LOGIN, PASSWORD, ISPASSTEMP FROM USERS WHERE LOGIN = :LOGIN', [AUsername]);
-  if FQry.IsEmpty then
-    Exit(False);
+  try
+    FQry.Open('SELECT LOGIN, PASSWORD, ISPASSTEMP FROM USERS WHERE LOGIN = :LOGIN', [AUsername]);
+    if FQry.IsEmpty then
+      Exit(False);
 
-  Result := TControllerEncryption.CheckPassword(ATypedPassword, FQry.FieldByName('PASSWORD').AsString, ANeedNewPassword);
-  ANeedNewPassword := ANeedNewPassword or FQry.FieldByName('ISPASSTEMP').AsBoolean;
-  FQry.Close;
+    Result := TControllerEncryption.CheckPassword(ATypedPassword, FQry.FieldByName('PASSWORD').AsString, ANeedNewPassword);
+    ANeedNewPassword := ANeedNewPassword or FQry.FieldByName('ISPASSTEMP').AsBoolean;
+    FQry.Close;
+  except
+    on E: Exception do
+    begin
+      Result := False;
+      Log(Self, E);
+    end;
+
+  end;
 end;
 
 function TModelUsers.Delete(const AId: Integer): Boolean;
@@ -67,7 +78,11 @@ begin
     Result := True;
     FQry.Close;
   except
-    Result := False;
+    on E: Exception do
+    begin
+      Result := False;
+      Log(Self, E);
+    end;
   end;
 end;
 
@@ -86,7 +101,11 @@ begin
         AUser.HasUserSrc, AUser.HasProducScr, AUser.HasCustomerScr, AUser.HasOrderScr]);
     Result := True;
   except
-    Result := False;
+    on E: Exception do
+    begin
+      Result := False;
+      Log(Self, E);
+    end;
   end;
 end;
 
@@ -96,7 +115,11 @@ begin
     Result := FQry.ExecSQL('UPDATE USERS SET PASSWORD = :PASSWORD, ISPASSTEMP = :ISPASSTEMP ' +
       ' WHERE LOGIN = :LOGIN', [TControllerEncryption.HashPassword(APassword), False, AUsername]) > 0;
   except
-    Result := False;
+    on E: Exception do
+    begin
+      Result := False;
+      Log(Self, E);
+    end;
   end;
 end;
 
