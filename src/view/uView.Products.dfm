@@ -1,18 +1,25 @@
 inherited frmProducts: TfrmProducts
-  Hint = 'Product'#39's Details - Inserting / Updating'
-  Caption = 'Products - %s'
+  Hint = 'Informa'#231#245'es do Produto'
+  Caption = 'Produtos'
+  StyleElements = [seFont, seClient, seBorder]
   TextHeight = 15
+  inherited pnlButtons: TPanel
+    StyleElements = [seFont, seClient, seBorder]
+  end
   inherited pages: TPageControl
-    ActivePage = tsList
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
+        StyleElements = [seFont, seClient, seBorder]
         inherited pnlTitle: TPanel
+          StyleElements = [seFont, seClient, seBorder]
           inherited lblTitle: TLabel
             Width = 777
             Height = 49
+            StyleElements = [seFont, seClient, seBorder]
           end
         end
         inherited pnlData: TPanel
+          StyleElements = [seFont, seClient, seBorder]
           inherited rectData: TShape
             ExplicitLeft = 54
             ExplicitTop = 32
@@ -35,9 +42,9 @@ inherited frmProducts: TfrmProducts
           object lblName: TLabel
             Left = 81
             Top = 11
-            Width = 32
+            Width = 33
             Height = 15
-            Caption = 'Name'
+            Caption = 'Nome'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -48,9 +55,9 @@ inherited frmProducts: TfrmProducts
           object lblPrice: TLabel
             Left = 535
             Top = 11
-            Width = 26
+            Width = 30
             Height = 15
-            Caption = 'Price'
+            Caption = 'Pre'#231'o'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -61,9 +68,9 @@ inherited frmProducts: TfrmProducts
           object lblCreationDate: TLabel
             Left = 632
             Top = 11
-            Width = 72
+            Width = 83
             Height = 15
-            Caption = 'Creation Date'
+            Caption = 'Data de Cria'#231#227'o'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -74,9 +81,9 @@ inherited frmProducts: TfrmProducts
           object lblDescription: TLabel
             Left = 312
             Top = 61
-            Width = 60
+            Width = 51
             Height = 15
-            Caption = 'Description'
+            Caption = 'Descri'#231#227'o'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -87,9 +94,9 @@ inherited frmProducts: TfrmProducts
           object lblImage: TLabel
             Left = 42
             Top = 61
-            Width = 33
+            Width = 44
             Height = 15
-            Caption = 'Image'
+            Caption = 'Imagem'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -162,12 +169,12 @@ inherited frmProducts: TfrmProducts
             TabOrder = 2
           end
           object btLoadImg: TButton
-            Left = 81
+            Left = 93
             Top = 60
-            Width = 40
+            Width = 48
             Height = 20
             Cursor = crHandPoint
-            Caption = 'Load'
+            Caption = 'Carregar'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -9
@@ -254,26 +261,30 @@ inherited frmProducts: TfrmProducts
       FieldName = 'ID'
     end
     object FMemTableName: TStringField
+      DisplayLabel = 'Nome'
       DisplayWidth = 40
       FieldName = 'Name'
       Size = 100
     end
     object FMemTablePrice: TFloatField
+      DisplayLabel = 'Pre'#231'o'
       DisplayWidth = 10
       FieldName = 'Price'
       DisplayFormat = '##0.00'
     end
     object FMemTableDescription: TStringField
+      DisplayLabel = 'Descri'#231#227'o'
       DisplayWidth = 60
       FieldName = 'Description'
       Size = 500
     end
     object FMemTableImage: TBlobField
+      DisplayLabel = 'Imagem'
       FieldName = 'Image'
       Visible = False
     end
     object FMemTableCreationDate: TDateField
-      DisplayLabel = 'Creation Date'
+      DisplayLabel = 'Data de Cria'#231#227'o'
       DisplayWidth = 15
       FieldName = 'CreationDate'
     end

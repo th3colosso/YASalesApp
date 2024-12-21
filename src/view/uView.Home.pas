@@ -21,13 +21,14 @@ uses
 type
   TfrmHome = class(TForm)
     pnlMain: TPanel;
-    frmTabBar: TFormTabsBar;
     svMenu: TSplitView;
     btnMenu: TButton;
     btnUsers: TButton;
     btnProducts: TButton;
     btnCustomers: TButton;
     btnSales: TButton;
+    frmTabBar: TFormTabsBar;
+    pnlForms: TPanel;
     procedure FormShow(Sender: TObject);
     procedure btnProductsClick(Sender: TObject);
     procedure btnCustomersClick(Sender: TObject);
@@ -100,10 +101,10 @@ procedure TfrmHome.OpenUsersForm;
 begin
   if not LoggedUser.HasUserScr then
   begin
-    TUtilsDialogs.Error('Unauthorized');
+    TUtilsDialogs.Error('Não Autorizado');
     Exit;
   end;
-  TControllerUsers.ShowUsersForm(pnlMain);
+  TControllerUsers.ShowUsersForm(pnlForms);
 end;
 
 procedure TfrmHome.DoLogin;
@@ -140,20 +141,20 @@ procedure TfrmHome.OpenCustomersForm;
 begin
   if not LoggedUser.HasCustomerScr then
   begin
-    TUtilsDialogs.Error('Unauthorized');
+    TUtilsDialogs.Error('Não Autorizado');
     Exit;
   end;
-  TControllerCustomers.ShowCustomersForm(pnlMain);
+  TControllerCustomers.ShowCustomersForm(pnlForms);
 end;
 
 procedure TfrmHome.OpenProductsForm;
 begin
   if not LoggedUser.HasProductScr then
   begin
-    TUtilsDialogs.Error('Unauthorized');
+    TUtilsDialogs.Error('Não Autorizado');
     Exit;
   end;
-  TControllerProducts.ShowProductsForm(pnlMain);
+  TControllerProducts.ShowProductsForm(pnlForms);
 end;
 
 procedure TfrmHome.ResetFocus;

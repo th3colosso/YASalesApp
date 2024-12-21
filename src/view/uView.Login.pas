@@ -71,7 +71,7 @@ begin
   if TControllerUsers.CheckLogin(edtUsername.Text, edtPassword.Text) then
     Close
   else
-    TUtilsDialogs.Error('Invalid credentials');
+    TUtilsDialogs.Error('Usuário e/ou senha inválidos');
 end;
 
 end.

@@ -33,6 +33,7 @@ type
     FMemTableHasProductScr: TBooleanField;
     FMemTableHasCustomerScr: TBooleanField;
     FMemTableHasOrderScr: TBooleanField;
+    CheckBox1: TCheckBox;
   protected
     procedure ReloadData; override;
     procedure Save; override;
@@ -87,18 +88,18 @@ end;
 
 procedure TfrmUsers.Delete;
 begin
-  var Msg := Format('Are you sure you want to delete the following user? %s%s [ %d - %s ]',
+  var Msg := Format('Tem certeza que quer excluir o usuário? %s%s [ %d - %s ]',
     [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableName.AsString]);
 
   if TUtilsDialogs.Warning(Msg, MB_YESNO) = mrYes then
     if not TControllerUsers.Delete(FMemTableID.AsInteger) then
-      TUtilsDialogs.Error('Problem found while deleting user');
+      TUtilsDialogs.Error('Problemas encontrados ao excluir o usuário');
 end;
 
 procedure TfrmUsers.ReloadData;
 begin
   if not TControllerUsers.Load(FMemTable) then
-    TUtilsDialogs.Error('Problem found while loading data');
+    TUtilsDialogs.Error('Problemas encontrados no carregameto dos dados');
 end;
 
 procedure TfrmUsers.Save;
@@ -114,7 +115,7 @@ begin
     User.HasCustomerScr := cbCustomers.Checked;
     User.HasOrderScr := cbOrders.Checked;
     if not TControllerUsers.Save(User) then
-      TUtilsDialogs.Error('Problem found while saving user');
+      TUtilsDialogs.Error('Problemas encontrados ao salvar os dados do usuário');
   finally
     User.Free;
   end;

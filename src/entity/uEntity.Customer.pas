@@ -48,28 +48,28 @@ uses
 procedure TEntityCustomer.SetDateOfBirth(const Value: TDate);
 begin  
   if Value = 0 then
-    raise Exception.Create('Date of Birth can not be null');
+    raise Exception.Create('Campo [Data de nascimento] não pode ser vazio');
   FDateOfBirth := Value;
 end;
 
 procedure TEntityCustomer.SetEmail(const Value: string);
 begin
   if Value.Trim.IsEmpty then
-    raise Exception.Create('Email can not be null');
+    raise Exception.Create('Campo [Email] não pode ser vazio');
   FEmail := Value;
 end;
 
 procedure TEntityCustomer.SetFirstName(const Value: string);
 begin
   if Value.Trim.IsEmpty then
-    raise Exception.Create('First name can not be null');
+    raise Exception.Create('Campo [Primeiro Nome] não pode ser vazio');
   FFirstName := Value;
 end;
 
 procedure TEntityCustomer.SetLastName(const Value: string);
 begin
   if Value.Trim.IsEmpty then
-    raise Exception.Create('Last name can not be null');
+    raise Exception.Create('Campo [Último nome] não pode ser vazio');
   FLastName := Value;
 end;
 

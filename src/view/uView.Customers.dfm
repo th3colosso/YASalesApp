@@ -1,7 +1,7 @@
 inherited frmCustomers: TfrmCustomers
-  Hint = 'Customer'#39's Details - Inserting / Updating'
+  Hint = 'Informa'#231#245'es do Cliente'
   BorderStyle = bsSizeable
-  Caption = 'Customers - %s'
+  Caption = 'Clientes'
   StyleElements = [seFont, seClient, seBorder]
   TextHeight = 15
   inherited pnlButtons: TPanel
@@ -14,6 +14,8 @@ inherited frmCustomers: TfrmCustomers
         inherited pnlTitle: TPanel
           StyleElements = [seFont, seClient, seBorder]
           inherited lblTitle: TLabel
+            Width = 777
+            Height = 49
             StyleElements = [seFont, seClient, seBorder]
           end
         end
@@ -41,9 +43,9 @@ inherited frmCustomers: TfrmCustomers
           object lblFirstName: TLabel
             Left = 97
             Top = 32
-            Width = 57
+            Width = 81
             Height = 15
-            Caption = 'First Name'
+            Caption = 'Primeiro Nome'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -54,9 +56,9 @@ inherited frmCustomers: TfrmCustomers
           object lblLastName: TLabel
             Left = 345
             Top = 32
-            Width = 56
+            Width = 72
             Height = 15
-            Caption = 'Last Name'
+            Caption = #218'ltimo Nome'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -67,9 +69,9 @@ inherited frmCustomers: TfrmCustomers
           object lblDateOfBirth: TLabel
             Left = 621
             Top = 32
-            Width = 66
+            Width = 107
             Height = 15
-            Caption = 'Date of Birth'
+            Caption = 'Data de Nascimento'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -93,9 +95,9 @@ inherited frmCustomers: TfrmCustomers
           object lblCreationDate: TLabel
             Left = 621
             Top = 82
-            Width = 72
+            Width = 83
             Height = 15
-            Caption = 'Creation Date'
+            Caption = 'Data de Cria'#231#227'o'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -106,9 +108,9 @@ inherited frmCustomers: TfrmCustomers
           object lblZipCode: TLabel
             Left = 50
             Top = 133
-            Width = 48
+            Width = 21
             Height = 15
-            Caption = 'ZIP Code'
+            Caption = 'CEP'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -119,9 +121,9 @@ inherited frmCustomers: TfrmCustomers
           object lblStreet: TLabel
             Left = 199
             Top = 133
-            Width = 30
+            Width = 20
             Height = 15
-            Caption = 'Street'
+            Caption = 'Rua'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -132,9 +134,9 @@ inherited frmCustomers: TfrmCustomers
           object lblHouseNo: TLabel
             Left = 621
             Top = 133
-            Width = 53
+            Width = 44
             Height = 15
-            Caption = 'House No'
+            Caption = 'N'#250'mero'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -145,9 +147,9 @@ inherited frmCustomers: TfrmCustomers
           object lblNeighbourhood: TLabel
             Left = 50
             Top = 183
-            Width = 85
+            Width = 31
             Height = 15
-            Caption = 'Neighbourhood'
+            Caption = 'Bairro'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -158,9 +160,9 @@ inherited frmCustomers: TfrmCustomers
           object lblCity: TLabel
             Left = 278
             Top = 183
-            Width = 21
+            Width = 37
             Height = 15
-            Caption = 'City'
+            Caption = 'Cidade'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -171,9 +173,9 @@ inherited frmCustomers: TfrmCustomers
           object lblState: TLabel
             Left = 507
             Top = 183
-            Width = 26
+            Width = 35
             Height = 15
-            Caption = 'State'
+            Caption = 'Estado'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -278,7 +280,7 @@ inherited frmCustomers: TfrmCustomers
             Width = 56
             Height = 23
             Cursor = crHandPoint
-            Caption = 'Search'
+            Caption = 'Buscar'
             TabOrder = 7
             OnClick = btnSearchClick
           end
@@ -287,17 +289,74 @@ inherited frmCustomers: TfrmCustomers
     end
   end
   inherited FMemTable: TFDMemTable
+    Active = True
+    FieldDefs = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'FirstName'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'LastName'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'Email'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'DateOfBirth'
+        DataType = ftDate
+      end
+      item
+        Name = 'ZipCode'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Street'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'Neighbourhood'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'HouseNo'
+        DataType = ftInteger
+      end
+      item
+        Name = 'State'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'City'
+        DataType = ftString
+        Size = 30
+      end
+      item
+        Name = 'CreationDate'
+        DataType = ftDate
+      end>
     StoreDefs = True
     object FMemTableID: TIntegerField
       FieldName = 'ID'
     end
     object FMemTableFirstName: TStringField
-      DisplayLabel = 'First Name'
+      DisplayLabel = 'Primeiro Nome'
       FieldName = 'FirstName'
       Size = 50
     end
     object FMemTableLastName: TStringField
-      DisplayLabel = 'Last Name'
+      DisplayLabel = #218'ltimo Nome'
       DisplayWidth = 50
       FieldName = 'LastName'
       Size = 50
@@ -340,7 +399,7 @@ inherited frmCustomers: TfrmCustomers
       Size = 30
     end
     object FMemTableCreationDate: TDateField
-      DisplayLabel = 'Creation Date'
+      DisplayLabel = 'Data de Cria'#231#227'o'
       DisplayWidth = 15
       FieldName = 'CreationDate'
     end

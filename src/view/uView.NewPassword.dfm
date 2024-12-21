@@ -29,7 +29,7 @@ object frmNewPassword: TfrmNewPassword
       Width = 310
       Height = 56
       Align = alTop
-      Caption = 'Password Update Required'
+      Caption = 'Atualiza'#231#227'o de senha necess'#225'ria'
       Color = clHighlight
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
@@ -50,9 +50,9 @@ object frmNewPassword: TfrmNewPassword
       object lblNewPassword: TLabel
         Left = 32
         Top = 11
-        Width = 77
+        Width = 65
         Height = 15
-        Caption = 'New password'
+        Caption = 'Nova  senha'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clHighlight
         Font.Height = -12
@@ -65,7 +65,7 @@ object frmNewPassword: TfrmNewPassword
         Top = 64
         Width = 122
         Height = 15
-        Caption = 'Confirm new password'
+        Caption = 'Confirme a nova senha'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clHighlight
         Font.Height = -12
@@ -93,7 +93,7 @@ object frmNewPassword: TfrmNewPassword
         Width = 100
         Height = 40
         Cursor = crHandPoint
-        Caption = 'Save'
+        Caption = 'Salvar'
         TabOrder = 2
         OnClick = btnSaveClick
       end
@@ -103,7 +103,7 @@ object frmNewPassword: TfrmNewPassword
         Width = 100
         Height = 40
         Cursor = crHandPoint
-        Caption = 'Cancel'
+        Caption = 'Cancelar'
         TabOrder = 3
         OnClick = btnCancelClick
       end

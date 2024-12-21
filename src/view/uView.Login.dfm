@@ -55,12 +55,13 @@ object frmLogin: TfrmLogin
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitLeft = 191
         object lblWelcome: TLabel
-          Left = 113
+          Left = 103
           Top = 11
-          Width = 130
+          Width = 150
           Height = 30
-          Caption = 'WELCOME TO'
+          Caption = 'BEM VINDO AO'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clHighlight
           Font.Height = -21
@@ -84,9 +85,9 @@ object frmLogin: TfrmLogin
         object lblUsername: TLabel
           Left = 38
           Top = 88
-          Width = 53
+          Width = 40
           Height = 15
-          Caption = 'Username'
+          Caption = 'Usu'#225'rio'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clHighlight
           Font.Height = -12
@@ -97,9 +98,9 @@ object frmLogin: TfrmLogin
         object lblPassword: TLabel
           Left = 38
           Top = 152
-          Width = 50
+          Width = 32
           Height = 15
-          Caption = 'Password'
+          Caption = 'Senha'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clHighlight
           Font.Height = -12
@@ -128,7 +129,7 @@ object frmLogin: TfrmLogin
           Width = 120
           Height = 41
           Cursor = crHandPoint
-          Caption = 'Login'
+          Caption = 'Entrar'
           TabOrder = 2
           OnClick = btnLoginClick
         end
@@ -138,7 +139,7 @@ object frmLogin: TfrmLogin
           Width = 120
           Height = 41
           Cursor = crHandPoint
-          Caption = 'Exit'
+          Caption = 'Sair'
           TabOrder = 3
           OnClick = btnCancelClick
         end

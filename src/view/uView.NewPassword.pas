@@ -66,7 +66,7 @@ begin
   if not string.Equals(edtPassword.Text, edtPasswordCopy.Text) then
   begin
     ResetFocus;
-    TUtilsDialogs.Error('Passwords do not match');
+    TUtilsDialogs.Error('Senham não combinam');
     Abort;
   end;
 end;
@@ -95,7 +95,7 @@ begin
   CheckPasswords;
   if not TControllerUsers.SaveNewPassword(FUsername, edtPassword.Text) then
   begin
-    TUtilsDialogs.Error('Problem found while updating password');
+    TUtilsDialogs.Error('Problemas encontrados ao salvar a nova senha');
     Abort;
   end;
   Close;

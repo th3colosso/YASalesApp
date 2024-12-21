@@ -16,6 +16,7 @@ object frmBaseReg: TfrmBaseReg
   Font.Style = []
   KeyPreview = True
   Position = poScreenCenter
+  Visible = True
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyPress = FormKeyPress
@@ -257,8 +258,8 @@ object frmBaseReg: TfrmBaseReg
           object lblTitle: TLabel
             Left = 0
             Top = 0
-            Width = 777
-            Height = 49
+            Width = 117
+            Height = 25
             Align = alClient
             Alignment = taCenter
             Caption = 'lblTitle - Hint'
@@ -269,8 +270,6 @@ object frmBaseReg: TfrmBaseReg
             Font.Style = [fsBold]
             ParentFont = False
             Layout = tlCenter
-            ExplicitWidth = 117
-            ExplicitHeight = 25
           end
         end
         object pnlData: TPanel

@@ -271,7 +271,6 @@ procedure TfrmBaseReg.ConfigVariables;
 begin
   FIsInserting := False;
   lblTitle.Caption := Self.Hint;
-  Self.Caption := Format(Self.Caption, [Application.Title]);
 end;
 
 procedure TfrmBaseReg.ControlActions(AInEdit: Boolean);

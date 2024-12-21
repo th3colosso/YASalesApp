@@ -20,20 +20,22 @@ object frmHome: TfrmHome
   OnShow = FormShow
   TextHeight = 15
   object pnlMain: TPanel
-    Left = 35
+    Left = 140
     Top = 0
-    Width = 772
+    Width = 667
     Height = 451
     Align = alClient
     BevelEdges = [beRight]
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 37
+    ExplicitLeft = 75
+    ExplicitTop = 120
+    ExplicitWidth = 772
     object frmTabBar: TFormTabsBar
       Left = 1
       Top = 1
-      Width = 770
+      Width = 665
       Height = 24
       ParentColor = False
       TabOptions.ShowCloseButton = True
@@ -41,19 +43,35 @@ object frmHome: TfrmHome
       TabMaxWidth = 200
       ShowTabsMenuButton = True
       OnAcceptForm = frmTabBarAcceptForm
+      ExplicitWidth = 770
+    end
+    object pnlForms: TPanel
+      Left = 1
+      Top = 25
+      Width = 665
+      Height = 425
+      Align = alClient
+      BevelOuter = bvNone
+      Color = clWhite
+      ParentBackground = False
+      ShowCaption = False
+      TabOrder = 1
+      ExplicitLeft = 128
+      ExplicitTop = 160
+      ExplicitWidth = 185
+      ExplicitHeight = 41
     end
   end
   object svMenu: TSplitView
     Left = 0
     Top = 0
-    Width = 35
+    Width = 140
     Height = 451
     BevelEdges = [beRight]
     BevelOuter = bvRaised
     CloseStyle = svcCompact
     Color = clWhite
     CompactWidth = 35
-    Opened = False
     OpenedWidth = 140
     ParentShowHint = False
     Placement = svpLeft
@@ -62,10 +80,10 @@ object frmHome: TfrmHome
     OnClosing = svMenuClosing
     OnOpening = svMenuOpening
     DesignSize = (
-      35
+      140
       451)
     object btnMenu: TButton
-      Left = 4
+      Left = 109
       Top = 5
       Width = 27
       Height = 25
@@ -75,11 +93,12 @@ object frmHome: TfrmHome
       Images = dmImages.imgMenu
       TabOrder = 0
       OnClick = btnMenuClick
+      ExplicitLeft = 4
     end
     object btnUsers: TButton
       Left = 4
       Top = 36
-      Width = 27
+      Width = 132
       Height = 25
       Anchors = [akLeft, akTop, akRight]
       Caption = 'Usu'#225'rios'
@@ -88,11 +107,12 @@ object frmHome: TfrmHome
       Images = dmImages.imgMenu
       TabOrder = 1
       OnClick = btnUsersClick
+      ExplicitWidth = 27
     end
     object btnProducts: TButton
       Left = 4
       Top = 67
-      Width = 27
+      Width = 132
       Height = 25
       Anchors = [akLeft, akTop, akRight]
       Caption = 'Produtos'
@@ -101,12 +121,12 @@ object frmHome: TfrmHome
       Images = dmImages.imgMenu
       TabOrder = 2
       OnClick = btnProductsClick
-      ExplicitWidth = 132
+      ExplicitWidth = 27
     end
     object btnCustomers: TButton
       Left = 4
       Top = 98
-      Width = 27
+      Width = 132
       Height = 25
       Anchors = [akLeft, akTop, akRight]
       Caption = 'Clientes'
@@ -115,12 +135,12 @@ object frmHome: TfrmHome
       Images = dmImages.imgMenu
       TabOrder = 3
       OnClick = btnCustomersClick
-      ExplicitWidth = 132
+      ExplicitWidth = 27
     end
     object btnSales: TButton
       Left = 4
       Top = 129
-      Width = 27
+      Width = 132
       Height = 25
       Anchors = [akLeft, akTop, akRight]
       Caption = 'Vendas'
@@ -130,7 +150,7 @@ object frmHome: TfrmHome
       Images = dmImages.imgMenu
       TabOrder = 4
       OnClick = btnSalesClick
-      ExplicitWidth = 132
+      ExplicitWidth = 27
     end
   end
 end

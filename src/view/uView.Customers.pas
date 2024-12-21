@@ -110,7 +110,7 @@ begin
 
   if Trim(edtZipCode.Text).Length <> 8 then
   begin
-    TUtilsDialogs.Error('Not a valid brazilian zip code');
+    TUtilsDialogs.Error('Não é um CEP válido');
     Exit;
   end;
   var AddressInfo: TEntityAddressInfo;
@@ -119,7 +119,7 @@ begin
 
   if AddressInfo.ZipCode.Trim.IsEmpty then
   begin
-    TUtilsDialogs.Error('Problem found while searching for address info');
+    TUtilsDialogs.Error('Problemas encontrados ao procurar pelo endereço. Tente novamente mais tarde.');
     Exit;
   end;
 
@@ -150,12 +150,12 @@ end;
 procedure TfrmCustomers.Delete;
 begin
   inherited;
-  var Msg := Format('Are you sure you want to delete the following customer? %s%s [ %d - %s %s ]',
+  var Msg := Format('Tem certeza que quer excluir o cliente? %s%s [ %d - %s %s ]',
     [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableFirstName.AsString.Trim, FMemTableLastName.AsString.Trim]);
 
   if TUtilsDialogs.Warning(Msg, MB_YESNO) = mrYes then
     if not TControllerCustomers.Delete(FMemTableID.AsInteger) then
-      TUtilsDialogs.Error('Problem found while deleting customer');
+      TUtilsDialogs.Error('Problemas encontrados ao excluir o cliente');
 end;
 
 procedure TfrmCustomers.GetCustomerData;
@@ -180,7 +180,7 @@ procedure TfrmCustomers.ReloadData;
 begin
   inherited;
   if not TControllerCustomers.Load(FMemTable) then
-    TUtilsDialogs.Error('Problem found while loading data');
+    TUtilsDialogs.Error('Problemas encontrados no carregamento dos dados');
 end;
 
 procedure TfrmCustomers.Save;
@@ -206,7 +206,7 @@ begin
     Customer.State := edtState.Text;
 
     if not TControllerCustomers.Save(Customer) then
-      TUtilsDialogs.Error('Problem found while saving customer');
+      TUtilsDialogs.Error('Problemas encontrados ao salvar os dados do cliente');
   finally
     Customer.Free;
   end;

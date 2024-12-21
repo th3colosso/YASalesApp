@@ -51,21 +51,21 @@ uses
 procedure TEntityUser.SetLogin(const Value: string);
 begin
   if Value.Trim.IsEmpty then
-    raise Exception.Create('Login can not be null');
+    raise Exception.Create('Campo [Usuário] não pode ser vazio');
   FLogin := Value;
 end;
 
 procedure TEntityUser.SetName(const Value: string);
 begin
   if Value.Trim.IsEmpty then
-    raise Exception.Create('Name can not be null');
+    raise Exception.Create('Campo [Nome] não pode ser vazio');
   FName := Value;
 end;
 
 procedure TEntityUser.SetPassword(const Value: string);
 begin
   if Value.Trim.IsEmpty then
-    raise Exception.Create('Password can not be null');
+    raise Exception.Create('Campo [Senha] não pode ser vazio');
   FPassword := Value;
 end;
 

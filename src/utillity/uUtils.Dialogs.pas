@@ -21,12 +21,12 @@ uses
 
 class function TUtilsDialogs.Error(const AMsg: string; AButtons: Integer): Integer;
 begin
-  Result := Application.MessageBox(PChar(AMsg), 'Error', AButtons + MB_ICONERROR);
+  Result := Application.MessageBox(PChar(AMsg), 'Erro', AButtons + MB_ICONERROR);
 end;
 
 class function TUtilsDialogs.Warning(const AMsg: string; AButtons: Integer): Integer;
 begin
-  Result := Application.MessageBox(PChar(AMsg), 'Warning', AButtons + MB_ICONWARNING);
+  Result := Application.MessageBox(PChar(AMsg), 'Aviso', AButtons + MB_ICONWARNING);
 end;
 
 end.

@@ -109,12 +109,12 @@ end;
 procedure TfrmProducts.Delete;
 begin
   inherited;
-  var Msg := Format('Are you sure you want to delete the following product? %s%s [ %d - %s ]',
+  var Msg := Format('Tem certeza que quer excluir o produto? %s%s [ %d - %s ]',
     [SLineBreak, sLineBreak, FMemTableID.AsInteger, FMemTableName.AsString]);
 
   if TUtilsDialogs.Warning(Msg, MB_YESNO) = mrYes then
     if not TControllerProducts.Delete(FMemTableID.AsInteger) then
-      TUtilsDialogs.Error('Problem found while deleting product');
+      TUtilsDialogs.Error('Problemas encontrados ao excluir o produto');
 end;
 
 procedure TfrmProducts.FormCreate(Sender: TObject);
@@ -174,7 +174,7 @@ end;
 procedure TfrmProducts.ReloadData;
 begin
   if not TControllerProducts.Load(FMemTable) then
-   TUtilsDialogs.Error('Problem found while loading data');
+   TUtilsDialogs.Error('Problemas encontrados no carregamento dos dados');
 end;
 
 procedure TfrmProducts.Save;
@@ -188,7 +188,7 @@ begin
     Product.Price := StrToFloatDef(edtPrice.Text, 0);
     img.Picture.SaveToStream(Product.Image);
     if not TControllerProducts.Save(Product) then
-      TUtilsDialogs.Error('Problem found while saving product');
+      TUtilsDialogs.Error('Problemas encontrados ao salvar os dados do produto');
   finally
     Product.Free;
   end;

@@ -1,12 +1,26 @@
 inherited frmUsers: TfrmUsers
-  Hint = 'User'#39's Details - Inserting / Updating'
-  Caption = 'Users - %s'
+  Hint = 'Informa'#231#245'es do Usu'#225'rio'
+  Caption = 'Usu'#225'rios'
+  StyleElements = [seFont, seClient, seBorder]
   TextHeight = 15
+  inherited pnlButtons: TPanel
+    StyleElements = [seFont, seClient, seBorder]
+  end
   inherited pages: TPageControl
-    ActivePage = tsList
+    ActivePage = tsEdit
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
+        StyleElements = [seFont, seClient, seBorder]
+        inherited pnlTitle: TPanel
+          StyleElements = [seFont, seClient, seBorder]
+          inherited lblTitle: TLabel
+            Width = 777
+            Height = 49
+            StyleElements = [seFont, seClient, seBorder]
+          end
+        end
         inherited pnlData: TPanel
+          StyleElements = [seFont, seClient, seBorder]
           inherited rectData: TShape
             ExplicitLeft = 0
             ExplicitWidth = 777
@@ -28,9 +42,9 @@ inherited frmUsers: TfrmUsers
           object Label2: TLabel
             Left = 142
             Top = 12
-            Width = 32
+            Width = 33
             Height = 15
-            Caption = 'Name'
+            Caption = 'Nome'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -41,9 +55,9 @@ inherited frmUsers: TfrmUsers
           object Label3: TLabel
             Left = 104
             Top = 63
-            Width = 30
+            Width = 40
             Height = 15
-            Caption = 'Login'
+            Caption = 'Usu'#225'rio'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -54,9 +68,9 @@ inherited frmUsers: TfrmUsers
           object Label4: TLabel
             Left = 564
             Top = 63
-            Width = 72
+            Width = 83
             Height = 15
-            Caption = 'Creation Date'
+            Caption = 'Data de Cria'#231#227'o'
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
             Font.Height = -12
@@ -103,7 +117,7 @@ inherited frmUsers: TfrmUsers
             Top = 120
             Width = 568
             Height = 129
-            Caption = 'Options'
+            Caption = 'Op'#231#245'es'
             DefaultHeaderFont = False
             Font.Charset = DEFAULT_CHARSET
             Font.Color = 15424594
@@ -122,42 +136,52 @@ inherited frmUsers: TfrmUsers
               Top = 22
               Width = 209
               Height = 17
-              Caption = 'Ask for new password on login'
+              Caption = 'Solicitar troca de senha ao entrar'
               TabOrder = 0
             end
             object cbUsers: TCheckBox
               Left = 280
-              Top = 22
+              Top = 18
               Width = 209
               Height = 17
-              Caption = 'Acess to Users'
+              Caption = 'Tela de Usu'#225'rios'
               TabOrder = 1
             end
             object cbCustomers: TCheckBox
               Left = 280
-              Top = 68
+              Top = 64
               Width = 209
               Height = 17
-              Caption = 'Acess to Customers'
+              Caption = 'Tela de Clientes'
               TabOrder = 3
             end
             object cbProducts: TCheckBox
               Left = 280
-              Top = 45
+              Top = 41
               Width = 209
               Height = 17
-              Caption = 'Acess to Products'
+              Caption = 'Tela de Produtos'
               TabOrder = 2
             end
             object cbOrders: TCheckBox
               Left = 280
-              Top = 91
+              Top = 87
               Width = 209
               Height = 17
-              Caption = 'Acess to Orders'
+              Caption = 'Tela de Vendas'
               Enabled = False
               State = cbGrayed
               TabOrder = 4
+            end
+            object CheckBox1: TCheckBox
+              Left = 280
+              Top = 109
+              Width = 209
+              Height = 17
+              Caption = 'Tela de Relat'#243'rios'
+              Enabled = False
+              State = cbGrayed
+              TabOrder = 5
             end
           end
         end
@@ -210,16 +234,18 @@ inherited frmUsers: TfrmUsers
       FieldName = 'ID'
     end
     object FMemTableName: TStringField
+      DisplayLabel = 'Nome'
       DisplayWidth = 60
       FieldName = 'Name'
       Size = 80
     end
     object FMemTableLogin: TStringField
+      DisplayLabel = 'Usu'#225'rio'
       FieldName = 'Login'
       Size = 40
     end
     object FMemTableCreationDate: TDateField
-      DisplayLabel = 'Creation Date'
+      DisplayLabel = 'Data de Cria'#231#227'o'
       DisplayWidth = 15
       FieldName = 'CreationDate'
     end
