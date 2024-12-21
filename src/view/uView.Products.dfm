@@ -6,6 +6,12 @@ inherited frmProducts: TfrmProducts
     ActivePage = tsList
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
+        inherited pnlTitle: TPanel
+          inherited lblTitle: TLabel
+            Width = 777
+            Height = 49
+          end
+        end
         inherited pnlData: TPanel
           inherited rectData: TShape
             ExplicitLeft = 54

@@ -4,12 +4,13 @@ interface
 
 uses
   FireDAC.Comp.Client,
-  uEntity.Customer;
+  uEntity.Customer,
+  Vcl.Controls;
 
 type
   TControllerCustomers = class
   public
-    class procedure ShowCustomersForm;
+    class procedure ShowCustomersForm(AParent: TWinControl);
     class function Load(var AMemTable: TFDMemTable): Boolean;
     class function Save(const ACustomer: TEntityCustomer): Boolean;
     class function Delete(const AId: Integer): Boolean;
@@ -55,12 +56,13 @@ begin
   end;
 end;
 
-class procedure TControllerCustomers.ShowCustomersForm;
+class procedure TControllerCustomers.ShowCustomersForm(AParent: TWinControl);
 begin
-  var frmCustomers := TfrmCustomers.Create(Application);
+  var frmCustomers := TfrmCustomers.Create(Application.MainForm);
   try
-    frmCustomers.ShowModal;
-  finally
+    frmCustomers.Parent := AParent;
+    frmCustomers.Show;
+  except
     frmCustomers.Free;
   end;
 end;

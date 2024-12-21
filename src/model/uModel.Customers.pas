@@ -5,7 +5,8 @@ interface
 uses
   uModel.Base,
   uEntity.Customer,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client,
+  System.Generics.Collections;
 
 type
 

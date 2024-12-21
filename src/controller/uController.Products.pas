@@ -4,7 +4,8 @@ interface
 
 uses
   FireDAC.Comp.Client,
-  uEntity.Product;
+  uEntity.Product,
+  Vcl.Controls;
 
 type
   TControllerProducts = class
@@ -12,7 +13,7 @@ type
     class function Load(var AMemTable: TFDMemTable): Boolean;
     class function Save(const AProduct: TEntityProduct): Boolean;
     class function Delete(const AId: Integer): Boolean;
-    class procedure ShowProductsForm;
+    class procedure ShowProductsForm(AParent: TWinControl);
   end;
 
 implementation
@@ -55,12 +56,13 @@ begin
   end;
 end;
 
-class procedure TControllerProducts.ShowProductsForm;
+class procedure TControllerProducts.ShowProductsForm(AParent: TWinControl);
 begin
-  var Form := TfrmProducts.Create(Application);
+  var Form := TfrmProducts.Create(Application.MainForm);
   try
-    Form.ShowModal;
-  finally
+    Form.Parent := AParent;
+    Form.Show;
+  except
     Form.Free;
   end;
 end;

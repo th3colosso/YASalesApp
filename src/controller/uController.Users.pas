@@ -4,7 +4,8 @@ interface
 
 uses
   FireDAC.Comp.Client,
-  uEntity.User;
+  uEntity.User,
+  Vcl.Controls;
 
 type
   TControllerUsers = class
@@ -13,7 +14,7 @@ type
     class procedure ShowMainForm;
   public
     class procedure ShowLoginForm(var ALoggedUserName: string);
-    class procedure ShowUsersForm;
+    class procedure ShowUsersForm(const AParent: TWinControl);
     class function CheckLogin(const AUsername: string; const ATypedPassword: string): Boolean;
     class function Load(var AMemTable: TFDMemTable): Boolean;
     class function Delete(const AId: Integer): Boolean;
@@ -75,7 +76,28 @@ class function TControllerUsers.Load(var AMemTable: TFDMemTable): Boolean;
 begin
   var UserModel := TModelUsers.Create(dmConnection.Conn);
   try
-    Result := UserModel.Load(AMemTable);
+    var Userlist := UserModel.Load;
+    Result := True;
+
+    try
+      for var User in Userlist do
+      begin
+        AMemTable.Edit;
+        AMemTable.FieldByName('ID').AsInteger := User.ID;
+        AMemTable.FieldByName('Name').AsString := User.Name;
+        AMemTable.FieldByName('Login').AsString := User.Login;
+        AMemTable.FieldByName('IsPassTemp').AsBoolean := User.IsPassTemp;
+        AMemTable.FieldByName('CreationDate').AsDateTime := User.CreationDate;
+        AMemTable.FieldByName('HasUserScr').AsBoolean := User.HasUserSrc;
+        AMemTable.FieldByName('HasProductScr').AsBoolean := User.HasProducScr;
+        AMemTable.FieldByName('HasCustomerScr').AsBoolean := User.HasCustomerScr;
+        AMemTable.FieldByName('HasOrderScr').AsBoolean := User.HasOrderScr;
+        AMemTable.Post;
+      end;
+    finally
+      Userlist.Free;
+    end;
+
   finally
     UserModel.Free;
   end;
@@ -123,12 +145,13 @@ begin
   end;
 end;
 
-class procedure TControllerUsers.ShowUsersForm;
+class procedure TControllerUsers.ShowUsersForm(const AParent: TWinControl);
 begin
-  var frmUsers := TfrmUsers.Create(Application);
+  var frmUsers := TfrmUsers.Create(Application.MainForm);
   try
-    frmUsers.ShowModal;
-  finally
+    frmUsers.Parent := AParent;
+    frmUsers.Show;
+  except
     frmUsers.Free;
   end;
 end;

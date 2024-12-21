@@ -13,6 +13,7 @@ type
   TdmImages = class(TDataModule)
     imgHome: TImageList;
     imgNav: TImageList;
+    imgMenu: TImageList;
   private
     { Private declarations }
   public

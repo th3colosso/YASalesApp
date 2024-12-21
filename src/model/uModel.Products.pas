@@ -70,7 +70,7 @@ begin
       FQry.SQL.Text := 'UPDATE PRODUCTS SET NAME = :NAME, PRICE = :PRICE, IMAGE = :IMAGE, DESCRIPTION = :DESCRIPTION WHERE ID = :ID';
       FQry.ParamByName('NAME').AsString := AProduct.Name;
       FQry.ParamByName('PRICE').AsFloat := AProduct.Price;
-      FQry.ParamByName('IMAGE').LoadFromStream(AProduct.Image, ftBlob, 0);
+      FQry.ParamByName('IMAGE').LoadFromStream(AProduct.Image, ftBlob);
       FQry.ParamByName('DESCRIPTION').AsString := AProduct.Description;
       FQry.ParamByName('ID').AsInteger := AProduct.ID;
       FQry.ExecSQL;
@@ -80,7 +80,7 @@ begin
       FQry.SQL.Text := 'INSERT INTO PRODUCTS (NAME, PRICE, IMAGE, DESCRIPTION) VALUES (:NAME, :PRICE, :IMAGE, :DESCRIPTION)';
       FQry.ParamByName('NAME').AsString := AProduct.Name;
       FQry.ParamByName('PRICE').AsFloat := AProduct.Price;
-      FQry.ParamByName('IMAGE').LoadFromStream(AProduct.Image, ftBlob, 0);
+      FQry.ParamByName('IMAGE').LoadFromStream(AProduct.Image, ftBlob);
       FQry.ParamByName('DESCRIPTION').AsString := AProduct.Description;
       FQry.ExecSQL;
     end;

@@ -6,14 +6,15 @@ uses
   System.Classes,
   uModel.Base,
   FireDAC.Comp.Client,
-  uEntity.User;
+  uEntity.User,
+  System.Generics.Collections;
 
 type
 
   TModelUsers = class(TModelBase)
   public
     function CheckLogin(const AUsername: string; const ATypedPassword: string; var ANeedNewPassword: Boolean): Boolean;
-    function Load(var AMemTable: TFDMemtable): Boolean;
+    function Load: TObjectList<TEntityUser>;
     function Delete(const AId: Integer): Boolean;
     function GetLoggedUser(const ALogin: string): TLoggedUser;
     function Save(const AUser: TEntityUser): Boolean;
@@ -38,6 +39,38 @@ begin
   Result.HasProductScr := FQry.FieldByName('HASPRODUCTSCR').AsBoolean;
   Result.HasCustomerScr := FQry.FieldByName('HASCUSTOMERSCR').AsBoolean;
   Result.HasOrderScr := FQry.FieldByName('HASORDERSCR').AsBoolean;
+end;
+
+function TModelUsers.Load: TObjectList<TEntityUser>;
+begin
+  Result := TObjectList<TEntityUser>.Create;
+  try
+    FQry.Open('SELECT * FROM USERS');
+    while not FQry.Eof do
+    begin
+      var Item := TEntityUser.Create;
+
+      Item.ID := FQry.FieldByName('ID').AsInteger;
+      Item.Name := FQry.FieldByName('Name').AsString;
+      Item.Login := FQry.FieldByName('Login').AsString;
+      Item.IsPassTemp := FQry.FieldByName('IsPassTemp').AsBoolean;
+      Item.CreationDate := FQry.FieldByName('CreationDate').AsDateTime;
+      Item.HasUserSrc := FQry.FieldByName('HasUserScr').AsBoolean;
+      Item.HasProducScr := FQry.FieldByName('HasProductScr').AsBoolean;
+      Item.HasCustomerScr := FQry.FieldByName('HasCustomerScr').AsBoolean;
+      Item.HasOrderScr := FQry.FieldByName('HasOrderScr').AsBoolean;
+      Result.Add(Item);
+
+      FQry.Next;
+    end;
+  except
+    on E: Exception do
+    begin
+      Result.Free;
+      Result := TObjectList<TEntityUser>.Create;
+      Log(Self, E);
+    end;
+  end;
 end;
 
 function TModelUsers.CheckLogin(const AUsername, ATypedPassword: string; var ANeedNewPassword: Boolean): Boolean;
@@ -66,23 +99,6 @@ begin
     Result := DeleteByID('USERS', AId);
   except
     Result := False;
-  end;
-end;
-
-function TModelUsers.Load(var AMemTable: TFDMemtable): Boolean;
-begin
-  try
-    AMemTable.EmptyDataSet;
-    FQry.Open('SELECT * FROM USERS');
-    AMemTable.CopyDataSet(FQry);
-    Result := True;
-    FQry.Close;
-  except
-    on E: Exception do
-    begin
-      Result := False;
-      Log(Self, E);
-    end;
   end;
 end;
 

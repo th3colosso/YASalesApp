@@ -54,7 +54,6 @@ type
     pnlData: TPanel;
     rectData: TShape;
     procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
     procedure btRefreshClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btInsertClick(Sender: TObject);
@@ -67,6 +66,8 @@ type
     procedure btSuccClick(Sender: TObject);
     procedure btLastClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure gdDataDblClick(Sender: TObject);
   protected
     FIsInserting: Boolean;
     procedure ConfigMemTable; virtual;
@@ -98,6 +99,11 @@ uses
 
 {$R *.dfm}
 
+procedure TfrmBaseReg.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Action := TCloseAction.caFree;
+end;
+
 procedure TfrmBaseReg.FormCreate(Sender: TObject);
 begin
   ConfigVariables;
@@ -107,11 +113,6 @@ begin
   ConfigMemTable;
   ControlActions(False);
   ControlNavigation(True);
-end;
-
-procedure TfrmBaseReg.FormDestroy(Sender: TObject);
-begin
-  Application.MainForm.AlphaBlend := False;
 end;
 
 procedure TfrmBaseReg.FormKeyPress(Sender: TObject; var Key: Char);
@@ -128,7 +129,11 @@ end;
 procedure TfrmBaseReg.FormShow(Sender: TObject);
 begin
   ReloadData;
-  Application.MainForm.AlphaBlend := True;
+end;
+
+procedure TfrmBaseReg.gdDataDblClick(Sender: TObject);
+begin
+  btEditClick(nil);
 end;
 
 procedure TfrmBaseReg.MoveToEditPage;

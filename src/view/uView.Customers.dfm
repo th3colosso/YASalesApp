@@ -1,17 +1,24 @@
 inherited frmCustomers: TfrmCustomers
   Hint = 'Customer'#39's Details - Inserting / Updating'
+  BorderStyle = bsSizeable
   Caption = 'Customers - %s'
+  StyleElements = [seFont, seClient, seBorder]
   TextHeight = 15
+  inherited pnlButtons: TPanel
+    StyleElements = [seFont, seClient, seBorder]
+  end
   inherited pages: TPageControl
     inherited tsEdit: TTabSheet
       inherited pnlEdit: TPanel
+        StyleElements = [seFont, seClient, seBorder]
         inherited pnlTitle: TPanel
+          StyleElements = [seFont, seClient, seBorder]
           inherited lblTitle: TLabel
-            Width = 777
-            Height = 49
+            StyleElements = [seFont, seClient, seBorder]
           end
         end
         inherited pnlData: TPanel
+          StyleElements = [seFont, seClient, seBorder]
           inherited rectData: TShape
             ExplicitLeft = 0
             ExplicitTop = -7

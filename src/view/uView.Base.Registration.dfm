@@ -16,8 +16,8 @@ object frmBaseReg: TfrmBaseReg
   Font.Style = []
   KeyPreview = True
   Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   TextHeight = 15
@@ -39,7 +39,7 @@ object frmBaseReg: TfrmBaseReg
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Insert'
+      Hint = 'Novo'
       ImageAlignment = iaCenter
       ImageIndex = 0
       Images = dmImages.imgNav
@@ -54,7 +54,7 @@ object frmBaseReg: TfrmBaseReg
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Edit'
+      Hint = 'Editar'
       ImageAlignment = iaCenter
       ImageIndex = 3
       Images = dmImages.imgNav
@@ -69,7 +69,7 @@ object frmBaseReg: TfrmBaseReg
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Cancel'
+      Hint = 'Cancelar'
       ImageAlignment = iaCenter
       ImageIndex = 1
       Images = dmImages.imgNav
@@ -82,7 +82,7 @@ object frmBaseReg: TfrmBaseReg
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Save'
+      Hint = 'Salvar'
       ImageAlignment = iaCenter
       ImageIndex = 4
       Images = dmImages.imgNav
@@ -97,7 +97,7 @@ object frmBaseReg: TfrmBaseReg
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Refresh'
+      Hint = 'Recarregar'
       ImageAlignment = iaCenter
       ImageIndex = 5
       Images = dmImages.imgNav
@@ -112,7 +112,7 @@ object frmBaseReg: TfrmBaseReg
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Delete'
+      Hint = 'Excluir'
       ImageAlignment = iaCenter
       ImageIndex = 2
       Images = dmImages.imgNav
@@ -127,7 +127,7 @@ object frmBaseReg: TfrmBaseReg
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Last'
+      Hint = #218'ltimo'
       Anchors = [akTop, akRight]
       ImageAlignment = iaCenter
       ImageIndex = 7
@@ -143,7 +143,7 @@ object frmBaseReg: TfrmBaseReg
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Next'
+      Hint = 'Pr'#243'ximo'
       Anchors = [akTop, akRight]
       ImageAlignment = iaCenter
       ImageIndex = 7
@@ -159,7 +159,7 @@ object frmBaseReg: TfrmBaseReg
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'Previous'
+      Hint = 'Anterior'
       Anchors = [akTop, akRight]
       ImageAlignment = iaCenter
       ImageIndex = 8
@@ -175,7 +175,7 @@ object frmBaseReg: TfrmBaseReg
       Width = 60
       Height = 60
       Cursor = crHandPoint
-      Hint = 'First'
+      Hint = 'Primeiro'
       Anchors = [akTop, akRight]
       ImageAlignment = iaCenter
       ImageIndex = 6
@@ -191,7 +191,7 @@ object frmBaseReg: TfrmBaseReg
     Top = 65
     Width = 844
     Height = 376
-    ActivePage = tsEdit
+    ActivePage = tsList
     Align = alClient
     MultiLine = True
     ParentShowHint = False
@@ -215,6 +215,7 @@ object frmBaseReg: TfrmBaseReg
         TitleFont.Height = -12
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
+        OnDblClick = gdDataDblClick
       end
     end
     object tsEdit: TTabSheet
